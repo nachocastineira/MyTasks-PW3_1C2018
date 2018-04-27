@@ -1,0 +1,75 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - AppPW3</title>
+    <link href="~/Content/Site.css" rel="stylesheet" type="text/css" />
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet" type="text/css" />
+    <link href="~/Content/CSS/estiloSidebar.css" rel="stylesheet" type="text/css" />
+    <script src="~/Scripts/modernizr-2.6.2.js"></script>
+</head>
+<body>
+
+    <!-- COMIENZA NAVBAR -->
+    <div class="pos-f-t">
+        <nav class="navbar navbar-inverse bg-inverse">
+            <a href="#menu-toggle" class="navbar-toggler" id="menu-toggle"><span class="navbar-toggler-icon"></span></a>
+        </nav>
+    </div>
+    <!-- TERMINA NAVBAR -->
+
+
+    <!-- COMIENZA SIDEBAR -->
+    <div id="wrapper">
+        <!-- Sidebar -->
+        <div id="sidebar-wrapper">
+            <ul class="sidebar-nav">
+                <li class="sidebar-brand">
+                    <a href="">Inicio</a>
+                </li>
+
+                <li>
+                    <a href="">Mis Carpetas</a>
+                </li>
+
+                <li>
+                    <a href="">Mis Tareas</a>
+                </li>
+
+                <li>
+                    <a href="">Crear Carpeta</a>
+                </li>
+
+                <li>
+                    <a href="">Crear Tareas</a>
+                </li>
+
+                @*<li>
+                    <a href="#">Ajustes</a>
+                </li>*@
+            </ul>
+        </div>
+        <!-- /#sidebar-wrapper -->
+
+
+        <!-- COMIENZA CONTENIDO DE LA PAGINA -->
+        <div id="page-content-wrapper">
+            <div class="container-fluid">
+
+                <!-- el contenido que cambiará entre paginas, en la vista lo comenzamos con un @section Body{}-->
+                @RenderSection("Body")
+
+            </div>
+        </div>
+        <!-- /#page-content-wrapper -->
+
+    </div>
+    <!-- /#wrapper -->
+    <!-- TERMINA NAVBAR -->
+
+    <script src="~/Scripts/jquery-1.10.2.min.js"></script>
+    <script src="~/Scripts/bootstrap.min.js"></script>
+    <script src="~/Content/js/app.js"></script>
+</body>
+</html>
