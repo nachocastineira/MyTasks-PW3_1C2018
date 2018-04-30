@@ -7,8 +7,87 @@
 <!-- comienzo el renderSection que expecifique en el _LayoutSidebar - Hay que ponerlo en todas las Views que agreguemos-->
 @section Body
 {
-    <h2>Crear Tareas</h2>
+    <ol class="breadcrumb shadow p-3 mb-5 bg-white rounded">
+        <li class="breadcrumb-item">Mis Tareas</li>
+        <li class="breadcrumb-item active">Crear nueva</li>
+    </ol>
 
-}
+    <div class="col-sm-8 offset-sm-2">
 
+        <div class="card">
+            <div class="card-header card-inverse card-success text-white">
+                Complete los siguientes campos para crear una nueva tarea:
+            </div>
 
+            <form>
+                <div class="card-block">
+
+                    <div class="form-group">
+                        <label class="col-sm-3 col-form-label ">Nombre</label>
+                        <div class="col-sm-11">
+                            <input type="text" class="form-control" placeholder="Este campo es obligatorio." required />
+                        </div>
+                    </div>
+                    <br />
+
+                    <div class="form-group">
+                        <label class="col-sm-3 col-form-label">Descripción</label>
+                        <div class="col-sm-11">
+                            <input type="text" class="form-control" placeholder="Este campo es opcional." />
+                        </div>
+                    </div>
+                    <br />
+
+                    <div class="form-group">
+                        <label class="col-sm-3 col-form-label">Horas estimadas</label>
+                        <div class="col-sm-11">
+                            <input type="text" class="form-control" placeholder="Este campo es opcional." />
+                        </div>
+                    </div>
+                    <br />
+
+                    <div class="form-group">
+                        <label class="col-sm-3 col-form-label">Fecha límite</label>
+                        <div class="col-sm-11">
+                            <input type="text" class="form-control" placeholder="Este campo es opcional." />
+                        </div>
+                    </div>
+                    <br />
+
+                    <div class="form-group">
+                        <label class="col-sm-3 col-form-label">Prioridad</label>
+                        <div class="col-sm-11">
+                            <select class="custom-select" id="">
+                                <option selected>Elegir...</option>
+                                <option value="1">Baja</option>
+                                <option value="2">Media</option>
+                                <option value="3">Alta</option>
+                                <option value="4">Urgente</option>
+                            </select>
+                        </div>
+                    </div>
+                    <br />
+
+                    <div class="form-group">
+                        <label class="col-sm-3 col-form-label">Carpeta</label>
+                        <div class="col-sm-11">
+                            <select class="custom-select" id="">
+                                <option selected>General</option>
+                                <option value="1">Facturas</option>
+                                <option value="2">Gastos</option>
+                                <option value="2">Vacaciones 2019</option>
+                            </select>
+                        </div>
+                    </div>
+                    <br />
+
+                    <div class="btn-group">
+                        <button type="submit" class="btn btn-outline-success">Crear</button>
+                        <button type="reset" class="btn btn-outline-info">Restablecer</button>
+                    </div>
+
+</div>
+</form>
+        </div>
+    </div>
+   }

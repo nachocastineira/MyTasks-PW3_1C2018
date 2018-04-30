@@ -5,7 +5,49 @@
 
 @section Body
 {
-    <h2>Carpetas - Crear</h2>
 
+    <ol class="breadcrumb shadow p-3 mb-5 bg-white rounded">
+        <li class="breadcrumb-item">Mis Carpetas</li>
+        <li class="breadcrumb-item active">Crear nueva</li>
+    </ol>
+
+
+    <div class="col-sm-8 offset-sm-2">
+
+
+
+        <div class="card">
+            <div class="card-header card-inverse card-success text-white">
+                Complete los siguientes campos para crear una nueva carpeta:
+            </div>
+
+            <form>
+                <div class="card-block">
+
+                    <div class="form-group">
+                        <label class="col-sm-3 col-form-label ">Nombre</label>
+                        <div class="col-sm-11">
+                            <input type="text" class="form-control" placeholder="Este campo es obligatorio." required />
+                        </div>
+                    </div>
+                    <br />
+
+                    <div class="form-group">
+                        <label class="col-sm-3 col-form-label">Descripción</label>
+                        <div class="col-sm-11">
+                            <input type="text" class="form-control" placeholder="Este campo es opcional." />
+                        </div>
+                    </div>
+                    <br />
+
+                    <div class="btn-group">
+                            <button type="submit" class="btn btn-outline-success">Crear</button>
+                            <button type="reset" class="btn btn-outline-info">Restablecer</button>
+                    </div>
+
+
+            </form>
+        </div>
+    </div>
 }
 
