@@ -138,7 +138,6 @@
     <None Include="packages.config" />
     <Content Include="Views\Carpetas\Index.cshtml" />
     <Content Include="Views\_ViewStart.cshtml" />
-    <Content Include="Views\Shared\_LayoutSidebar.cshtml" />
     <Content Include="Views\Carpetas\Crear.cshtml" />
     <Content Include="Scripts\jquery-1.10.2.min.map" />
     <Content Include="Views\Tareas\Crear.cshtml" />
@@ -148,7 +147,7 @@
     <Content Include="Views\Home\Login.cshtml" />
     <Content Include="Views\Home\Registracion.cshtml" />
     <Content Include="Views\Home\Logout.cshtml" />
-    <Content Include="Views\Shared\_LayoutNavbar.cshtml" />
+    <Content Include="Views\Shared\_LayoutApp.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
