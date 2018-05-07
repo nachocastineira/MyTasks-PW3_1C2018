@@ -7,12 +7,14 @@
 <!-- comienzo el renderSection que expecifique en el _LayoutSidebar - Hay que ponerlo en todas las Views que agreguemos-->
 @section Body
 {
-    <ol class="breadcrumb shadow p-3 mb-5 bg-dark">
-        <li class="breadcrumb-item text-muted">Mis Tareas</li>
-        <li class="breadcrumb-item active text-white">Crear nueva</li>
-    </ol>
 
-    <div class="col-sm-10 offset-sm-1">
+    <div class="col-md-10 offset-1 ">
+
+        <ol class="breadcrumb shadow p-3 mb-5 bg-dark">
+            <li class="breadcrumb-item text-muted">Mis Tareas</li>
+            <li class="breadcrumb-item active text-white">Crear nueva</li>
+        </ol>
+
 
         <div class="card">
             <div class="card-header bg-success mb-3 text-white">
@@ -20,55 +22,54 @@
             </div>
 
             <form>
-                <div class="card-block">
 
-                    <div class="form-group">
-                        <label class="col-sm-3 col-form-label ">Nombre</label>
+                <div class="form-row">
+                    <div class="col-md-4 mb-3">
+                        <label class="col-sm-6 col-form-label ">Nombre</label>
                         <div class="col-sm-11">
                             <input type="text" class="form-control" placeholder="Este campo es obligatorio." required />
                         </div>
                     </div>
-                    <br />
 
-                    <div class="form-group">
-                        <label class="col-sm-3 col-form-label">Descripción</label>
+                    <div class="col-md-4 mb-3">
+                        <label class="col-sm-6 col-form-label">Descripción</label>
                         <div class="col-sm-11">
                             <input type="text" class="form-control" placeholder="Este campo es opcional." />
                         </div>
                     </div>
-                    <br />
+                </div>
 
-                    <div class="form-group">
-                        <label class="col-sm-3 col-form-label">Horas estimadas</label>
+                <div class="form-row">
+                    <div class="col-md-4 mb-3">
+                        <label class="col-sm-6 col-form-label">Horas estimadas</label>
                         <div class="col-sm-11">
                             <input type="text" class="form-control" placeholder="Este campo es opcional." />
                         </div>
                     </div>
-                    <br />
 
-                    <div class="form-group">
-                        <label class="col-sm-3 col-form-label">Fecha límite</label>
+                    <div class="col-md-4 mb-3">
+                        <label class="col-sm-6 col-form-label">Fecha límite</label>
                         <div class="col-sm-11">
                             <input type="text" class="form-control" placeholder="Este campo es opcional." />
                         </div>
                     </div>
-                    <br />
+                </div>
 
-                    <div class="form-group">
+                <div class="form-row">
+                    <div class="col-md-4 mb-3">
                         <label class="col-sm-3 col-form-label">Prioridad</label>
                         <div class="col-sm-11">
                             <select class="custom-select" id="">
                                 <option selected>Elegir...</option>
-                                <option value="1">Baja</option>
-                                <option value="2">Media</option>
-                                <option value="3">Alta</option>
-                                <option value="4">Urgente</option>
+                                <option value="1" class="text-info">Baja</option>
+                                <option value="2" class="text-warning">Media</option>
+                                <option value="3" class="text-danger">Alta</option>
+                                <option value="4" class="text-danger font-weight-bold">Urgente</option>
                             </select>
                         </div>
                     </div>
-                    <br />
 
-                    <div class="form-group">
+                    <div class="col-md-4 mb-3">
                         <label class="col-sm-3 col-form-label">Carpeta</label>
                         <div class="col-sm-11">
                             <select class="custom-select" id="">
@@ -79,15 +80,14 @@
                             </select>
                         </div>
                     </div>
-                    <br />
+                </div>
 
-                    <div class="btn-group">
-                        <button type="submit" class="btn btn-outline-success">Crear</button>
-                        <button type="reset" class="btn btn-outline-info">Restablecer</button>
-                    </div>
+                <div class="col-md-4 mt-4 mb-5">
+                    <button type="submit" class="btn btn-outline-success">Carpeta Nueva Tarea</button>
+                    @*<button type="reset" class="btn btn-outline-info">Restablecer</button>*@
+                </div>
 
-</div>
-</form>
+            </form>
         </div>
     </div>
-   }
+}

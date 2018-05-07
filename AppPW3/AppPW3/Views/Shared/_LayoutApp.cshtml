@@ -15,7 +15,6 @@
     <script src="~/Scripts/modernizr-2.6.2.js"></script>
 </head>
 <body>
-
     <!-- COMIENZA NAVBAR -->
     <nav class="navbar navbar-dark bg-dark">
         <a href="#menu-toggle" class="navbar-toggler" id="menu-toggle"><span class="navbar-toggler-icon"></span></a>
@@ -33,23 +32,23 @@
         <div id="sidebar-wrapper">
             <ul class="sidebar-nav">
                 <li class="sidebar-brand">
-                    <a href="">Inicio</a>
+                    <a href="@Url.Content("~/Home/Index")">Inicio</a>
                 </li>
 
                 <li>
-                    <a href="">Mis Carpetas</a>
+                    <a href="@Url.Content("~/Carpetas/Index")">Mis Carpetas</a>
                 </li>
 
                 <li>
-                    <a href="">Mis Tareas</a>
+                    <a href="@Url.Content("~/Tareas/Index")">Mis Tareas</a>
                 </li>
 
                 <li>
-                    <a href="">Crear Carpeta</a>
+                    <a href="@Url.Content("~/Carpetas/Crear")">Crear Carpeta</a>
                 </li>
 
                 <li>
-                    <a href="">Crear Tareas</a>
+                    <a href="@Url.Content("~/Tareas/Crear")">Crear Tareas</a>
                 </li>
 
                 @*<li>
@@ -59,8 +58,7 @@
         </div>
         <!-- /#sidebar-wrapper -->
         <!-- COMIENZA CONTENIDO DE LA PAGINA -->
-        <div id="page-content-wrapper">
-
+        <div id="page-content-wrapper" class="container-fluid">
 
                 <!-- el contenido que cambiará entre paginas, en la vista lo comenzamos con un @section Body{}-->
                 @RenderSection("Body")
