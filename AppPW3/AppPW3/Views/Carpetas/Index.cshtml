@@ -10,9 +10,16 @@
         <li class="breadcrumb-item active text-white">Mis Carpetas</li>
     </ol>
 
+    <div class="btn-group mb-4">
+        <a class="btn btn-outline-success" href="@Url.Content("~/Carpetas/Crear")">Crear nueva carpeta</a>
+        <a class="btn btn-outline-warning" href="">Modificar carpeta</a>
+        <a class="btn btn-outline-danger" href="">Eliminar carpeta</a>
+    </div>
+
     <table class="table table-hover">
         <thead class="thead-inverse">
             <tr>
+                <th>✓</th>
                 <th>#</th>
                 <th>Nombre</th>
                 <th>Descripción</th>
@@ -21,6 +28,7 @@
         </thead>
         <tbody>
             <tr>
+                <td><input class="form-check-label" type="checkbox" /></td>
                 <th scope="row">1</th>
                 <td>Facturas</td>
                 <td>Total abonado de facturas</td>
@@ -28,12 +36,14 @@
 
             </tr>
             <tr>
+                <td><input class="form-check-label" type="checkbox" /></td>
                 <th scope="row">2</th>
                 <td>Gastos</td>
                 <td>-</td>
                 <td>2018-01-11</td>
             </tr>
             <tr>
+                <td><input class="form-check-label" type="checkbox" /></td>
                 <th scope="row">3</th>
                 <td>Vacaciones 2019</td>
                 <td>Tarifas aproximadas de los hoteles</td>
