@@ -53,54 +53,63 @@
     </table>
 
     <div id="modificar" class="modal fade in" role="dialog">
-        <div class="modal-dialog">
-            <div class="modal-content">
+        <form action="" method="post" id="formCarpeta">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="card-header bg-warning text-white text-center">
+                        <h5 class="modal-title">Modificar carpeta existente:</h5>
+                    </div>
+                    <div class="modal-body">
+                        <h6 class="text-dark text-center m-3">Complete los campos que desea modificar.</h6>
 
-                <div class="modal-header">
-                    <a class="btn pull-left" data-dismiss="modal"><span class="glyphicon glyphicon-remove"></span></a>
-                    <h3 class="modal-title text-center">Modificar la Carpeta:</h3>
-                </div>
-                <div class="modal-body">
-                    <form action="" id="formCarpeta">
                         <div class="form-group">
-                            <input type="text" class="form-control input-lg" placeholder="Nombre Carpeta" />
+
+                            <div class="form-row m-2">
+                                <label class="col-sm-6 col-form-label">Nombre:</label>
+                                <input type="text" class="form-control input-lg mb-3" placeholder="//Traigo dato de BD" required />
+                            </div>
+
+                            <div class="form-row m-2">
+                                <label class="col-sm-6 col-form-label">Descripción:</label>
+                                <textarea name="descripcion" class="form-control mb-3" rows="2" form="formCarpeta" placeholder="//Traigo dato de BD" required></textarea>
+                            </div>
                         </div>
-                    </form>
-                        <textarea name="descripcion" class="form-control" rows="3"  form="formCarpeta">Ingrese Descripcion...</textarea>
-                </div>
-                <div class="modal-footer">
-                    <div class="form-group text-center">
-                        <!--   <button class="btn btn-danger" data-dismiss="modal" type="submit" data-toggle="page-alert" data-delay="9000" data-toggle-id="1"><span class="glyphicon glyphicon-ok"></span> Eliminar</button> -->
-                        <button class="btn btn-warning" type="submit" value="modificar"><span class="glyphicon glyphicon-trash"></span> Modificar</button>
+
+
+
+                    </div>
+                    <div class="modal-footer">
+                        <div class="btn-group">
+                            <button class="btn btn-outline-warning" type="submit" value="modificar"> Guardar cambios</button>
+                            <button type="button" class="btn btn-outline-secondary" data-dismiss="modal">Cancelar</button>
+                        </div>
                     </div>
                 </div>
-
-            </div><!-- /.modal-content -->
-        </div><!-- /.modal-dalog -->
+                </div>
+        </form>
     </div>
 
     <div id="eliminar" class="modal fade in" role="dialog">
-        <div class="modal-dialog">
-            <div class="modal-content">
+        <form action="" method="post">
+            <div class="modal-dialog">
+                <div class="modal-content">
 
-                <div class="modal-header">
-                    <a class="btn pull-left" data-dismiss="modal"><span class="glyphicon glyphicon-remove"></span></a>
-                    <h3 class="modal-title text-center">Eliminacion de Carpeta</h3>
-                </div>
-                <div class="modal-body">
-                    <h4>¿Seguro desea Eliminar la Carpeta? Todo el contenido se perdera.</h4>
-                </div>
-                <div class="modal-footer">
-                    <div class="form-group text-center">
-                        <!--   <button class="btn btn-danger" data-dismiss="modal" type="submit" data-toggle="page-alert" data-delay="9000" data-toggle-id="1"><span class="glyphicon glyphicon-ok"></span> Eliminar</button> -->
-
-                        <button class="btn btn-danger" type="submit" value="borrar"><span class="glyphicon glyphicon-trash"></span> Eliminar</button>
+                    <div class="card-header bg-danger text-white text-center">
+                        <h5 class="modal-title">Eliminar carpeta:</h5>
+                    </div>
+                    <div class="modal-body text-center m-3">
+                        <h6>¿Seguro desea eliminar la carpeta seleccionada?</h6>
+                        <p> Todo el contenido almacenado en ella se perderá.</p>
+                    </div>
+                    <div class="modal-footer">
+                        <div class="btn-group">
+                            <button class="btn btn-outline-danger" type="submit" value="modificar"> Confirmar eliminación</button>
+                            <button type="button" class="btn btn-outline-secondary" data-dismiss="modal">Cancelar</button>
+                        </div>
                     </div>
                 </div>
-
-            </div><!-- /.modal-content -->
-        </div><!-- /.modal-dalog -->
+            </div>
+        </form>S
     </div>
 
-
-}
+    }
