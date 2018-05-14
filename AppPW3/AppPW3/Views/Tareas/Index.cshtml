@@ -13,8 +13,8 @@
     <div class="btn-group mb-4">
         <a class="btn btn-outline-primary" href="@Url.Content("~/Carpetas/Index")">Mis Carpetas</a>
         <a class="btn btn-outline-success" href="@Url.Content("~/Tareas/Crear")">Crear nueva tarea</a>
-        <a class="btn btn-outline-warning" href="">Modificar tarea</a>
-        <a class="btn btn-outline-danger" href="">Eliminar tarea</a>
+        <a data-toggle="modal" href="#myModal" data-target="#modificar" class="btn btn-outline-warning" href="">Modificar tarea</a>
+        <a data-toggle="modal" href="#myModal" data-target="#eliminar" class="btn btn-outline-danger" href="">Eliminar tarea</a>
     </div>
 
     <table class="table table-hover">
@@ -30,7 +30,7 @@
             </tr>
         </thead>
         <tbody>
-            
+
             <tr>
                 <td><input class="form-check-label" type="checkbox" /></td>
                 <th scope="row">1</th>
@@ -96,5 +96,113 @@
             </tr>
         </tbody>
     </table>
+
+    <div id="modificar" class="modal fade in" role="dialog">
+        <div class="modal-dialog">
+            <div class="modal-content">
+
+                <div class="modal-header">
+                    <a class="btn pull-left" data-dismiss="modal"><span class="glyphicon glyphicon-remove"></span></a>
+                    <h3 class="modal-title text-center">Modificar la Tarea:</h3>
+                </div>
+                <div class="modal-body">
+                    <div class="card">
+                        <div class="card-header bg-warning mb-3 text-white">
+                            Complete los siguientes campos para modificar una nueva tarea:
+                        </div>
+
+                        <form>
+                                <div class="form-row">
+                                    <label class="col-sm-6 col-form-label ">Nombre</label>
+                                    <div class="col-sm-11">
+                                        <input type="text" class="form-control" placeholder="Este campo es obligatorio." required />
+                                    </div>
+                                </div>
+
+                                <div class="form-row">
+                                    <label class="col-sm-6 col-form-label">Descripción</label>
+                                    <div class="col-sm-11">
+                                        <input type="text" class="form-control" placeholder="Este campo es opcional." />
+                                    </div>
+                                </div>
+
+                                <div class="form-row">
+                                    <label class="col-sm-6 col-form-label">Horas estimadas</label>
+                                    <div class="col-sm-11">
+                                        <input type="text" class="form-control" placeholder="Este campo es opcional." />
+                                    </div>
+                                </div>
+
+                                <div class="form-row">
+                                    <label class="col-sm-6 col-form-label">Fecha límite</label>
+                                    <div class="col-sm-11">
+                                        <input type="text" class="form-control" placeholder="Este campo es opcional." />
+                                    </div>
+                                </div>
+                     
+                                <div class="form-row">
+                                    <label class="col-sm-3 col-form-label">Prioridad</label>
+                                    <div class="col-sm-11">
+                                        <select class="custom-select" id="">
+                                            <option selected>Elegir...</option>
+                                            <option value="1" class="text-info">Baja</option>
+                                            <option value="2" class="text-warning">Media</option>
+                                            <option value="3" class="text-danger">Alta</option>
+                                            <option value="4" class="text-danger font-weight-bold">Urgente</option>
+                                        </select>
+                                    </div>
+                                </div>
+
+                                <div class="form-row">
+                                    <label class="col-sm-3 col-form-label">Carpeta</label>
+                                    <div class="col-sm-11">
+                                        <select class="custom-select" id="">
+                                            <option selected>General</option>
+                                            <option value="1">Facturas</option>
+                                            <option value="2">Gastos</option>
+                                            <option value="2">Vacaciones 2019</option>
+                                        </select>
+                                    </div>
+                                </div>
+                        </form>
+                    </div>
+
+
+
+                </div>
+                <div class="modal-footer">
+                    <div class="col-md-4 mt-4 mb-5">
+    <button type="submit" class="btn btn-outline-warning">Modificar</button>
+    @*<button type="reset" class="btn btn-outline-info">Restablecer</button>*@
+</div>
+                </div>
+
+            </div><!-- /.modal-content -->
+        </div><!-- /.modal-dalog -->
+    </div>
+
+    <div id="eliminar" class="modal fade in" role="dialog">
+        <div class="modal-dialog">
+            <div class="modal-content">
+
+                <div class="modal-header">
+                    <a class="btn pull-left" data-dismiss="modal"><span class="glyphicon glyphicon-remove"></span></a>
+                    <h3 class="modal-title text-center">Eliminacion de Tarea</h3>
+                </div>
+                <div class="modal-body">
+                    <h4>¿Seguro desea Eliminar la Tarea? Todo el contenido se perdera.</h4>
+                </div>
+                <div class="modal-footer">
+                    <div class="form-group text-center">
+                        <!--   <button class="btn btn-danger" data-dismiss="modal" type="submit" data-toggle="page-alert" data-delay="9000" data-toggle-id="1"><span class="glyphicon glyphicon-ok"></span> Eliminar</button> -->
+
+                        <button class="btn btn-danger" type="submit" value="borrar"><span class="glyphicon glyphicon-trash"></span> Eliminar</button>
+                    </div>
+                </div>
+
+            </div><!-- /.modal-content -->
+        </div><!-- /.modal-dalog -->
+    </div>
+
 }
 

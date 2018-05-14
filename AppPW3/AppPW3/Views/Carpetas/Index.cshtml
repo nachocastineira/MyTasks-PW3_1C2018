@@ -12,8 +12,8 @@
 
     <div class="btn-group mb-4">
         <a class="btn btn-outline-success" href="@Url.Content("~/Carpetas/Crear")">Crear nueva carpeta</a>
-        <a class="btn btn-outline-warning" href="">Modificar carpeta</a>
-        <a data-toggle="modal" href="#myModal" data-target="#confirmar"  class="btn btn-outline-danger">Eliminar carpeta</a>
+        <a data-toggle="modal" href="#myModal" data-target="#modificar" class="btn btn-outline-warning">Modificar carpeta</a>
+        <a data-toggle="modal" href="#myModal" data-target="#eliminar" class="btn btn-outline-danger">Eliminar carpeta</a>
     </div>
 
     <table class="table table-hover">
@@ -52,13 +52,40 @@
         </tbody>
     </table>
 
-    <div id="confirmar" class="modal fade in" role="dialog">
+    <div id="modificar" class="modal fade in" role="dialog">
         <div class="modal-dialog">
             <div class="modal-content">
 
                 <div class="modal-header">
                     <a class="btn pull-left" data-dismiss="modal"><span class="glyphicon glyphicon-remove"></span></a>
-                    <h3 class="modal-title text-center">Eliminacion de Tareas:</h3>
+                    <h3 class="modal-title text-center">Modificar la Carpeta:</h3>
+                </div>
+                <div class="modal-body">
+                    <form action="" id="formCarpeta">
+                        <div class="form-group">
+                            <input type="text" class="form-control input-lg" placeholder="Nombre Carpeta" />
+                        </div>
+                    </form>
+                        <textarea name="descripcion" class="form-control" rows="3"  form="formCarpeta">Ingrese Descripcion...</textarea>
+                </div>
+                <div class="modal-footer">
+                    <div class="form-group text-center">
+                        <!--   <button class="btn btn-danger" data-dismiss="modal" type="submit" data-toggle="page-alert" data-delay="9000" data-toggle-id="1"><span class="glyphicon glyphicon-ok"></span> Eliminar</button> -->
+                        <button class="btn btn-warning" type="submit" value="modificar"><span class="glyphicon glyphicon-trash"></span> Modificar</button>
+                    </div>
+                </div>
+
+            </div><!-- /.modal-content -->
+        </div><!-- /.modal-dalog -->
+    </div>
+
+    <div id="eliminar" class="modal fade in" role="dialog">
+        <div class="modal-dialog">
+            <div class="modal-content">
+
+                <div class="modal-header">
+                    <a class="btn pull-left" data-dismiss="modal"><span class="glyphicon glyphicon-remove"></span></a>
+                    <h3 class="modal-title text-center">Eliminacion de Carpeta</h3>
                 </div>
                 <div class="modal-body">
                     <h4>¿Seguro desea Eliminar la Carpeta? Todo el contenido se perdera.</h4>
