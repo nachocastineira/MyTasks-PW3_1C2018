@@ -13,7 +13,7 @@
     <div class="btn-group mb-4">
         <a class="btn btn-outline-success" href="@Url.Content("~/Carpetas/Crear")">Crear nueva carpeta</a>
         <a class="btn btn-outline-warning" href="">Modificar carpeta</a>
-        <a class="btn btn-outline-danger" href="">Eliminar carpeta</a>
+        <a data-toggle="modal" href="#myModal" data-target="#confirmar"  class="btn btn-outline-danger">Eliminar carpeta</a>
     </div>
 
     <table class="table table-hover">
@@ -51,6 +51,29 @@
             </tr>
         </tbody>
     </table>
+
+    <div id="confirmar" class="modal fade in" role="dialog">
+        <div class="modal-dialog">
+            <div class="modal-content">
+
+                <div class="modal-header">
+                    <a class="btn pull-left" data-dismiss="modal"><span class="glyphicon glyphicon-remove"></span></a>
+                    <h3 class="modal-title text-center">Eliminacion de Tareas:</h3>
+                </div>
+                <div class="modal-body">
+                    <h4>¿Seguro desea Eliminar la Carpeta? Todo el contenido se perdera.</h4>
+                </div>
+                <div class="modal-footer">
+                    <div class="form-group text-center">
+                        <!--   <button class="btn btn-danger" data-dismiss="modal" type="submit" data-toggle="page-alert" data-delay="9000" data-toggle-id="1"><span class="glyphicon glyphicon-ok"></span> Eliminar</button> -->
+
+                        <button class="btn btn-danger" type="submit" value="borrar"><span class="glyphicon glyphicon-trash"></span> Eliminar</button>
+                    </div>
+                </div>
+
+            </div><!-- /.modal-content -->
+        </div><!-- /.modal-dalog -->
+    </div>
 
 
 }
