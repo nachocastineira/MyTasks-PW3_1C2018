@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="bb8dfab4a5e14ddd88f4dbb0e367132e" Name="Diagram1">
+        <EntityTypeShape EntityType="TareasModel.ArchivoTarea" Width="1.5" PointX="5.25" PointY="4.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="TareasModel.Carpeta" Width="1.5" PointX="3" PointY="1.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="TareasModel.ComentarioTarea" Width="1.5" PointX="5.25" PointY="6.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="TareasModel.Tarea" Width="1.5" PointX="3" PointY="4.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="TareasModel.Usuario" Width="1.5" PointX="0.75" PointY="3.5" IsExpanded="true" />
+        <AssociationConnector Association="TareasModel.FK_ArchivoTarea_Tarea" ManuallyRouted="false" />
+        <AssociationConnector Association="TareasModel.FK_Carpeta_Usuario" ManuallyRouted="false" />
+        <AssociationConnector Association="TareasModel.FK_Comentario_Tarea" ManuallyRouted="false" />
+        <AssociationConnector Association="TareasModel.FK_Tareas_Usuarios" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
