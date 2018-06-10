@@ -121,6 +121,12 @@
     <Content Include="Entidades\Tareas.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>Tareas.Context.cs</LastGenOutput>
+      <DependentUpon>Tareas.edmx</DependentUpon>
+    </Content>
+    <Content Include="Entidades\Tareas.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>Tareas.edmx</DependentUpon>
+      <LastGenOutput>Tareas.cs</LastGenOutput>
     </Content>
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
@@ -130,9 +136,9 @@
       <Generator>EntityModelCodeGenerator</Generator>
       <LastGenOutput>Tareas.Designer.cs</LastGenOutput>
     </EntityDeploy>
-    <None Include="Entidades\Tareas.edmx.diagram">
+    <Content Include="Entidades\Tareas.edmx.diagram">
       <DependentUpon>Tareas.edmx</DependentUpon>
-    </None>
+    </Content>
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
@@ -144,20 +150,42 @@
     <Compile Include="Controllers\CarpetasController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\TareasController.cs" />
+    <Compile Include="Entidades\ArchivoTarea.cs">
+      <DependentUpon>Tareas.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entidades\Carpeta.cs">
+      <DependentUpon>Tareas.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entidades\ComentarioTarea.cs">
+      <DependentUpon>Tareas.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entidades\Tarea.cs">
+      <DependentUpon>Tareas.tt</DependentUpon>
+    </Compile>
     <Compile Include="Entidades\Tareas.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Tareas.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entidades\Tareas.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Tareas.tt</DependentUpon>
     </Compile>
     <Compile Include="Entidades\Tareas.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Tareas.edmx</DependentUpon>
     </Compile>
+    <Compile Include="Entidades\Usuario.cs">
+      <DependentUpon>Tareas.tt</DependentUpon>
+    </Compile>
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Servicios\CarpetasServices.cs" />
+    <Compile Include="Servicios\TareasServices.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\web.config" />
@@ -188,7 +216,6 @@
     <Folder Include="App_Data\" />
     <Folder Include="Content\Images\" />
     <Folder Include="Models\" />
-    <Folder Include="Servicios\" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
