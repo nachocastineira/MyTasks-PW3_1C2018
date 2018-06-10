@@ -36,7 +36,7 @@ namespace AppPW3.Entidades
         [Display(Name = "Prioridad")]
         public short Prioridad { get; set; }
 
-        [Display(Name = "Estado")]
+        [Display(Name = "Estado de tarea")]
         public short Completada { get; set; }
 
         [Display(Name = "Fecha de Creación")]
