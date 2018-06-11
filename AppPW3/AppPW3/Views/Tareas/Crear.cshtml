@@ -21,20 +21,20 @@
                 Complete los siguientes campos para crear una nueva tarea:
             </div>
 
-            <form>
+            <form action="/Tareas/Crear" method="post">
 
                 <div class="form-row">
                     <div class="col-md-4 mb-3">
                         <label class="col-sm-6 col-form-label ">Nombre</label>
                         <div class="col-sm-11">
-                            <input type="text" class="form-control" placeholder="Este campo es obligatorio." required />
+                            <input type="text" class="form-control" placeholder="Este campo es obligatorio." name="Nombre" required />
                         </div>
                     </div>
 
                     <div class="col-md-4 mb-3">
                         <label class="col-sm-6 col-form-label">Descripción</label>
                         <div class="col-sm-11">
-                            <input type="text" class="form-control" placeholder="Este campo es opcional." />
+                            <input type="text" class="form-control" placeholder="Este campo es opcional." name="Descripcion" />
                         </div>
                     </div>
                 </div>
@@ -43,14 +43,14 @@
                     <div class="col-md-4 mb-3">
                         <label class="col-sm-6 col-form-label">Horas estimadas</label>
                         <div class="col-sm-11">
-                            <input type="text" class="form-control" placeholder="Este campo es opcional." />
+                            <input type="text" class="form-control" placeholder="Este campo es opcional." name="EstimadoHoras"/>
                         </div>
                     </div>
 
                     <div class="col-md-4 mb-3">
                         <label class="col-sm-6 col-form-label">Fecha límite</label>
                         <div class="col-sm-11">
-                            <input type="text" class="form-control" placeholder="Este campo es opcional." />
+                            <input type="text" class="form-control" placeholder="Este campo es opcional." name="FechaFin"/>
                         </div>
                     </div>
                 </div>
@@ -59,24 +59,25 @@
                     <div class="col-md-4 mb-3">
                         <label class="col-sm-3 col-form-label">Prioridad</label>
                         <div class="col-sm-11">
-                            <select class="custom-select" id="">
-                                <option selected>Elegir...</option>
-                                <option value="1" class="text-info">Baja</option>
-                                <option value="2" class="text-warning">Media</option>
-                                <option value="3" class="text-danger">Alta</option>
-                                <option value="4" class="text-danger font-weight-bold">Urgente</option>
+                            <select class="custom-select" name="Prioridad">
+                                <option selected value="4" class="text-info">Baja</option>
+                                <option value="3" class="text-warning">Media</option>
+                                <option value="2" class="text-danger">Alta</option>
+                                <option value="1" class="text-danger font-weight-bold">Urgente</option>
                             </select>
                         </div>
                     </div>
 
+                    
+                    @*hacer un foreach para mostrar todas las carpetas*@
                     <div class="col-md-4 mb-3">
                         <label class="col-sm-3 col-form-label">Carpeta</label>
                         <div class="col-sm-11">
-                            <select class="custom-select" id="">
+                            <select class="custom-select" name="IdCarpeta">
                                 <option selected>General</option>
                                 <option value="1">Facturas</option>
                                 <option value="2">Gastos</option>
-                                <option value="2">Vacaciones 2019</option>
+                                <option value="3">Vacaciones 2019</option>
                             </select>
                         </div>
                     </div>

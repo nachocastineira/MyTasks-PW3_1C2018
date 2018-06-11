@@ -24,6 +24,8 @@ namespace AppPW3.Servicios
         {
             Tarea nuevaTarea = new Tarea();
 
+            nuevaTarea.IdUsuario = 2; //por ahora, se tiene que asignar al logueado
+            nuevaTarea.IdCarpeta = tarea.IdCarpeta;
             nuevaTarea.Nombre = tarea.Nombre;
             nuevaTarea.Descripcion = tarea.Descripcion;
             nuevaTarea.EstimadoHoras = tarea.EstimadoHoras;
@@ -32,7 +34,10 @@ namespace AppPW3.Servicios
             nuevaTarea.Prioridad = tarea.Prioridad;
             nuevaTarea.Completada = tarea.Completada;
 
-            bdTareas.Tarea.Add(tarea);
+            //se deberia hacer el add para tablas 1N de Carpeta->Tareas, dejo uno provisorio por ahora
+
+            bdTareas.Tarea.Add(nuevaTarea);
+            bdTareas.SaveChanges();
         }
 
         public void ModificarTarea (Tarea tarea)
