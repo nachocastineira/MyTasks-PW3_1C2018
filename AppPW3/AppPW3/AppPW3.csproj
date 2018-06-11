@@ -186,6 +186,9 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Servicios\CarpetasServices.cs" />
     <Compile Include="Servicios\TareasServices.cs" />
+    <Compile Include="Servicios\UsuarioServices.cs">
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\web.config" />

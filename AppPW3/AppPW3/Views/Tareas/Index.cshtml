@@ -1,4 +1,6 @@
-﻿
+﻿@using AppPW3.Entidades
+@model List<Tarea>
+
 @{
     ViewBag.Title = "Mis Tareas";
 }
@@ -30,70 +32,18 @@
             </tr>
         </thead>
         <tbody>
-
-            <tr>
-                <td><input class="form-check-label" type="checkbox" /></td>
-                <th scope="row">1</th>
-                <td>NombreTarea</td>
-                <td>tareas-tarea-tarea-tarea</td>
-                <td>2hs</td>
-                <td>2018-05-30</td>
-                <td>Alta</td>
-            </tr>
-            <tr>
-                <td><input class="form-check-label" type="checkbox" /></td>
-                <th scope="row">2</th>
-                <td>NombreTarea</td>
-                <td>tareas-tarea-tarea-tarea</td>
-                <td>2hs</td>
-                <td>2018-05-30</td>
-                <td>Media</td>
-            </tr>
-            <tr>
-                <td><input class="form-check-label" type="checkbox" /></td>
-                <th scope="row">3</th>
-                <td>NombreTarea</td>
-                <td>tareas-tarea-tarea-tarea</td>
-                <td>2hs</td>
-                <td>2018-05-30</td>
-                <td>Baja</td>
-            </tr>
-            <tr>
-                <td><input class="form-check-label" type="checkbox" /></td>
-                <th scope="row">4</th>
-                <td>NombreTarea</td>
-                <td>tareas-tarea-tarea-tarea</td>
-                <td>2hs</td>
-                <td>2018-05-30</td>
-                <td>Baja</td>
-            </tr>
-            <tr>
-                <td><input class="form-check-label" type="checkbox" /></td>
-                <th scope="row">5</th>
-                <td>NombreTarea</td>
-                <td>tareas-tarea-tarea-tarea</td>
-                <td>2hs</td>
-                <td>2018-05-30</td>
-                <td>Baja</td>
-            </tr>
-            <tr>
-                <td><input class="form-check-label" type="checkbox" /></td>
-                <th scope="row">6</th>
-                <td>NombreTarea</td>
-                <td>tareas-tarea-tarea-tarea</td>
-                <td>2hs</td>
-                <td>2018-05-30</td>
-                <td>Baja</td>
-            </tr>
-            <tr>
-                <td><input class="form-check-label" type="checkbox" /></td>
-                <th scope="row">7</th>
-                <td>NombreTarea</td>
-                <td>tareas-tarea-tarea-tarea</td>
-                <td>2hs</td>
-                <td>2018-05-30</td>
-                <td>Urgente</td>
-            </tr>
+            @foreach (var tareas in Model)
+            {
+                <tr>
+                    <td><input class="form-check-label" type="checkbox" /></td>
+                    <th scope="row">@tareas.IdTarea</th>
+                    <td>@tareas.Nombre</td>
+                    <td>@tareas.Descripcion</td>
+                    <td>@tareas.EstimadoHoras</td>
+                    <td>@tareas.FechaFin</td>
+                    <td>@tareas.Prioridad</td>
+                </tr>
+            }
         </tbody>
     </table>
 
