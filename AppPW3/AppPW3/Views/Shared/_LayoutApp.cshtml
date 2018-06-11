@@ -1,4 +1,5 @@
 ﻿
+
 @{
     ViewBag.Title = "_LayoutApp";
 }
@@ -12,7 +13,7 @@
     <link href="~/Content/Site.css" rel="stylesheet" type="text/css" />
     <link href="~/Content/bootstrap.min.css" rel="stylesheet" type="text/css" />
     <link href="~/Content/CSS/estiloSidebar.css" rel="stylesheet" type="text/css" />
-    <link rel="icon" href="~/Content/Images/task.jpg"/>
+    <link rel="icon" href="~/Content/Images/task.jpg" />
     <script src="~/Scripts/modernizr-2.6.2.js"></script>
 </head>
 <body>
@@ -20,8 +21,8 @@
     <nav class="navbar navbar-dark bg-dark">
         <a href="#menu-toggle" class="navbar-toggler" id="menu-toggle"><span class="navbar-toggler-icon"></span></a>
 
-        <form class="form-inline my-2 my-lg-0">
-            <input type="text" class="form-control mr-sm-2 form-control-plaintext" value="username" readonly>
+        <form class="form-inline my-2 my-lg-0" action="/Home/Logout">
+            <input type="text" class="form-control mr-sm-2 form-control-plaintext" value="" readonly>
             <button class="btn btn-outline-primary my-2 my-sm-0" type="submit">Cerrar Sesión</button>
         </form>
 
@@ -61,8 +62,8 @@
         <!-- COMIENZA CONTENIDO DE LA PAGINA -->
         <div id="page-content-wrapper" class="container-fluid">
 
-                <!-- el contenido que cambiará entre paginas, en la vista lo comenzamos con un @section Body{}-->
-                @RenderSection("Body")
+            <!-- el contenido que cambiará entre paginas, en la vista lo comenzamos con un @section Body{}-->
+            @RenderSection("Body")
 
 
         </div>

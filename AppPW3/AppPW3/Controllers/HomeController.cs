@@ -11,7 +11,8 @@ namespace AppPW3.Controllers
     public class HomeController : Controller
     {
         UsuarioServices usuarioServices = new UsuarioServices();
-
+        CarpetasServices carpetaServices = new CarpetasServices();
+        TareasServices tareasServices = new TareasServices();
 
         public ActionResult Index()
         {
@@ -24,7 +25,7 @@ namespace AppPW3.Controllers
         }
 
         [HttpPost]
-        public ActionResult VerificarLogin(Usuario usuario)
+        public ActionResult Login(Usuario usuario)
         {
             bool loginCorrecto = usuarioServices.VerificarLogin(usuario);
 
@@ -41,7 +42,8 @@ namespace AppPW3.Controllers
 
         public ActionResult Logout()
         {
-            return View();
+            Session.Clear();
+            return RedirectToAction("Index", "Home");
         }
 
         public ActionResult Registracion()

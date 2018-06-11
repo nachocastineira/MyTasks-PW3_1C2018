@@ -10,16 +10,28 @@ namespace AppPW3.Controllers
 {
     public class TareasController : Controller
     {
+        CarpetasServices carpetaServices = new CarpetasServices();
         TareasServices tareasServices = new TareasServices();
+        UsuarioServices usuarioServices = new UsuarioServices();
 
-        
+
         public ActionResult Index()
         {
+            if (Session["usuarioLogueado"] == null)
+            {
+                return RedirectToAction("Login", "Home");
+            }
+
             return View(tareasServices.ListarTareas());
         }
 
         public ActionResult Crear()
         {
+            if (Session["usuarioLogueado"] == null)
+            {
+                return RedirectToAction("Login", "Home");
+            }
+
             return View();
         }
 
@@ -33,6 +45,11 @@ namespace AppPW3.Controllers
 
         public ActionResult Detalle()
         {
+            if (Session["usuarioLogueado"] == null)
+            {
+                return RedirectToAction("Login", "Home");
+            }
+
             return View();
         }
     }

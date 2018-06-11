@@ -1,4 +1,6 @@
-﻿
+﻿@model AppPW3.Entidades.Usuario
+@using AppPW3.Entidades
+
 @{
     ViewBag.Title = "Login";
 }
@@ -8,24 +10,27 @@
 
     <div class="jumbotron">
         <div class="modal-dialog">
-    <div class="modal-content">
-        <div class="modal-header">
-          <h1 class="text-center">Bienvenido</h1>
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="text-center">Bienvenido</h1>
+                </div>
+                <div class="modal-body">
+
+                    <form method="post" action="/Home/Login">
+                        <div class="form-group">
+                            <input type="text" class="form-control input-lg" placeholder="Usuario" name="Email" />
+                        </div>
+                        <div class="form-group">
+                            <input type="password" class="form-control input-lg" placeholder="Contraseña" name="Contrasenia" />
+                        </div>
+                        <div class="form-group">
+                            <input type="submit" class="btn btn-block btn-lg btn-success" value="Iniciar Sesion" />
+                            <span class="pull-right"><a href="#">Registrarse</a></span>
+                        </div>
+                    </form>
+                </div>
+            </div>
         </div>
-         <div class="modal-body">
-             <div class="form-group">
-                 <input type="text" class="form-control input-lg" placeholder="Usuario"/>
-             </div>
-             <div class="form-group">
-                 <input type="password" class="form-control input-lg" placeholder="Contraseña"/>
-             </div>
-             <div class="form-group">
-                 <input type="submit" class="btn btn-block btn-lg btn-success" value="Iniciar Sesion"/>
-                 <span class="pull-right"><a href="#">Registrarse</a></span>
-             </div>
-         </div>
-    </div>
- </div>
     </div>
 }
 
