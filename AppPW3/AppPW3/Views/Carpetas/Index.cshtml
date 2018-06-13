@@ -17,8 +17,9 @@
     <div class="btn-group mb-4">
         <a class="btn btn-outline-success" href="@Url.Content("~/Carpetas/Crear")">Crear nueva carpeta</a>
         <a data-toggle="modal" href="#myModal" data-target="#modificar" class="btn btn-outline-warning">Modificar carpeta</a>
-        <a data-toggle="modal" href="#myModal" data-target="#eliminar" class="btn btn-outline-danger">Eliminar carpeta</a>
+        <a  onclick="display()" data-toggle="modal" href="#myModal" data-target="#eliminar" class="btn btn-outline-danger">Eliminar carpeta</a>
     </div>
+
 
     <table class="table table-hover">
         <thead class="thead-inverse">
@@ -33,76 +34,89 @@
         <tbody>
 
             @foreach (var carpetas in Model)
-    {
-            <tr>
-                <td><input class="form-check-label" type="checkbox" value="@carpetas.IdCarpeta"/></td>
-                <th scope="row">@carpetas.IdCarpeta</th>
-                <td>@carpetas.Nombre</td>
-                <td>@carpetas.Descripcion</td>
-                <td>@carpetas.FechaCreacion</td>
-            </tr>
-     }
+            {
+                <tr>
+                    <td><input class="form-check-label" type="checkbox" id="checkId" value="@carpetas.IdCarpeta" name="id" /></td>
+                    <th scope="row">@carpetas.IdCarpeta</th>
+                    <td>@carpetas.Nombre</td>
+                    <td>@carpetas.Descripcion</td>
+                    <td>@carpetas.FechaCreacion</td>
+                </tr>
+            }
         </tbody>
-        </table>
+    </table>
 
-        <div id="modificar" class="modal fade in" role="dialog">
-            <form action="" method="post" id="formCarpeta">
-                <div class="modal-dialog" role="document">
-                    <div class="modal-content">
-                        <div class="card-header bg-warning text-white text-center">
-                            <h5 class="modal-title">Modificar carpeta existente:</h5>
-                        </div>
-                        <div class="modal-body">
-                            <h6 class="text-dark text-center m-3">Complete los campos que desea modificar.</h6>
 
-                            <div class="form-group">
+    <div id="modificar" class="modal fade in" role="dialog">
+        <form action="" method="post" id="formCarpeta">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="card-header bg-warning text-white text-center">
+                        <h5 class="modal-title">Modificar carpeta existente:</h5>
+                    </div>
+                    <div class="modal-body">
+                        <h6 class="text-dark text-center m-3">Complete los campos que desea modificar.</h6>
 
-                                <div class="form-row m-2">
-                                    <label class="col-sm-6 col-form-label">Nombre:</label>
-                                    <input type="text" class="form-control input-lg mb-3" placeholder="//Traigo dato de BD" required />
-                                </div>
+                        <div class="form-group">
 
-                                <div class="form-row m-2">
-                                    <label class="col-sm-6 col-form-label">Descripción:</label>
-                                    <textarea name="descripcion" class="form-control mb-3" rows="2" form="formCarpeta" placeholder="//Traigo dato de BD" required></textarea>
-                                </div>
+                            <div class="form-row m-2">
+                                <label class="col-sm-6 col-form-label">Nombre:</label>
+                                <input type="text" class="form-control input-lg mb-3" placeholder="//Traigo dato de BD" required />
                             </div>
 
-
-
-                        </div>
-                        <div class="modal-footer">
-                            <div class="btn-group">
-                                <button class="btn btn-outline-warning" type="submit" value="modificar"> Guardar cambios</button>
-                                <button type="button" class="btn btn-outline-secondary" data-dismiss="modal">Cancelar</button>
+                            <div class="form-row m-2">
+                                <label class="col-sm-6 col-form-label">Descripción:</label>
+                                <textarea name="descripcion" class="form-control mb-3" rows="2" form="formCarpeta" placeholder="//Traigo dato de BD" required></textarea>
                             </div>
+                        </div>
+
+
+
+                    </div>
+                    <div class="modal-footer">
+                        <div class="btn-group">
+                            <button class="btn btn-outline-warning" type="submit" value="modificar"> Guardar cambios</button>
+                            <button type="button" class="btn btn-outline-secondary" data-dismiss="modal">Cancelar</button>
                         </div>
                     </div>
                 </div>
-            </form>
-        </div>
+            </div>
+        </form>
+    </div>
 
-        <div id="eliminar" class="modal fade in" role="dialog">
-            <form action="/Carpetas/Eliminar" method="post">
-                <div class="modal-dialog">
-                    <div class="modal-content">
 
-                        <div class="card-header bg-danger text-white text-center">
-                            <h5 class="modal-title">Eliminar carpeta:</h5>
-                        </div>
-                        <div class="modal-body text-center m-3">
-                            <h6>¿Seguro desea eliminar la carpeta seleccionada?</h6>
-                            <p> Todo el contenido almacenado en ella se perderá.</p>
-                        </div>
-                        <div class="modal-footer">
-                            <div class="btn-group">
-                                <button class="btn btn-outline-danger" type="submit" value="modificar"> Confirmar eliminación</button>
-                                <button type="button" class="btn btn-outline-secondary" data-dismiss="modal">Cancelar</button>
-                            </div>
+    <div id="eliminar" class="modal fade in" role="dialog">
+        <form action="/Carpetas/Eliminar" method="post">
+            <div class="modal-dialog">
+                <div class="modal-content">
+
+                    <div class="card-header bg-danger text-white text-center">
+                        <h5 class="modal-title">Eliminar carpeta:</h5>
+                    </div>
+                    <div class="modal-body text-center m-3">
+                        <h6>¿Seguro desea eliminar la carpeta seleccionada?</h6>
+                        <p> Todo el contenido almacenado en ella se perderá.</p>
+                    </div>
+                    <input type="hidden" id="location_state_id" name="id" value="" />
+                    <script>
+                        function display() {
+                            var checkedValue = $('.form-check-label:checked').val();
+                            $('#location_state_id').val(checkedValue);
+                        }
+                    </script>
+
+                    <div class="modal-footer">
+                        <div class="btn-group">
+                            <button class="btn btn-outline-danger" type="submit" value="eliminar"> Confirmar eliminación</button>
+                            <button type="button" class="btn btn-outline-secondary" data-dismiss="modal">Cancelar</button>
                         </div>
                     </div>
                 </div>
-            </form>S
-        </div>
+            </div>
+        </form>
+    </div>
+
+   
+
 
 }

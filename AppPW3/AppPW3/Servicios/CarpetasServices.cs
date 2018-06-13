@@ -46,11 +46,13 @@ namespace AppPW3.Servicios
 
         public void EliminarCarpeta(int id)
         {
+            Carpeta miCarpeta = ObtenerCarpeta(id);
             var carpetas = bdTareas.Carpeta;
-
+            
             foreach (Carpeta c in carpetas)
             {
-                bdTareas.Carpeta.Remove(c);
+                
+                bdTareas.Carpeta.Remove(miCarpeta);
             }
 
             bdTareas.SaveChanges();
