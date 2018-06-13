@@ -12,12 +12,17 @@ namespace AppPW3.Servicios
 
         public List<Carpeta> ListarCarpetas()
         {
-            return bdTareas.Carpeta.ToList();
+            return bdTareas.Carpeta.OrderBy(c => c.Nombre).ToList();
         }
 
         public Carpeta ObtenerCarpeta(int id)
         {
             return bdTareas.Carpeta.FirstOrDefault(c => c.IdCarpeta == id);
+        }
+
+        public List<Carpeta> ListarCarpetasPorUsuario(int id)
+        {
+            return bdTareas.Carpeta.Where(c => c.IdUsuario == id).ToList();
         }
 
         public void CrearCarpeta(Carpeta carpeta)

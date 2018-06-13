@@ -17,12 +17,11 @@ namespace AppPW3.Controllers
 
         public ActionResult Index()
         {
-            if (Session["usuarioLogueado"] == null) //Si la variable de session que guarde en usuarioService es null no mando al login
+            if (Session["usuarioLogueado"] == null) //Si la variable de session que guarde en usuarioService es null lo mando al login
             {
                 return RedirectToAction("Login", "Home");
             }
-
-            return View(carpetaServices.ListarCarpetas());
+            return View(carpetaServices.ListarCarpetasPorUsuario(2)); //en lugar del 2 va el session del user logueado
         }
 
         public ActionResult Crear()
@@ -31,16 +30,22 @@ namespace AppPW3.Controllers
             {
                 return RedirectToAction("Login", "Home");
             }
-
             return View();
         }
 
         [HttpPost]
         public ActionResult Crear(Carpeta carpeta)
         {
-            carpetaServices.CrearCarpeta(carpeta);
+            //if (!ModelState.IsValid)
+            //{
+                //return View(carpeta);
+            //}
+            //else
+            //{
+                carpetaServices.CrearCarpeta(carpeta);
+                return RedirectToAction("Index");
+            //}
 
-            return RedirectToAction("Index");
         }
 
         [HttpPost]
