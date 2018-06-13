@@ -24,11 +24,11 @@
     <table class="table table-hover">
         <thead class="thead-inverse">
             <tr>
-                <th>✓</th>
                 <th>#</th>
                 <th>Nombre</th>
                 <th>Descripción</th>
                 <th>Fecha de creación</th>
+                <th></th>
             </tr>
         </thead>
         <tbody>
@@ -37,10 +37,10 @@
             {
                 <tr>
                     <td><input class="form-check-label" type="checkbox" id="checkId" value="@carpetas.IdCarpeta" name="id" /></td>
-                    <th scope="row">@carpetas.IdCarpeta</th>
                     <td>@carpetas.Nombre</td>
                     <td>@carpetas.Descripcion</td>
                     <td>@carpetas.FechaCreacion</td>
+                    <td><a class="btn btn-outline-primary" href="/Tareas/Index/@carpetas.IdCarpeta">Tareas en @carpetas.Nombre</a></td>
                 </tr>
             }
         </tbody>

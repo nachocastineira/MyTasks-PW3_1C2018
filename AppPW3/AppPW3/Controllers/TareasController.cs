@@ -15,14 +15,14 @@ namespace AppPW3.Controllers
         UsuarioServices usuarioServices = new UsuarioServices();
 
 
-        public ActionResult Index()
+        public ActionResult Index(int id) 
         {
             if (Session["usuarioLogueado"] == null)
             {
                 return RedirectToAction("Login", "Home");
             }
 
-            return View(tareasServices.ListarTareas());
+            return View(tareasServices.ListarTareasPorCarpetasDelUsuario(id, 2));  //parametro 1 idCARPETA, par2 idUsuario
         }
 
         public ActionResult Crear()
