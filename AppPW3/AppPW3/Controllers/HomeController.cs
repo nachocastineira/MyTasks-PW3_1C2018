@@ -55,10 +55,14 @@ namespace AppPW3.Controllers
         public ActionResult Registracion(Usuario usuario)
         {
             //hay que terminarlo, y agregar mas condiciones por si el usuario ya existe que lo redirija a otro lado
-
-            usuarioServices.RegistrarUsuario(usuario);
-
-            return RedirectToAction("Login");
+            if (ModelState.IsValid) { 
+                usuarioServices.RegistrarUsuario(usuario);
+                Login(usuario);
+                return View("Index");
+            }
+            else { 
+            return View("Login");
+            }
         }
     }
 }
