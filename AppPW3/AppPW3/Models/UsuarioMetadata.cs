@@ -33,7 +33,7 @@ namespace AppPW3.Entidades
         public string Email { get; set; }
 
         [Required(ErrorMessage = "Este campo es obligatorio.")] //falta validar que tenga lo puesto ahi
-        [RegularExpression(@"^([^<>]){1,20}$", ErrorMessage = "La contraseña debe contener un número, una letra mayúscula y una letra minúscula.")]
+        [RegularExpression(@"^(?=\w*\d)(?=\w*[A-Z])(?=\w*[a-z])\S{3,20}$", ErrorMessage = "La contraseña debe contener un número, una letra mayúscula y una letra minúscula.")]
         [Display(Name = "Contraseña")]
         public string Contrasenia { get; set; }
 

@@ -5,6 +5,7 @@ using System.Web;
 using System.Web.Mvc;
 using AppPW3.Entidades;
 using AppPW3.Servicios;
+using CaptchaMvc.HtmlHelpers;
 
 namespace AppPW3.Controllers
 {
@@ -54,14 +55,19 @@ namespace AppPW3.Controllers
         [HttpPost]
         public ActionResult Registracion(Usuario usuario)
         {
-            //hay que terminarlo, y agregar mas condiciones por si el usuario ya existe que lo redirija a otro lado
-            if (ModelState.IsValid) { 
-                usuarioServices.RegistrarUsuario(usuario);
-                Login(usuario);
-                return View("Index");
+            //si la validacion del modelo es invalida, te manda de nuevo al registro
+            if (ModelState.IsValid) {
+                if (this.IsCaptchaValid("Validate your captcha"))
+                {
+                    usuarioServices.RegistrarUsuario(usuario);
+                    Login(usuario);
+                    return RedirectToAction("Index");
+                }
+                ViewBag.ErrorCaptcha = "Captcha incorrecto";
+                return RedirectToAction("Registracion");
             }
             else { 
-            return View("Login");
+            return RedirectToAction("Registracion");
             }
         }
     }

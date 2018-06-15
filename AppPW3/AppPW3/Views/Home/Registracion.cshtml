@@ -1,4 +1,6 @@
-﻿
+﻿@model AppPW3.Entidades.Usuario
+@using CaptchaMvc.HtmlHelpers
+
 @{
     ViewBag.Title = "Registracion";
 }
@@ -23,7 +25,7 @@
 
                         <div class="col-md-5">
                             <label class="col-form-label">Apellido</label>
-                            <input type="text"apellido name="Apellido" class="form-control" placeholder="Complete" required />
+                            <input type="text" apellido name="Apellido" class="form-control" placeholder="Complete" required />
                         </div>
                     </div>
 
@@ -48,8 +50,8 @@
 
                     <div class="form-row">
                         <div class="col-md-10">
-                            <label class="col-form-label">CAPTCHA</label>
-                            <input type="text" class="form-control" placeholder="Ingrese captcha" required />
+                            @Html.Captcha(5)<!--5 caracteres para validar-->
+                            <br /> <p> @ViewBag.ErrorCaptcha </p><!--mensaje de error por ingreso incorrecto-->
                         </div>
                     </div>
 
