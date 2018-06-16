@@ -19,7 +19,7 @@ namespace AppPW3.Controllers
         {
             if (Session["usuarioLogueado"] == null)
             {
-                return RedirectToAction("Login", "Home");
+                return RedirectToAction("IndexAlternativo", "Home");
             }
 
             return View(tareasServices.ListarTareasPorCarpetasDelUsuario(id, 2));  //parametro 1 idCARPETA, par2 idUsuario
@@ -29,7 +29,7 @@ namespace AppPW3.Controllers
         {
             if (Session["usuarioLogueado"] == null)
             {
-                return RedirectToAction("Login", "Home");
+                return RedirectToAction("IndexAlternativo", "Home");
             }
 
             return View();
@@ -47,7 +47,7 @@ namespace AppPW3.Controllers
         {
             if (Session["usuarioLogueado"] == null)
             {
-                return RedirectToAction("Login", "Home");
+                return RedirectToAction("IndexAlternativo", "Home");
             }
 
             return View();

@@ -13,6 +13,16 @@ namespace AppPW3.Controllers
 
         public ActionResult Index()
         {
+            if (Session["usuarioLogueado"] == null)
+            {
+                return RedirectToAction("IndexAlternativo", "Home");
+            }
+
+            return View();
+        }
+
+        public ActionResult IndexAlternativo()  //INDEX PARA USUARIOS NO LOGUEADOS
+        {
             return View();
         }
 
@@ -32,7 +42,7 @@ namespace AppPW3.Controllers
             }
             else
             {
-                return RedirectToAction("Login");
+                return RedirectToAction("IndexAlternativo");
             }
         }
 
@@ -40,7 +50,7 @@ namespace AppPW3.Controllers
         public ActionResult Logout()
         {
             Session.Clear();
-            return RedirectToAction("Index", "Home");
+            return RedirectToAction("IndexAlternativo", "Home");
         }
 
         public ActionResult Registracion()

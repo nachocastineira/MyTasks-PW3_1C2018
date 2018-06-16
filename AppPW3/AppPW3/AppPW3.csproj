@@ -222,6 +222,8 @@
     <Content Include="Views\Home\Registracion.cshtml" />
     <Content Include="Views\Home\Logout.cshtml" />
     <Content Include="Views\Shared\_LayoutApp.cshtml" />
+    <Content Include="Views\Home\IndexAlternativo.cshtml" />
+    <Content Include="Views\Shared\_LayoutAppAlternativo.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

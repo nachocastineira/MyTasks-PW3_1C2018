@@ -19,7 +19,7 @@ namespace AppPW3.Controllers
         {
             if (Session["usuarioLogueado"] == null) //Si la variable de session que guarde en usuarioService es null lo mando al login
             {
-                return RedirectToAction("Login", "Home");
+                return RedirectToAction("IndexAlternativo", "Home");
             }
             return View(carpetaServices.ListarCarpetasPorUsuario(2)); //en lugar del 2 va el session del user logueado
         }
@@ -28,7 +28,7 @@ namespace AppPW3.Controllers
         {
             if (Session["usuarioLogueado"] == null)
             {
-                return RedirectToAction("Login", "Home");
+                return RedirectToAction("IndexAlternativo", "Home");
             }
             return View();
         }
