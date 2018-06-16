@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.Web.Mvc;
+﻿using System.Web.Mvc;
 using AppPW3.Entidades;
 using AppPW3.Servicios;
 using CaptchaMvc.HtmlHelpers;
@@ -53,21 +49,30 @@ namespace AppPW3.Controllers
         }
 
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public ActionResult Registracion(Usuario usuario)
         {
-            //si la validacion del modelo es invalida, te manda de nuevo al registro
-            if (ModelState.IsValid) {
-                if (this.IsCaptchaValid("Validate your captcha"))
+            if (ModelState.IsValid)//valido model
+            {
+                if (usuario.Contrasenia == usuario.ContraseniaConfirm)//valido que las contraseñas sean iguales
                 {
-                    usuarioServices.RegistrarUsuario(usuario);
-                    Login(usuario);
-                    return RedirectToAction("Index");
+                    if (this.IsCaptchaValid("Validate your captcha"))//valido captcha
+                    {
+                        usuarioServices.RegistrarUsuario(usuario);//registrar usuario
+                        Login(usuario);//loguear usuario
+                        return View("Index");
+                    }
+                    ViewBag.ErrorCaptcha = "Captcha incorrecto";//mensaje de error captcha
+                    return View(usuario);
                 }
-                ViewBag.ErrorCaptcha = "Captcha incorrecto";
-                return RedirectToAction("Registracion");
+                else {
+                    ViewBag.ErrorContraseniaConfirm = "Las contraseñas no coinciden";//mensaje de error contraseñas
+                    return View(usuario);
+                }
             }
-            else { 
-            return RedirectToAction("Registracion");
+            else
+            {
+                return View(usuario);
             }
         }
     }

@@ -1,8 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Web;
+
 
 namespace AppPW3.Entidades
 {
@@ -32,10 +31,15 @@ namespace AppPW3.Entidades
         [Display(Name = "Email")]
         public string Email { get; set; }
 
-        [Required(ErrorMessage = "Este campo es obligatorio.")] //falta validar que tenga lo puesto ahi
+        [Required(ErrorMessage = "Este campo es obligatorio.")]
         [RegularExpression(@"^(?=\w*\d)(?=\w*[A-Z])(?=\w*[a-z])\S{3,20}$", ErrorMessage = "La contraseña debe contener un número, una letra mayúscula y una letra minúscula.")]
         [Display(Name = "Contraseña")]
         public string Contrasenia { get; set; }
+
+        [Required(ErrorMessage = "Este campo es obligatorio.")]
+        [RegularExpression(@"^(?=\w*\d)(?=\w*[A-Z])(?=\w*[a-z])\S{3,20}$", ErrorMessage = "La contraseña debe contener un número, una letra mayúscula y una letra minúscula.")]
+        [Display(Name = "Confirmar contraseña")]
+        public string ContraseniaConfirm { get; set; }
 
         [Display(Name = "Activo")]
         public short Activo { get; set; }

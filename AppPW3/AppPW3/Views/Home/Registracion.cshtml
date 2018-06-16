@@ -1,5 +1,5 @@
 ﻿@model AppPW3.Entidades.Usuario
-@using CaptchaMvc.HtmlHelpers
+@using CaptchaMvc.HtmlHelpers;
 
 @{
     ViewBag.Title = "Registracion";
@@ -7,61 +7,82 @@
 
 @section Body
 {
-<div class="row">
-    <div class="col-md-10 offset-1">
+    <div class="row">
+        <div class="col-md-10 offset-1">
 
 
-        <div class="card">
-            <p class="card-header bg-primary text-white">Complete campos para registrarse</p>
+            <div class="card">
+                <p class="card-header bg-primary text-white">Complete campos para registrarse</p>
 
-            <div class="card-body">
-                <!-- comienza form-->
-                <form action="/Home/Registracion" method="post">
-                    <div class="form-row">
-                        <div class="col-md-5">
-                            <label class="col-form-label">Nombre</label>
-                            <input type="text" name="Nombre" class="form-control" placeholder="Complete" required />
+                <div class="card-body">
+
+                    @using (Html.BeginForm())
+                    {
+                        @Html.AntiForgeryToken()
+                        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.Nombre, htmlAttributes: new { @class = "control-label col-md-5" })
+                            <div class="col-md-5">
+                                @Html.EditorFor(model => model.Nombre, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.Nombre, "", new { @class = "text-danger" })
+                            </div>
                         </div>
 
-                        <div class="col-md-5">
-                            <label class="col-form-label">Apellido</label>
-                            <input type="text" apellido name="Apellido" class="form-control" placeholder="Complete" required />
-                        </div>
-                    </div>
-
-                    <div class="form-row">
-                        <div class="col-md-10">
-                            <label class="col-form-label">Email</label>
-                            <input type="email" name="Email" class="form-control" placeholder="Complete" required />
-                        </div>
-                    </div>
-
-                    <div class="form-row">
-                        <div class="col-md-5">
-                            <label class="col-form-label">Contraseña</label>
-                            <input type="password" name="Contrasenia" class="form-control" placeholder="Complete" required />
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.Apellido, htmlAttributes: new { @class = "control-label col-md-5" })
+                            <div class="col-md-5">
+                                @Html.EditorFor(model => model.Apellido, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.Apellido, "", new { @class = "text-danger" })
+                            </div>
                         </div>
 
-                        <div class="col-md-5">
-                            <label class="col-form-label">Reingrese contraseña</label>
-                            <input type="password" class="form-control" placeholder="Complete" required />
-                        </div>
-                    </div>
 
-                    <div class="form-row">
-                        <div class="col-md-10">
-                            @Html.Captcha(5)<!--5 caracteres para validar-->
-                            <br /> <p> @ViewBag.ErrorCaptcha </p><!--mensaje de error por ingreso incorrecto-->
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.Email, htmlAttributes: new { @class = "control-label col-md-5" })
+                            <div class="col-md-10">
+                                @Html.EditorFor(model => model.Email, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
+                            </div>
                         </div>
-                    </div>
 
-                    <div class="col-md-4 mt-4 mb-5">
-                        <button class="btn btn-primary" type="submit">Registrarse</button>
-                    </div>
-                </form>
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.Contrasenia, htmlAttributes: new { @class = "control-label col-md-5" })
+                            <div class="col-md-10">
+                                @Html.EditorFor(model => model.Contrasenia, new { htmlAttributes = new { @class = "form-control", type = "password" } })
+                                @Html.ValidationMessageFor(model => model.Contrasenia, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.ContraseniaConfirm, htmlAttributes: new { @class = "control-label col-md-5" })
+                            <div class="col-md-10">
+                                @Html.EditorFor(model => model.ContraseniaConfirm, new { htmlAttributes = new { @class = "form-control", type = "password" } })
+                                @Html.ValidationMessageFor(model => model.ContraseniaConfirm, "", new { @class = "text-danger" })
+                                <p class="text-danger">@ViewBag.ErrorContraseniaConfirm</p>
+                            </div>
+
+                        </div>
+
+                        <div class="form-group">
+
+                            <div class="col-md-10">
+                                @Html.Captcha(5)
+                                <!--5 caracteres para validar-->
+                                <br />
+                                <p class="text-danger">@ViewBag.ErrorCaptcha</p><!--mensaje de error por ingreso incorrecto-->
+
+                            </div>
+                        </div>
+
+                        <div class="col-md-4 mt-4 mb-5">
+                            <button class="btn btn-primary" type="submit">Registrarse</button>
+                        </div>
+                    }
+                </div>
             </div>
         </div>
-
     </div>
-</div>
+
 }
+
