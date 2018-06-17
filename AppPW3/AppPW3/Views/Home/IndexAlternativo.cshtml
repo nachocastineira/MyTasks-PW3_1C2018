@@ -8,19 +8,110 @@
 
 @section Body{
 
-    <div id="page-content-wrapper" class="container-fluid">
+<div id="page-content-wrapper" class="container-fluid">
 
-        @*<ol class="breadcrumb shadow p-3 mb-5 bg-dark">
+    @*<ol class="breadcrumb shadow p-3 mb-5 bg-dark">
             <li class="breadcrumb-item active text-white">Home</li>
         </ol>*@
+    <div class="container-fluid">
+        <div class="row">
 
-        <div class="jumbotron">
-            <h1 class="display-4">¡Bienvenido!</h1>
-            <p class="lead">This is a simple hero unit, a simple jumbotron-style component for calling extra attention to featured content or information.</p>
-            <hr class="my-4">
-            <p>It uses utility classes for typography and spacing to space content out within the larger container.</p>
-            <a class="btn btn-primary btn-lg" href="@Url.Content("~/Home/Login")" role="button">Iniciá Sesión</a>
-            <a class="btn btn-primary btn-lg" href="@Url.Content("~/Home/Registracion")" role="button">Registrate</a>
+            <div class="col-md-6">
+                <div class="jumbotron">
+                    <h1 class="display-4 text-center">¡Bienvenido!</h1>
+                    <hr class="my-4">
+                    <h5 class="text-center">Creá y organizá todas tus tareas e ideas en un solo lugar.</h5>
+                </div>
+            </div>
+
+            <div class="col-md-3">
+                <form method="post" action="/Home/Login">
+                    <div class="card border-success mb-3" style="max-width: 18rem;">
+                        <div class="card-header bg-transparent">Si ya eres un usuario:</div>
+                        <div class="card-body text-success">
+                            <h5 class="card-title">Completa los campos</h5>
+                            <div class="form-group">
+                                <input type="text" class="form-control input-lg" placeholder="Ingrese su usuario" name="Email" />
+                            </div>
+                            <div class="form-group">
+                                <input type="password" class="form-control input-lg" placeholder="Ingrese su contraseña" name="Contrasenia" />
+                            </div>
+                            <div class="form-chec text-center">
+                                <input type="checkbox" class="form-check-input" id="dropdownCheck2">
+                                <label class="form-check-label" for="dropdownCheck2">
+                                    Recordar mis datos.
+                                </label>
+                            </div>
+                        </div>
+                        <div class="card-footer bg-transparent ">
+                            <input type="submit" class="btn btn-block btn-lg btn-success" value="INICIAR SESIÓN" />
+                        </div>
+                    </div>
+                </form>
+            </div>
+
+            <div class="col-md-3">
+                <div class="card border-info mb-3" style="max-width: 18rem;">
+                    <div class="card-header bg-transparent">Si todavía no eres usuario:</div>
+                    <div class="card-body text-info">
+                        <h5 class="card-title">Debes registrarte</h5>
+                        <p class="card-text text-center">
+                            Te invitamos a que formes parte.
+                            Es rápido, simple y sencillo.
+                            Preciona el botón a continuación y sigue los pasos.
+                        </p>
+
+                        <p class="card-text text-center">
+                            ¡Es gratis!
+                        </p>
+                    </div>
+                    <div class="card-footer bg-transparent">
+                        <a class="btn btn-block btn-primary btn-lg" href="@Url.Content("~/Home/Registracion")" role="button">REGISTRARSE</a>
+                    </div>
+                </div>
+            </div>
+
         </div>
+
+        @*<div class="col-md-12">
+                <div class="card-group">
+                    <div class="card">
+                        <img class="card-img-top" src="~/Content/Images/task.jpg" alt="Card image cap">
+                        <div class="card-body">
+                            <h5 class="card-title">Card title</h5>
+                            <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+                            <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <img class="card-img-top" src="~/Content/Images/task.jpg" alt="Card image cap">
+                        <div class="card-body">
+                            <h5 class="card-title">Card title</h5>
+                            <p class="card-text">This card has supporting text below as a natural lead-in to additional content.</p>
+                            <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <img class="card-img-top" src="~/Content/Images/task.jpg" alt="Card image cap">
+                        <div class="card-body">
+                            <h5 class="card-title">Card title</h5>
+                            <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This card has even longer content than the first to show that equal height action.</p>
+                            <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+                        </div>
+                    </div>
+                </div>
+            </div>*@
+
+
+
+        @*<div class="jumbotron">
+                <h1 class="display-4">¡Bienvenido!</h1>
+                <p class="lead">This is a simple hero unit, a simple jumbotron-style component for calling extra attention to featured content or information.</p>
+                <hr class="my-4">
+                <p>It uses utility classes for typography and spacing to space content out within the larger container.</p>
+                <a class="btn btn-primary btn-lg" href="@Url.Content("~/Home/Login")" role="button">Iniciá Sesión</a>
+                <a class="btn btn-primary btn-lg" href="@Url.Content("~/Home/Registracion")" role="button">Registrate</a>
+            </div>*@
     </div>
+</div>
 }

@@ -10,12 +10,31 @@
     </ol>
 
     <div class="jumbotron">
-        <h1 class="display-4">¡Bienvenido!</h1>
-        <p class="lead">This is a simple hero unit, a simple jumbotron-style component for calling extra attention to featured content or information.</p>
+        <h1 class="display-4">Home de usuario</h1>
+        <p class="lead">
+            La Home de la aplicación tendrá el menú con todas las opciones que se deben soportar de creación, modificación y eliminación. Junto a este menú se deberá mostrar el listado de tareas no completadas asignadas al usuario actual ordenadas por prioridad y luego por fecha de fin ascendente. En caso de que no tengan fecha de fin asignada, la prioridad será el factor por el cual serán ordenadas las tareas.
+        </p>
+        <p class="lead">
+
+            En el lado izquierdo se deberá mostrar el listado de las carpetas creadas por el usuario. Al hacer click en cada una debe redirigir a Tareas de Carpeta, donde se verán sólo las tareas vinculadas a esa carpeta, asignadas al usuario actual ordenadas por prioridad y luego por fecha de fin ascendente.
+        </p>
+        <p class="lead">
+
+            El listado de tareas tendrá las siguientes columnas:
+        </p>
+        <p class="lead">
+
+            Fecha Fin
+            Nombre
+            Prioridad
+            Carpeta
+            Estimado
+            Completada
+            Botón/link “Ver” redirige a pantalla de detalle de tarea (/tareas/detalle)
+            Botón/link/checkbox “Completar” (solo para las tareas no completadas), el mismo marca la tarea como Completada.
+        </p>
         <hr class="my-4">
-        <p>It uses utility classes for typography and spacing to space content out within the larger container.</p>
-        <a class="btn btn-primary btn-lg" href="@Url.Content("~/Home/Login")" role="button">Iniciá Sesión</a>
-        <a class="btn btn-primary btn-lg" href="@Url.Content("~/Home/Registracion")" role="button">Registrate</a>
+
     </div>
 
 }

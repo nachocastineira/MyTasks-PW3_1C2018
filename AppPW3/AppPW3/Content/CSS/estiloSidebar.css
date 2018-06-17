@@ -1,4 +1,13 @@
-﻿
+﻿.bg {
+
+    background-image: url("../Images/back.png");
+    height: 100%;
+    background-position:center;
+    background-repeat: no-repeat;
+    background-attachment:fixed;
+}
+
+
 /*Comienza estilos para SIDEBAR - Barra Lateral*/
 #wrapper {
     padding-left: 0;
