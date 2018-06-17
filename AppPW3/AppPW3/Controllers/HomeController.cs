@@ -64,19 +64,28 @@ namespace AppPW3.Controllers
         {
             if (ModelState.IsValid)//valido model
             {
-                if (usuario.Contrasenia == usuario.ContraseniaConfirm)//valido que las contraseñas sean iguales
+                if (usuarioServices.VerificarMailExistente(usuario) == true)
                 {
-                    if (this.IsCaptchaValid("Validate your captcha"))//valido captcha
+                    if (usuario.Contrasenia == usuario.ContraseniaConfirm)//valido que las contraseñas sean iguales
                     {
-                        usuarioServices.RegistrarUsuario(usuario);//registrar usuario
-                        Login(usuario);//loguear usuario
-                        return View("Index");
+                        if (this.IsCaptchaValid("Validate your captcha"))//valido captcha
+                        {
+                            usuarioServices.RegistrarUsuario(usuario);//registrar usuario
+                            Login(usuario);//loguear usuario
+                            return View("Index");
+                        }
+                        ViewBag.ErrorCaptcha = "Captcha incorrecto";//mensaje de error captcha
+                        return View(usuario);
                     }
-                    ViewBag.ErrorCaptcha = "Captcha incorrecto";//mensaje de error captcha
-                    return View(usuario);
+                    else
+                    {
+                        ViewBag.ErrorContraseniaConfirm = "Las contraseñas no coinciden";//mensaje de error contraseñas
+                        return View(usuario);
+                    }
                 }
-                else {
-                    ViewBag.ErrorContraseniaConfirm = "Las contraseñas no coinciden";//mensaje de error contraseñas
+                else
+                {
+                    ViewBag.ErrorMailExistente = "el email ya se encuentra registrado";
                     return View(usuario);
                 }
             }

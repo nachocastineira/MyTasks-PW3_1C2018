@@ -24,7 +24,7 @@ namespace AppPW3.Servicios
 
         public bool VerificarLogin(Usuario usuario)
         {
-            foreach (Usuario usuariosRegistrados in ListarUsuarios()) 
+            foreach (Usuario usuariosRegistrados in ListarUsuarios())
             {
                 if (usuario.Email.Equals(usuariosRegistrados.Email) && usuario.Contrasenia.Equals(usuariosRegistrados.Contrasenia))
                 {
@@ -36,7 +36,7 @@ namespace AppPW3.Servicios
             return false;
         }
 
-        public void RegistrarUsuario (Usuario usuario)
+        public void RegistrarUsuario(Usuario usuario)
         {
             usuario.CodigoActivacion = "123123123123"; //hay que ver como generar el codigo de activacion
             usuario.Activo = 1; //por default un usuario se crea en estado activo
@@ -46,9 +46,20 @@ namespace AppPW3.Servicios
             bdTareas.SaveChanges();
         }
 
-        public void ActivarUsuario (Usuario usuario)
+        public void ActivarUsuario(Usuario usuario)
         {
+            usuario.Activo = 1;
+        }
 
+        public Boolean VerificarMailExistente(Usuario usuario)
+        {
+            String emailUsuario = usuario.Email;
+            var result = bdTareas.Usuario.Where(u => u.Email == emailUsuario).ToList();
+            if (result.Count == 0)
+            {
+                return true;
+            }
+            return false;
         }
     }
 }
