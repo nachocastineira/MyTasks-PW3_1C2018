@@ -61,11 +61,12 @@ namespace AppPW3.Servicios
 
         public void EliminarTarea(int id)
         {
+            Tarea miTarea = ObtenerTarea(id);
             var tareas = bdTareas.Tarea;
 
             foreach (Tarea t in tareas)
             {
-                bdTareas.Tarea.Remove(t);
+                bdTareas.Tarea.Remove(miTarea);
             }
 
             bdTareas.SaveChanges();

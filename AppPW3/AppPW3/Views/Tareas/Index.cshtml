@@ -16,7 +16,7 @@
         <a class="btn btn-outline-primary" href="@Url.Content("~/Carpetas/Index")">Mis Carpetas</a>
         <a class="btn btn-outline-success" href="@Url.Content("~/Tareas/Crear")">Crear nueva tarea</a>
         <a data-toggle="modal" href="#myModal" data-target="#modificar" class="btn btn-outline-warning" href="">Modificar tarea</a>
-        <a data-toggle="modal" href="#myModal" data-target="#eliminar" class="btn btn-outline-danger" href="">Eliminar tarea</a>
+        <a  onclick="display()" data-toggle="modal" href="#myModal" data-target="#eliminar" class="btn btn-outline-danger" href="">Eliminar tarea</a>
     </div>
 
     <table class="table table-hover">
@@ -35,7 +35,7 @@
             @foreach (var tareas in Model)
             {
             <tr>
-                <td><input class="form-check-label" type="checkbox" value="@tareas.IdTarea" /></td>
+                <td><input class="form-check-label" type="checkbox" value="@tareas.IdTarea" name="id" /></td>
                 <td>@tareas.Nombre</td>
                 <td>@tareas.Descripcion</td>
                 <td>@tareas.EstimadoHoras</td>
@@ -119,7 +119,7 @@
     <div id="eliminar" class="modal fade in" role="dialog">
         <div class="modal-dialog">
             <div class="modal-content">
-                <form action="" method="post">
+                <form action="/Tareas/Eliminar" method="post">
                     <div class="card-header bg-danger text-white text-center">
                         <h5 class="modal-title">Eliminar tarea:</h5>
                     </div>
@@ -127,6 +127,15 @@
                         <h6>¿Seguro desea eliminar la tarea seleccionada?</h6>
                         <p> Toda la información almacenada en ella se perderá.</p>
                     </div>
+
+                    <input type="hidden" id="location_state_id" name="id" value="" />
+                    <script>
+                        function display() {
+                            var checkedValue = $('.form-check-label:checked').val();
+                            $('#location_state_id').val(checkedValue);
+                        }
+                    </script>
+
                     <div class="modal-footer">
                         <div class="btn-group">
                             <button class="btn btn-outline-danger" type="submit" value="modificar"> Confirmar eliminación</button>
