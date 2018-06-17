@@ -53,12 +53,21 @@ namespace AppPW3.Controllers
             return View();
         }
 
-        [HttpPost]
-        public ActionResult Eliminar(int id)
-        {
-            tareasServices.EliminarTarea(id);
 
-            return RedirectToAction("Crear");
+        [HttpPost]
+        public ActionResult Eliminar(int? id)
+        {
+            if (id == null)
+            {
+                return RedirectToAction("Index", "Carpetas");
+            }
+            else
+            {
+
+                tareasServices.EliminarTarea(id);
+            }
+
+            return RedirectToAction("Index", "Carpetas");
         }
     }
 }

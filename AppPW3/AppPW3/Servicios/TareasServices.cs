@@ -20,7 +20,7 @@ namespace AppPW3.Servicios
             return bdTareas.Tarea.Where(t => t.IdCarpeta == idCarpeta && t.IdUsuario == idUsuario).OrderBy(t => t.Nombre).ToList();
         }
 
-        public Tarea ObtenerTarea (int id)
+        public Tarea ObtenerTarea (int? id)
         {
             return bdTareas.Tarea.FirstOrDefault(t => t.IdTarea == id);
         }
@@ -59,7 +59,7 @@ namespace AppPW3.Servicios
             bdTareas.SaveChanges();
         }
 
-        public void EliminarTarea(int id)
+        public void EliminarTarea(int? id)
         {
             Tarea miTarea = ObtenerTarea(id);
             var tareas = bdTareas.Tarea;
