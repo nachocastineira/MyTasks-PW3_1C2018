@@ -20,7 +20,7 @@ namespace AppPW3.Servicios
             return bdTareas.Carpeta.Where(c => c.IdUsuario == id).OrderBy(c => c.Nombre).ToList(); //con el where filtro las carpetas por usuario
         }
 
-        public Carpeta ObtenerCarpeta(int id)
+        public Carpeta ObtenerCarpeta(int? id)
         {
             return bdTareas.Carpeta.FirstOrDefault(c => c.IdCarpeta == id);
         }
@@ -49,7 +49,7 @@ namespace AppPW3.Servicios
             bdTareas.SaveChanges();
         }
 
-        public void EliminarCarpeta(int id)
+        public void EliminarCarpeta(int? id)
         {
             Carpeta miCarpeta = ObtenerCarpeta(id);
             var carpetas = bdTareas.Carpeta;

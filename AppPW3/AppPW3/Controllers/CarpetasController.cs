@@ -49,10 +49,18 @@ namespace AppPW3.Controllers
         }
 
         [HttpPost]
-        public ActionResult Eliminar(int id)
+        public ActionResult Eliminar(int? id)
         {
-            carpetaServices.EliminarCarpeta(id);
-
+            if (id == null)
+            {
+                return RedirectToAction("Index");
+            }
+            else
+            {
+               
+               carpetaServices.EliminarCarpeta(id);
+            }
+            
             return RedirectToAction("Index");
         }
     }
