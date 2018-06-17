@@ -25,11 +25,11 @@ namespace AppPW3.Servicios
             return bdTareas.Carpeta.FirstOrDefault(c => c.IdCarpeta == id);
         }
 
-        public void CrearCarpeta(Carpeta carpeta)
+        public void CrearCarpeta(Carpeta carpeta,int id)
         {
             Carpeta nuevaCarpeta = new Carpeta();
 
-            nuevaCarpeta.IdUsuario = 2; //aca deberia ir el id del user logueado
+            nuevaCarpeta.IdUsuario = id; //andando el ID del usuario logueado
             nuevaCarpeta.Nombre = carpeta.Nombre;
             nuevaCarpeta.Descripcion = carpeta.Descripcion;
             nuevaCarpeta.FechaCreacion = DateTime.Now;

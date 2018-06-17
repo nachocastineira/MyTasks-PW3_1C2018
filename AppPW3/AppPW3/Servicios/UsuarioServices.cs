@@ -29,7 +29,7 @@ namespace AppPW3.Servicios
                 if (usuario.Email.Equals(usuariosRegistrados.Email) && usuario.Contrasenia.Equals(usuariosRegistrados.Contrasenia))
                 {
                     Session["usuarioLogueado"] = usuariosRegistrados; //guardo la variable de sesión del usuario logueado
-
+                    Session["idUsuario"] = usuariosRegistrados.IdUsuario;
                     return true;
                 }
             }
