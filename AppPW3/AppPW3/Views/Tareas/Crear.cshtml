@@ -1,4 +1,8 @@
-﻿
+﻿@using AppPW3.Controllers
+@using AppPW3.Entidades
+@using AppPW3.Servicios
+@model List<Carpeta>
+
 @{
     ViewBag.Title = "Crear";
 }
@@ -43,14 +47,14 @@
                     <div class="col-md-4 mb-3">
                         <label class="col-sm-6 col-form-label">Horas estimadas</label>
                         <div class="col-sm-11">
-                            <input type="text" class="form-control" placeholder="Este campo es opcional." name="EstimadoHoras"/>
+                            <input type="text" class="form-control" placeholder="Este campo es opcional." name="EstimadoHoras" />
                         </div>
                     </div>
 
                     <div class="col-md-4 mb-3">
                         <label class="col-sm-6 col-form-label">Fecha límite</label>
                         <div class="col-sm-11">
-                            <input type="text" class="form-control" placeholder="Este campo es opcional." name="FechaFin"/>
+                            <input type="text" class="form-control" placeholder="Este campo es opcional." name="FechaFin" />
                         </div>
                     </div>
                 </div>
@@ -68,16 +72,21 @@
                         </div>
                     </div>
 
-                    
                     @*hacer un foreach para mostrar todas las carpetas*@
                     <div class="col-md-4 mb-3">
                         <label class="col-sm-3 col-form-label">Carpeta</label>
                         <div class="col-sm-11">
                             <select class="custom-select" name="IdCarpeta">
-                                <option selected>General</option>
-                                <option value="1">Facturas</option>
-                                <option value="2">Gastos</option>
-                                <option value="3">Vacaciones 2019</option>
+                             @foreach (var carpeta in Model)
+                                {
+                                    if(carpeta.IdCarpeta==1)
+                                    {
+                                    <option value="@carpeta.IdCarpeta" selected="selected">@carpeta.Nombre</option>
+                                    }
+                                    else {
+                                    <option value="@carpeta.IdCarpeta">@carpeta.Nombre</option>
+                                    }
+                                }
                             </select>
                         </div>
                     </div>

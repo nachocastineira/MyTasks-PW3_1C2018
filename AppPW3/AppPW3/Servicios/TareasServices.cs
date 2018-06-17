@@ -25,11 +25,11 @@ namespace AppPW3.Servicios
             return bdTareas.Tarea.FirstOrDefault(t => t.IdTarea == id);
         }
 
-        public void CrearTarea (Tarea tarea)
+        public void CrearTarea (Tarea tarea, int id)
         {
             Tarea nuevaTarea = new Tarea();
 
-            nuevaTarea.IdUsuario = 2; //por ahora, se tiene que asignar al logueado
+            nuevaTarea.IdUsuario = id; //por ahora, se tiene que asignar al logueado
             nuevaTarea.IdCarpeta = tarea.IdCarpeta;
             nuevaTarea.Nombre = tarea.Nombre;
             nuevaTarea.Descripcion = tarea.Descripcion;

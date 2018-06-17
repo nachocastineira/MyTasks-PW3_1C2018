@@ -17,28 +17,31 @@ namespace AppPW3.Controllers
 
         public ActionResult Index(int id) 
         {
+            int idUser = Convert.ToInt32(Session["idUsuario"]);
             if (Session["usuarioLogueado"] == null)
             {
                 return RedirectToAction("IndexAlternativo", "Home");
             }
 
-            return View(tareasServices.ListarTareasPorCarpetasDelUsuario(id, 2));  //parametro 1 idCARPETA, par2 idUsuario
+            return View(tareasServices.ListarTareasPorCarpetasDelUsuario(id, idUser));  //parametro 1 idCARPETA, par2 idUsuario
         }
 
         public ActionResult Crear()
         {
+            int idUser = Convert.ToInt32(Session["idUsuario"]);
             if (Session["usuarioLogueado"] == null)
             {
                 return RedirectToAction("IndexAlternativo", "Home");
             }
 
-            return View();
+            return View(carpetaServices.ListarCarpetasPorUsuario(idUser));
         }
 
         [HttpPost]
         public ActionResult Crear(Tarea tarea)
         {
-            tareasServices.CrearTarea(tarea);
+            int id = Convert.ToInt32(Session["idUsuario"]);
+            tareasServices.CrearTarea(tarea,id);
 
             return RedirectToAction("Index");
         }
