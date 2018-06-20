@@ -147,5 +147,36 @@
         </div>
     </div>
 
+        <div id="eliminar" class="modal fade in" role="dialog">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <form action="/Tareas/Eliminar" method="post">
+                    <div class="card-header bg-danger text-white text-center">
+                        <h5 class="modal-title">Eliminar tarea:</h5>
+                    </div>
+                    <div class="modal-body text-center m-3">
+                        <h6>¿Seguro desea eliminar la tarea seleccionada?</h6>
+                        <p> Toda la información almacenada en ella se perderá.</p>
+                    </div>
+
+                    <input type="hidden" id="location_state_id" name="id" value="" />
+                    <script>
+                        function display() {
+                            var checkedValue = $('.form-check-label:checked').val();
+                            $('#location_state_id').val(checkedValue);
+                        }
+                    </script>
+
+                    <div class="modal-footer">
+                        <div class="btn-group">
+                            <button class="btn btn-outline-danger" type="submit" value="modificar"> Confirmar eliminación</button>
+                            <button type="button" class="btn btn-outline-secondary" data-dismiss="modal">Cancelar</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
 }
 
