@@ -61,31 +61,43 @@ namespace AppPW3.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Registracion(Usuario usuario)
-        {
-            if (ModelState.IsValid)//valido model
-            {
-                if (usuarioServices.VerificarMailExistente(usuario) == true)
-                {
-                    if (usuario.Contrasenia == usuario.ContraseniaConfirm)//valido que las contraseñas sean iguales
-                    {
-                        if (this.IsCaptchaValid("Validate your captcha"))//valido captcha
-                        {
-                            usuarioServices.RegistrarUsuario(usuario);//registrar usuario
-                            Login(usuario);//loguear usuario
-                            return View("Index");
+        {   //valido model
+            if (ModelState.IsValid)
+            {   //valido que las contraseñas sean iguales
+                if (usuario.Contrasenia == usuario.ContraseniaConfirm)
+                {   //valido captcha
+                    if (this.IsCaptchaValid("Validate your captcha"))
+                    {   //valido usuario existente
+                        if (usuarioServices.VerificarMailExistente(usuario))
+                        {       //valido que el usuario existente esté este activo
+                            if (usuarioServices.VerificarMailExistenteInactivo(usuario))
+                            {
+                                usuarioServices.ModificarUsuarioActivo(usuario);
+                                Login(usuario);
+                                return RedirectToAction("index");
+                            }
+                            else
+                            {
+                                ViewBag.ErrorMailExistente = "el email ya se encuentra registrado";
+                                return View(usuario);
+                            }
                         }
-                        ViewBag.ErrorCaptcha = "Captcha incorrecto";//mensaje de error captcha
-                        return View(usuario);
+                        else
+                        {
+                            usuarioServices.RegistrarUsuario(usuario);
+                            Login(usuario);
+                            return RedirectToAction("index");
+                        }
                     }
                     else
                     {
-                        ViewBag.ErrorContraseniaConfirm = "Las contraseñas no coinciden";//mensaje de error contraseñas
+                        ViewBag.ErrorCaptcha = "Captcha incorrecto";
                         return View(usuario);
                     }
                 }
                 else
                 {
-                    ViewBag.ErrorMailExistente = "el email ya se encuentra registrado";
+                    ViewBag.ErrorContraseniaConfirm = "Las contraseñas no coinciden";
                     return View(usuario);
                 }
             }
@@ -93,6 +105,10 @@ namespace AppPW3.Controllers
             {
                 return View(usuario);
             }
+
+
+
         }
+
     }
-}
+}    

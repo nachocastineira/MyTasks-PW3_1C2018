@@ -11,7 +11,6 @@ namespace AppPW3.Servicios
     {
         TareasEntities bdTareas = new TareasEntities();
 
-
         public List<Usuario> ListarUsuarios()
         {
             return bdTareas.Usuario.ToList();
@@ -46,20 +45,52 @@ namespace AppPW3.Servicios
             bdTareas.SaveChanges();
         }
 
+        //verifica si las contraseñas son iguales. Si son iguales da true, si no coinciden da false
+        public Boolean VerificarContraseñasIguales(Usuario usuario) {
+            if(usuario.Contrasenia == usuario.ContraseniaConfirm) { 
+            return true;
+            }
+            return false;
+        }
+
         public void ActivarUsuario(Usuario usuario)
         {
             usuario.Activo = 1;
         }
 
+        //busca si ya existe el mail del usuario. Si existe da true, si no existe da false
         public Boolean VerificarMailExistente(Usuario usuario)
         {
-            String emailUsuario = usuario.Email;
-            var result = bdTareas.Usuario.Where(u => u.Email == emailUsuario).ToList();
-            if (result.Count == 0)
+            Usuario usuarioBuscado = bdTareas.Usuario.Where(u => u.Email == usuario.Email).FirstOrDefault();
+            if (usuarioBuscado != null)
             {
                 return true;
             }
             return false;
         }
-    }
+
+        //verifica que ya exista el mail y que ademas esté inactivo
+        public Boolean VerificarMailExistenteInactivo(Usuario usuario)
+        {
+            var usuarioBuscado = bdTareas.Usuario
+                .Where(u => u.Email == usuario.Email 
+                && usuario.Activo==0)
+                .FirstOrDefault();
+            if (usuarioBuscado != null)
+            {
+                return true;
+            }
+            return false;
+        }
+
+        //busca un usuario inactivo con el mismo mail, lo activa y lo modifica.
+        public void ModificarUsuarioActivo(Usuario usuario) {
+            var usuarioBuscado = bdTareas.Usuario.Where(u => u.Email == usuario.Email && u.Activo == 0).FirstOrDefault();
+            usuarioBuscado.Activo = 1; 
+            usuarioBuscado.Nombre = usuario.Nombre;
+            usuarioBuscado.Apellido = usuario.Apellido;
+            usuarioBuscado.Email = usuario.Email;
+            bdTareas.SaveChanges();
+         }
+     }    
 }

@@ -28,6 +28,7 @@ namespace AppPW3.Entidades
 
         [Required(ErrorMessage = "Este campo es obligatorio.")]
         [RegularExpression(@"^(([^<>()[\]\\.,;:\s@""]+(\.[^<>()[\]\\.,;:\s@""]+)*)|("".+""))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$", ErrorMessage = "El email no es válido.")]
+        [MaxLength(50,ErrorMessage = "Este campo tiene un maximo de 50 caracteres")]
         [Display(Name = "Email")]
         public string Email { get; set; }
 
