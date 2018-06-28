@@ -21,7 +21,7 @@ namespace AppPW3.Servicios
             return bdTareas.Usuario.FirstOrDefault(u => u.IdUsuario == id);
         }
 
-        public bool VerificarLogin(Usuario usuario)
+        /*public bool VerificarLogin(Usuario usuario)
         {
             foreach (Usuario usuariosRegistrados in ListarUsuarios())
             {
@@ -33,6 +33,39 @@ namespace AppPW3.Servicios
                 }
             }
             return false;
+        }*/
+
+        //verifico que el usuario esté registrado en el sistema
+        public bool VerificarUsuarioRegistrado(Usuario usuario) {
+            var UsuarioRegistrado = bdTareas.Usuario.Where(u => u.Email == usuario.Email).FirstOrDefault();
+            if (UsuarioRegistrado != null) {
+                return true;
+            }
+            return false;
+        }
+
+        //verifico que el usuario esté activo
+        public bool VerificarUsuarioActivo(Usuario usuario)
+        {//traigo un usuario cuyo mail coincida con el ingresado y chequeo que el estado sea activo. 
+            Usuario usuarioActivo = bdTareas.Usuario.Where(u => u.Email == usuario.Email).FirstOrDefault();
+                if (usuarioActivo.Activo == 1)
+                {
+                    return true;
+                }
+                return false;
+        }
+
+        //verifico que la contraseña ingresada sea correcta
+        public bool VerificarContraseniaLogin(Usuario usuario)
+        {
+                var contraseniasCoincidentes = bdTareas.Usuario.Where(u => u.Contrasenia == usuario.Contrasenia).FirstOrDefault();
+                if (contraseniasCoincidentes != null)
+                {
+                    Session["usuarioLogueado"] = usuario; //guardo la variable de sesión del usuario logueado
+                    Session["idUsuario"] = usuario.IdUsuario;
+                    return true;
+                }
+                return false;
         }
 
         public void RegistrarUsuario(Usuario usuario)

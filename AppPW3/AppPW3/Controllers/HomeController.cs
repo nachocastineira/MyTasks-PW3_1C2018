@@ -31,7 +31,7 @@ namespace AppPW3.Controllers
             return View();
         }
 
-        [HttpPost]
+        /*[HttpPost]
         public ActionResult Login(Usuario usuario)
         {
             bool loginCorrecto = usuarioServices.VerificarLogin(usuario);
@@ -44,7 +44,29 @@ namespace AppPW3.Controllers
             {
                 return RedirectToAction("IndexAlternativo");
             }
+        }*/
+        [HttpPost]
+        public ActionResult Login(Usuario usuario)
+        {
+            if (usuarioServices.VerificarUsuarioRegistrado(usuario))
+            {
+                if (usuarioServices.VerificarUsuarioActivo(usuario))
+                {
+                    if (usuarioServices.VerificarContraseniaLogin(usuario))
+                    {
+                        return RedirectToAction("Index", "Home");
+                    }
+                    ViewBag.ErrorLogin = "Verificar usuario y/o contraseña";
+                    return View("IndexAlternativo");
+                }
+                ViewBag.ErrorLogin = "Usuario no activo";
+                return View("IndexAlternativo");
+            }
+            ViewBag.ErrorLogin = "Verificar usuario y/o contraseña";
+            return View("IndexAlternativo");
         }
+
+
 
 
         public ActionResult Logout()
@@ -77,38 +99,36 @@ namespace AppPW3.Controllers
                                 return RedirectToAction("index");
                             }
                             else
-                            {
+                            {   //si el mail ya existe, vuelve a la vista y se muestra error
                                 ViewBag.ErrorMailExistente = "el email ya se encuentra registrado";
                                 return View(usuario);
                             }
                         }
                         else
-                        {
+                        {   //si el mail no existe, se registra el usuario y se loguea
                             usuarioServices.RegistrarUsuario(usuario);
                             Login(usuario);
                             return RedirectToAction("index");
                         }
                     }
                     else
-                    {
+                    {   //si el captcha es incorrecto, vuelve a la vista y se muestra error
                         ViewBag.ErrorCaptcha = "Captcha incorrecto";
                         return View(usuario);
                     }
                 }
                 else
-                {
+                {   //si las contraseñas no coinciden, vuelve a la vista y muestra error
                     ViewBag.ErrorContraseniaConfirm = "Las contraseñas no coinciden";
                     return View(usuario);
                 }
             }
             else
-            {
-                return View(usuario);
+            { //si las validaciones del modelo son incorrectas vuelve a la vista mostrando los mensajes de error
+                { //si las validaciones del modelo son incorrectas vuelve a la vista mostrando los mensajes de error
+                    return View(usuario);
+                }
             }
-
-
-
         }
-
     }
-}    
+}
