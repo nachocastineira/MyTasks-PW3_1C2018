@@ -58,11 +58,11 @@ namespace AppPW3.Servicios
         //verifico que la contraseña ingresada sea correcta
         public bool VerificarContraseniaLogin(Usuario usuario)
         {
-                var contraseniasCoincidentes = bdTareas.Usuario.Where(u => u.Contrasenia == usuario.Contrasenia).FirstOrDefault();
-                if (contraseniasCoincidentes != null)
+                Usuario usuarioContraseniasCoincidentes = bdTareas.Usuario.Where(u => u.Contrasenia == usuario.Contrasenia && u.Email == usuario.Email).FirstOrDefault();
+                if (usuarioContraseniasCoincidentes != null)
                 {
-                    Session["usuarioLogueado"] = usuario; //guardo la variable de sesión del usuario logueado
-                    Session["idUsuario"] = usuario.IdUsuario;
+                    Session["usuarioLogueado"] = usuarioContraseniasCoincidentes; //guardo la variable de sesión del usuario logueado
+                    Session["idUsuario"] = usuarioContraseniasCoincidentes.IdUsuario;
                     return true;
                 }
                 return false;
