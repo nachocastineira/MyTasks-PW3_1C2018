@@ -1,4 +1,5 @@
-﻿using System.Web.Mvc;
+﻿using System;
+using System.Web.Mvc;
 using AppPW3.Entidades;
 using AppPW3.Servicios;
 using CaptchaMvc.HtmlHelpers;
@@ -13,10 +14,15 @@ namespace AppPW3.Controllers
 
         public ActionResult Index()
         {
+            int id = Convert.ToInt32(Session["idUsuario"]);
+
             if (Session["usuarioLogueado"] == null)
             {
                 return RedirectToAction("IndexAlternativo", "Home");
             }
+
+            carpetaServices.ListarCarpetasPorUsuario(id);
+            tareasServices.ListarTareasNoCompletadasDelUsuario(id);
 
             return View();
         }

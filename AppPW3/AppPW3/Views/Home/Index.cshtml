@@ -1,4 +1,6 @@
-﻿
+﻿@using AppPW3.Entidades
+@model List<Tarea>
+
 @{
     ViewBag.Title = "Home";
 }
@@ -8,6 +10,60 @@
     <ol class="breadcrumb shadow p-3 mb-5 bg-dark">
         <li class="breadcrumb-item active text-white">Home</li>
     </ol>
+
+    <div class="btn-group mb-4">
+        <a class="btn btn-outline-primary" href="@Url.Content("~/Carpetas/Index")">Mis Carpetas</a>
+        <a class="btn btn-outline-success" href="@Url.Content("~/Carpetas/Crear")">Crear Carpeta</a>
+    </div>
+
+    <card class="card">
+        <div class="card-title">
+            <h6 class="text text-center">Tareas No Completadas</h6>
+        </div>
+        <table class="table table-hover">
+            <thead class="thead-inverse">
+                <tr>
+                    <th>Fecha Límite</th>
+                    <th>Nombre</th>
+                    <th>Prioridad</th>
+                    <th>Carpeta</th>
+                    <th>Tiempo Estimado</th>
+                    <th>Completada</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+
+                @*@foreach (var tareas in Model)
+                {*@
+                <tr>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    @*<td>@tareas.Nombre</td>
+        <td>@tareas.Descripcion</td>
+        <td>@tareas.EstimadoHoras</td>
+        <td>@tareas.FechaFin</td>
+        <td>@tareas.Prioridad</td>*@
+                    <td><a class="btn btn-outline-info" href="~/Tareas/Detalle">Ver</a></td>
+
+                </tr>
+                @*  *@}
+    </tbody>
+    </table>
+    </card>
+
+
+
+
+
+
+
+
+
 
     <div class="jumbotron">
         <h1 class="display-4">Home de usuario</h1>

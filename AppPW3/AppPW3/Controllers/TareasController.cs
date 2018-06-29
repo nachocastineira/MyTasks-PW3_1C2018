@@ -22,7 +22,6 @@ namespace AppPW3.Controllers
             {
                 return RedirectToAction("IndexAlternativo", "Home");
             }
-
             return View(tareasServices.ListarTareasPorCarpetasDelUsuario(id, idUser));  //parametro 1 idCARPETA, par2 idUsuario
         }
 
@@ -40,12 +39,21 @@ namespace AppPW3.Controllers
         }
 
         [HttpPost]
+        //[ValidateAntiForgeryToken]
         public ActionResult Crear(Tarea tarea)
         {
             int id = Convert.ToInt32(Session["idUsuario"]);
-            tareasServices.CrearTarea(tarea,id);
 
-            return RedirectToAction("Index");
+            if (ModelState.IsValid)
+            {
+                tareasServices.CrearTarea(tarea, id);
+
+                return RedirectToAction("Index", "Tareas");
+            }
+            else
+            {
+                return View(tarea);
+            }
         }
 
         public ActionResult Detalle(int? idTarea)

@@ -20,6 +20,11 @@ namespace AppPW3.Servicios
             return bdTareas.Tarea.Where(t => t.IdCarpeta == idCarpeta && t.IdUsuario == idUsuario).OrderBy(t => t.Nombre).ToList();
         }
 
+        public List<Tarea> ListarTareasNoCompletadasDelUsuario(int idUsuario)
+        {
+            return bdTareas.Tarea.Where(t => t.Completada == 0 && t.IdUsuario == idUsuario).ToList();
+        }
+
         public Tarea ObtenerTarea (int? id)
         {
             return bdTareas.Tarea.FirstOrDefault(t => t.IdTarea == id);
@@ -61,8 +66,6 @@ namespace AppPW3.Servicios
 
         public void CrearComentarioTarea (ComentarioTarea comentarioTarea, int idTarea)
         {
-            //Tarea tareaComentada = ObtenerTarea(idTarea);
-
             comentarioTarea.IdTarea = idTarea;
             comentarioTarea.FechaCreacion = DateTime.Now;
 
