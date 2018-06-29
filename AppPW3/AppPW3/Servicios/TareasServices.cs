@@ -27,21 +27,13 @@ namespace AppPW3.Servicios
 
         public void CrearTarea (Tarea tarea, int id)
         {
-            Tarea nuevaTarea = new Tarea();
 
-            nuevaTarea.IdUsuario = id; //por ahora, se tiene que asignar al logueado
-            nuevaTarea.IdCarpeta = tarea.IdCarpeta;
-            nuevaTarea.Nombre = tarea.Nombre;
-            nuevaTarea.Descripcion = tarea.Descripcion;
-            nuevaTarea.EstimadoHoras = tarea.EstimadoHoras;
-            nuevaTarea.FechaCreacion = DateTime.Now;
-            nuevaTarea.FechaFin = tarea.FechaFin;
-            nuevaTarea.Prioridad = tarea.Prioridad;
-            nuevaTarea.Completada = tarea.Completada;
-
-            //se deberia hacer el add para tablas 1N de Carpeta->Tareas, dejo uno provisorio por ahora
-
-            bdTareas.Tarea.Add(nuevaTarea);
+            tarea.IdUsuario = id;                //La tarea creada se le asigna al usuario logueado
+            tarea.FechaCreacion = DateTime.Now;  //Fecha y hora actual al momento de crearla
+            tarea.EstimadoHoras = null;          //revisar los errores cuando completo ese campo en el form
+            tarea.Completada = 0;
+        
+            bdTareas.Tarea.Add(tarea);
             bdTareas.SaveChanges();
         }
 

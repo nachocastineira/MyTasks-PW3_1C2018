@@ -34,7 +34,9 @@ namespace AppPW3.Controllers
                 return RedirectToAction("IndexAlternativo", "Home");
             }
 
-            return View(carpetaServices.ListarCarpetasPorUsuario(idUser));
+            ViewBag.CarpetasDelUsuario = carpetaServices.ListarCarpetasPorUsuario(idUser); //Con este ViewBag mando las carpetas de ese usuario al form para crear tarea
+
+            return View();
         }
 
         [HttpPost]

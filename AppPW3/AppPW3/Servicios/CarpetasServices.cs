@@ -27,16 +27,11 @@ namespace AppPW3.Servicios
 
         public void CrearCarpeta(Carpeta carpeta,int id)
         {
-            Carpeta nuevaCarpeta = new Carpeta();
+            carpeta.IdUsuario = id; //Se asigna esa carpeta creada al usuario logueado
+            carpeta.FechaCreacion = DateTime.Now;
 
-            nuevaCarpeta.IdUsuario = id; //andando el ID del usuario logueado
-            nuevaCarpeta.Nombre = carpeta.Nombre;
-            nuevaCarpeta.Descripcion = carpeta.Descripcion;
-            nuevaCarpeta.FechaCreacion = DateTime.Now;
+            bdTareas.Carpeta.Add(carpeta);
 
-            // usuario.Carpeta.Add(carpeta);   //al usuario le agrego la carpeta que creó, esto es para 1 a N
-
-            bdTareas.Carpeta.Add(nuevaCarpeta);
             bdTareas.SaveChanges();
         }
 

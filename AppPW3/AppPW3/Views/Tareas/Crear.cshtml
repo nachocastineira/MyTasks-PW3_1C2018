@@ -1,17 +1,13 @@
-﻿@using AppPW3.Controllers
-@using AppPW3.Entidades
-@using AppPW3.Servicios
-@model List<Carpeta>
+﻿@using AppPW3.Entidades
+@model AppPW3.Entidades.Tarea
 
 @{
     ViewBag.Title = "Crear";
 }
 
-
 <!-- comienzo el renderSection que expecifique en el _LayoutSidebar - Hay que ponerlo en todas las Views que agreguemos-->
 @section Body
 {
-
     <div class="col-md-10 offset-1 ">
 
         <ol class="breadcrumb shadow p-3 mb-5 bg-dark">
@@ -25,79 +21,80 @@
                 Complete los siguientes campos para crear una nueva tarea:
             </div>
 
-            <form action="/Tareas/Crear" method="post">
+                @using (Html.BeginForm("Crear", "Tareas", FormMethod.Post, new { enctype = "multipart/form-data" }))
+    {
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
 
-                <div class="form-row">
-                    <div class="col-md-4 mb-3">
-                        <label class="col-sm-6 col-form-label ">Nombre</label>
-                        <div class="col-sm-11">
-                            <input type="text" class="form-control" placeholder="Este campo es obligatorio." name="Nombre" required />
-                        </div>
-                    </div>
+            <div class="form-row">
+                <div class="col-md-4 mb-3">
+                    @Html.LabelFor(model => model.Nombre, htmlAttributes: new { @class = "col-sm-6 col-form-label" })
 
-                    <div class="col-md-4 mb-3">
-                        <label class="col-sm-6 col-form-label">Descripción</label>
-                        <div class="col-sm-11">
-                            <input type="text" class="form-control" placeholder="Este campo es opcional." name="Descripcion" />
-                        </div>
+                    <div class="col-sm-11">
+                        @Html.EditorFor(model => model.Nombre, new { htmlAttributes = new { @class = "form-control", required = true, placeholder = "Este campo es obligatorio." } })
+                        @Html.ValidationMessageFor(model => model.Nombre, "", new { @class = "text-danger" })
                     </div>
                 </div>
 
-                <div class="form-row">
-                    <div class="col-md-4 mb-3">
-                        <label class="col-sm-6 col-form-label">Horas estimadas</label>
-                        <div class="col-sm-11">
-                            <input type="text" class="form-control" placeholder="Este campo es opcional." name="EstimadoHoras" />
-                        </div>
+                <div class="col-md-4 mb-3">
+                    @Html.LabelFor(model => model.Descripcion, htmlAttributes: new { @class = "col-sm-6 col-form-label" })
+                    <div class="col-sm-11">
+                        @Html.EditorFor(model => model.Descripcion, new { htmlAttributes = new { @class = "form-control", required = true, placeholder = "Este campo es opcional." } })
+                        @Html.ValidationMessageFor(model => model.Descripcion, "", new { @class = "text-danger" })
                     </div>
+                </div>
+            </div>
 
-                    <div class="col-md-4 mb-3">
-                        <label class="col-sm-6 col-form-label">Fecha límite</label>
-                        <div class="col-sm-11">
-                            <input type="text" class="form-control" placeholder="Este campo es opcional." name="FechaFin" />
-                        </div>
+            <div class="form-row">
+                <div class="col-md-4 mb-3">
+                    @Html.LabelFor(model => model.EstimadoHoras, htmlAttributes: new { @class = "col-sm-6 col-form-label" })
+
+                    <div class="col-sm-11">
+                        @Html.EditorFor(model => model.EstimadoHoras, new { htmlAttributes = new { @class = "form-control", required = true, placeholder = "Este campo es opcional" } })
                     </div>
                 </div>
 
-                <div class="form-row">
-                    <div class="col-md-4 mb-3">
-                        <label class="col-sm-3 col-form-label">Prioridad</label>
-                        <div class="col-sm-11">
-                            <select class="custom-select" name="Prioridad">
-                                <option selected value="4" class="text-info">Baja</option>
-                                <option value="3" class="text-warning">Media</option>
-                                <option value="2" class="text-danger">Alta</option>
-                                <option value="1" class="text-danger font-weight-bold">Urgente</option>
-                            </select>
-                        </div>
-                    </div>
+                <div class="col-md-4 mb-3">
+                    @Html.LabelFor(model => model.FechaFin, htmlAttributes: new { @class = "col-sm-6 col-form-label" })
 
-                    @*hacer un foreach para mostrar todas las carpetas*@
-                    <div class="col-md-4 mb-3">
-                        <label class="col-sm-3 col-form-label">Carpeta</label>
-                        <div class="col-sm-11">
-                            <select class="custom-select" name="IdCarpeta">
-                             @foreach (var carpeta in Model)
-                                {
-                                    if(carpeta.IdCarpeta==1)
-                                    {
-                                    <option value="@carpeta.IdCarpeta" selected="selected">@carpeta.Nombre</option>
-                                    }
-                                    else {
-                                    <option value="@carpeta.IdCarpeta">@carpeta.Nombre</option>
-                                    }
-                                }
-                            </select>
-                        </div>
+                    <div class="col-sm-11">
+                        @Html.EditorFor(model => model.FechaFin, new { htmlAttributes = new { @class = "form-control", required = true, placeholder = "Este campo es opcional" } })
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-row">
+                <div class="col-md-4 mb-3">
+                    @Html.LabelFor(model => model.Prioridad, htmlAttributes: new { @class = "col-sm-3 col-form-label" })
+
+                    <div class="col-sm-11">
+                        <select class="custom-select" name="Prioridad">
+                            <option selected value="4" class="text-info">Baja</option>
+                            <option value="3" class="text-warning">Media</option>
+                            <option value="2" class="text-danger">Alta</option>
+                            <option value="1" class="text-danger font-weight-bold">Urgente</option>
+                        </select>
                     </div>
                 </div>
 
-                <div class="col-md-4 mt-4 mb-5">
-                    <button type="submit" class="btn btn-outline-success">Carpeta Nueva Tarea</button>
-                    @*<button type="reset" class="btn btn-outline-info">Restablecer</button>*@
-                </div>
+                <div class="col-md-4 mb-3">
+                    @Html.LabelFor(model => model.IdCarpeta, htmlAttributes: new { @class = "col-sm-3 col-form-label" })
 
-            </form>
+                    <div class="col-sm-11">
+                        <select class="custom-select" name="IdCarpeta">
+                            @foreach (var carpetas in ViewBag.CarpetasDelUsuario)
+            {
+                <option value="@carpetas.IdCarpeta">@carpetas.Nombre</option>
+}
+                        </select>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-4 mt-4 mb-5">
+                <button type="submit" class="btn btn-outline-success">Carpeta Nueva Tarea</button>
+            </div>
+}
+
         </div>
     </div>
 }

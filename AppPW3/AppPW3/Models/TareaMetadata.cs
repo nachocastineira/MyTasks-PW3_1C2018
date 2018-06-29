@@ -16,7 +16,10 @@ namespace AppPW3.Entidades
         }
 
         public int IdTarea { get; set; }
+
+        [Display(Name = "Carpeta")]
         public int IdCarpeta { get; set; }
+
         public int IdUsuario { get; set; }
 
         [Required(ErrorMessage = "Este campo es obligatorio")]

@@ -14,45 +14,46 @@
             <li class="breadcrumb-item active text-white">Crear nueva</li>
         </ol>
 
-
         <div class="card">
             <div class="card-header bg-success mb-3 text-white">
                 Complete los siguientes campos para crear una nueva carpeta:
             </div>
 
-            @* EMPIEZA FORMULARIO *@
-            <form method="post" action="/Carpetas/Crear">
+            @using (Html.BeginForm("Crear", "Carpetas", FormMethod.Post, new { enctype = "multipart/form-data" }))
+            {
+                @Html.AntiForgeryToken()
 
                 <div class="form-row">
-                    <input hidden name="IdUsuario" value="2" />
-                    <input hidden name="FechaCreacion" />
+
+                    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
 
                     <div class="form-group col-md-6">
-                        <label class="col-sm-3 col-form-label">Nombre *</label>
+                        @Html.LabelFor(model => model.Nombre, htmlAttributes: new { @class = "col-sm-3 col-form-label" })
+
                         <div class="col-sm-10">
-                            <input type="text" class="form-control" placeholder="Este campo es obligatorio." name="Nombre" required />
+                            @Html.EditorFor(model => model.Nombre, new { htmlAttributes = new { @class = "form-control", required = true, placeholder = "Este campo es obligatorio." } })
+                            @Html.ValidationMessageFor(model => model.Nombre, "", new { @class = "text-danger" })
                         </div>
                     </div>
 
                     <div class="form-group col-md-6">
-                        <label class="col-sm-3 col-form-label">Descripción</label>
+                        @Html.LabelFor(model => model.Descripcion, htmlAttributes: new { @class = "col-sm-3 col-form-label" })
+
                         <div class="col-sm-10">
-                            <input type="text" class="form-control" name="Descripcion" placeholder="Este campo es opcional." />
+                            @Html.EditorFor(model => model.Descripcion, new { htmlAttributes = new { @class = "form-control", required = true, placeholder = "Este campo es obligatorio." } })
+                            @Html.ValidationMessageFor(model => model.Descripcion, "", new { @class = "text-danger" })
                         </div>
                     </div>
+
                 </div>
 
                 <div class="col-md-4 mt-4 mb-5">
                     <button type="submit" class="btn btn-outline-success">Crear Nueva Carpeta</button>
-                    @*<button type="reset" class="btn btn-outline-info">Restablecer</button>*@
                 </div>
-
-            </form>
-
-            @*  @Session["idUsuario"].ToString()  ESTO ES PARA MOSTAR EL ID USUARIO *@
+            }
 
         </div>
-        </div>
-
+    </div>
 }
+            
 
