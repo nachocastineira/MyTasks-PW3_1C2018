@@ -15,8 +15,8 @@
     <div class="btn-group mb-4">
         <a class="btn btn-outline-primary" href="@Url.Content("~/Carpetas/Index")">Mis Carpetas</a>
         <a class="btn btn-outline-success" href="@Url.Content("~/Tareas/Crear")">Crear nueva tarea</a>
-        <a data-toggle="modal" href="#myModal" data-target="#modificar" class="btn btn-outline-warning" href="">Modificar tarea</a>
-        <a  onclick="display()" data-toggle="modal" href="#myModal" data-target="#eliminar" class="btn btn-outline-danger" href="">Eliminar tarea</a>
+        <a onclick="display()" data-toggle="modal" href="#myModal" data-target="#eliminar" class="btn btn-outline-danger" href="">Eliminar tarea</a>
+        <a onclick="display()" data-toggle="modal" href="#myModal" data-target="#completarTarea" class="btn btn-outline-primary">Completar tarea</a>
     </div>
 
     <table class="table table-hover">
@@ -28,6 +28,7 @@
                 <th>Horas estimadas</th>
                 <th>Fecha límite</th>
                 <th>Prioridad</th>
+                <th></th>
                 <th></th>
             </tr>
         </thead>
@@ -41,80 +42,12 @@
                 <td>@tareas.EstimadoHoras</td>
                 <td>@tareas.FechaFin</td>
                 <td>@tareas.Prioridad</td>
-                <td><a class="btn btn-outline-info" href="@Url.Content("~/Tareas/Detalle")">Abrir Tarea</a></td>
+                <td><a class="btn btn-outline-info" href="~/Tareas/Detalle">Abrir Tarea</a></td>
+                <td></td>
             </tr>
             }
         </tbody>
     </table>
-
-    <div id="modificar" class="modal fade in" role="dialog">
-        <form method="post" action="">
-            <div class="modal-dialog">
-                <div class="modal-content">
-                    <div class="card-header bg-warning text-white text-center">
-                        <h5 class="modal-title">Modificar tarea existente:</h5>
-                    </div>
-                    <div class="modal-body">
-                        <h6 class="text-dark text-center m-2">Complete los campos que desea modificar.</h6>
-                        <div class="form-row m-2">
-                            <label class="col-sm-6 col-form-label text-muted">Nombre</label>
-                            <div class="col-sm-11">
-                                <input type="text" class="form-control" placeholder="//Traigo dato de BD" required />
-                            </div>
-                        </div>
-                        <div class="form-row m-2">
-                            <label class="col-sm-6 col-form-label">Descripción</label>
-                            <div class="col-sm-11">
-                                <input type="text" class="form-control" placeholder="//Traigo dato de BD" required />
-                            </div>
-                        </div>
-                        <div class="form-row m-2">
-                            <label class="col-sm-6 col-form-label">Horas estimadas</label>
-                            <div class="col-sm-11">
-                                <input type="text" class="form-control" placeholder="//Traigo dato de BD" required />
-                            </div>
-                        </div>
-                        <div class="form-row m-2">
-                            <label class="col-sm-6 col-form-label">Fecha límite</label>
-                            <div class="col-sm-11">
-                                <input type="text" class="form-control" placeholder="//Traigo dato de BD" required />
-                            </div>
-                        </div>
-                        <div class="form-row m-2">
-                            <label class="col-sm-3 col-form-label">Prioridad</label>
-                            <div class="col-sm-11">
-                                <select class="custom-select" id="" required>
-                                    <option selected>Elegir...</option>
-                                    <option value="1" class="text-info">Baja</option>
-                                    <option value="2" class="text-warning">Media</option>
-                                    <option value="3" class="text-danger">Alta</option>
-                                    <option value="4" class="text-danger font-weight-bold">Urgente</option>
-                                </select>
-                            </div>
-                        </div>
-                        <div class="form-row m-2">
-                            <label class="col-sm-3 col-form-label">Carpeta</label>
-                            <div class="col-sm-11">
-                                <select class="custom-select" id="" required>
-                                    <option selected>General</option>
-                                    <option value="1">Facturas</option>
-                                    <option value="2">Gastos</option>
-                                    <option value="2">Vacaciones 2019</option>
-                                </select>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="modal-footer">
-                        <div class="btn-group">
-                            <button class="btn btn-outline-warning" type="submit" value="modificar"> Guardar cambios</button>
-                            <button type="button" class="btn btn-outline-secondary" data-dismiss="modal">Cancelar</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </form>
-    </div>
-
 
     <div id="eliminar" class="modal fade in" role="dialog">
         <div class="modal-dialog">
@@ -147,19 +80,20 @@
         </div>
     </div>
 
-        <div id="eliminar" class="modal fade in" role="dialog">
+        <div id="completarTarea" class="modal fade in" role="dialog">
         <div class="modal-dialog">
             <div class="modal-content">
-                <form action="/Tareas/Eliminar" method="post">
+                <form action="/Tareas/CompletarTarea" method="post">
                     <div class="card-header bg-danger text-white text-center">
-                        <h5 class="modal-title">Eliminar tarea:</h5>
+                        <h5 class="modal-title">Completar tarea:</h5>
                     </div>
                     <div class="modal-body text-center m-3">
-                        <h6>¿Seguro desea eliminar la tarea seleccionada?</h6>
-                        <p> Toda la información almacenada en ella se perderá.</p>
+                        <h6>¿Seguro desea completar la tarea seleccionada?</h6>
+                        <p> .</p>
                     </div>
 
                     <input type="hidden" id="location_state_id" name="id" value="" />
+                    <input type="hidden" name="Completada" value="1" />
                     <script>
                         function display() {
                             var checkedValue = $('.form-check-label:checked').val();
@@ -169,7 +103,7 @@
 
                     <div class="modal-footer">
                         <div class="btn-group">
-                            <button class="btn btn-outline-danger" type="submit" value="modificar"> Confirmar eliminación</button>
+                            <button class="btn btn-outline-success" type="submit" value=""> completar tarea</button>
                             <button type="button" class="btn btn-outline-secondary" data-dismiss="modal">Cancelar</button>
                         </div>
                     </div>

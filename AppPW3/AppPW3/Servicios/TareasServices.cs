@@ -37,20 +37,6 @@ namespace AppPW3.Servicios
             bdTareas.SaveChanges();
         }
 
-        public void ModificarTarea (Tarea tarea)
-        {
-            Tarea tareaActual = bdTareas.Tarea.FirstOrDefault(t => t.IdTarea == tarea.IdTarea);
-
-            tareaActual.Nombre = tarea.Nombre;
-            tareaActual.Descripcion = tarea.Descripcion;
-            tareaActual.EstimadoHoras = tarea.EstimadoHoras;
-            tareaActual.FechaFin = tarea.FechaFin;
-            tareaActual.Prioridad = tarea.Prioridad;
-            tareaActual.Completada = tarea.Completada;
-
-            bdTareas.SaveChanges();
-        }
-
         public void EliminarTarea(int? id)
         {
             Tarea miTarea = ObtenerTarea(id);
@@ -62,6 +48,31 @@ namespace AppPW3.Servicios
             }
 
             bdTareas.SaveChanges();
+        }
+
+        public void CompletarTarea (int? idTareaCompletada)
+        {
+            Tarea tareaCompletada = ObtenerTarea(idTareaCompletada);
+
+            tareaCompletada.Completada = 1;
+
+            bdTareas.SaveChanges();
+        }
+
+        public void CrearComentarioTarea (ComentarioTarea comentarioTarea, int idTarea)
+        {
+            //Tarea tareaComentada = ObtenerTarea(idTarea);
+
+            comentarioTarea.IdTarea = idTarea;
+            comentarioTarea.FechaCreacion = DateTime.Now;
+
+            bdTareas.ComentarioTarea.Add(comentarioTarea);
+            bdTareas.SaveChanges();
+        }
+
+        public List<ComentarioTarea> ListarComentariosPorTarea(int? idTarea)
+        {
+            return bdTareas.ComentarioTarea.Where(c => c.IdTarea == idTarea).OrderBy(c => c.FechaCreacion).ToList();
         }
     }
 }

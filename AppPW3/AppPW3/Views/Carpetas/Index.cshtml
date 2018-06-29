@@ -7,7 +7,6 @@
     ViewBag.Title = "Mis Carpetas";
 }
 
-
 @section Body
 {
     <ol class="breadcrumb shadow p-3 mb-5 bg-dark">
@@ -16,7 +15,6 @@
 
     <div class="btn-group mb-4">
         <a class="btn btn-outline-success" href="@Url.Content("~/Carpetas/Crear")">Crear nueva carpeta</a>
-        <a data-toggle="modal" href="#myModal" data-target="#modificar" class="btn btn-outline-warning">Modificar carpeta</a>
         <a onclick="display()" data-toggle="modal" href="#myModal" data-target="#eliminar" class="btn btn-outline-danger">Eliminar carpeta</a>
     </div>
 
@@ -45,45 +43,6 @@
             }
         </tbody>
     </table>
-
-    
-
-    <div id="modificar" class="modal fade in" role="dialog">
-        <form action="" method="post" id="formCarpeta">
-            <div class="modal-dialog" role="document">
-                <div class="modal-content">
-                    <div class="card-header bg-warning text-white text-center">
-                        <h5 class="modal-title">Modificar carpeta existente:</h5>
-                    </div>
-                    <div class="modal-body">
-                        <h6 class="text-dark text-center m-3">Complete los campos que desea modificar.</h6>
-
-                        <div class="form-group">
-
-                            <div class="form-row m-2">
-                                <label class="col-sm-6 col-form-label">Nombre:</label>
-                                <input type="text" class="form-control input-lg mb-3" placeholder="//Traigo dato de BD" required />
-                            </div>
-
-                            <div class="form-row m-2">
-                                <label class="col-sm-6 col-form-label">Descripción:</label>
-                                <textarea name="descripcion" class="form-control mb-3" rows="2" form="formCarpeta" placeholder="//Traigo dato de BD" required></textarea>
-                            </div>
-                        </div>
-
-
-
-                    </div>
-                    <div class="modal-footer">
-                        <div class="btn-group">
-                            <button class="btn btn-outline-warning" type="submit" value="modificar"> Guardar cambios</button>
-                            <button type="button" class="btn btn-outline-secondary" data-dismiss="modal">Cancelar</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </form>
-    </div>
 
 
     <div id="eliminar" class="modal fade in" role="dialog">
@@ -116,8 +75,4 @@
             </div>
         </form>
     </div>
-
-
-
-
 }

@@ -48,15 +48,28 @@ namespace AppPW3.Controllers
             return RedirectToAction("Index");
         }
 
-        public ActionResult Detalle()
+        public ActionResult Detalle(int? idTarea)
+        //public ActionResult Detalle(int idTarea) //La idea aca es cargar los datos se esa tarea seleccionada, no se por que da error
         {
             if (Session["usuarioLogueado"] == null)
             {
                 return RedirectToAction("IndexAlternativo", "Home");
             }
 
-            return View();
+            Tarea tareaSeleccionada = tareasServices.ObtenerTarea(idTarea);           //aca obtendria la tarea segun el id del parametro, y la retorno mas abajo
+            ViewBag.comentarios = tareasServices.ListarComentariosPorTarea(idTarea);  //con un viebag mando los comentarios desde el controller a la vista
+
+            return View(tareaSeleccionada); //Traigo la tarea seleccionada, y cargo los valores que tenga
+            //return View(); //Traigo la tarea seleccionada, y cargo los valores que tenga
         }
+
+        //[HttpPost]
+        //public ActionResult Detalle(ComentarioTarea comentario, int idTarea)
+        //{
+        //    tareasServices.CrearComentarioTarea(comentario, idTarea);
+
+        //    return RedirectToAction("Detalle", "Tareas");
+        //}
 
 
         [HttpPost]
@@ -73,6 +86,21 @@ namespace AppPW3.Controllers
             }
 
             return RedirectToAction("Index", "Carpetas");
+        }
+
+        [HttpPost]
+        public ActionResult CompletarTarea(int? id)
+        {
+            if (id == null)
+            {
+                return RedirectToAction("Index", "Carpetas");
+            }
+            else
+            {
+                tareasServices.CompletarTarea(id);
+            }
+
+            return RedirectToAction("Index", "Tareas");
         }
     }
 }
