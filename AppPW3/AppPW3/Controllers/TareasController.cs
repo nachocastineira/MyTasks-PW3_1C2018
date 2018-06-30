@@ -43,17 +43,18 @@ namespace AppPW3.Controllers
         public ActionResult Crear(Tarea tarea)
         {
             int id = Convert.ToInt32(Session["idUsuario"]);
+            ViewBag.CarpetasDelUsuario = carpetaServices.ListarCarpetasPorUsuario(id);
 
-            if (ModelState.IsValid)
-            {
+            //if (ModelState.IsValid)
+            //{
                 tareasServices.CrearTarea(tarea, id);
 
-                return RedirectToAction("Index", "Tareas");
-            }
-            else
-            {
-                return View(tarea);
-            }
+                return RedirectToAction("Index", "Carpetas");
+            //}
+            //else
+            //{
+            //    return View(tarea);
+            //}
         }
 
         public ActionResult Detalle(int? idTarea)
