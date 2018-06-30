@@ -15,8 +15,8 @@
     <div class="btn-group mb-4">
         <a class="btn btn-outline-primary" href="@Url.Content("~/Carpetas/Index")">Mis Carpetas</a>
         <a class="btn btn-outline-success" href="@Url.Content("~/Tareas/Crear")">Crear nueva tarea</a>
-        <a onclick="display()" data-toggle="modal" href="#myModal" data-target="#eliminar" class="btn btn-outline-danger" href="">Eliminar tarea</a>
-        <a onclick="display()" data-toggle="modal" href="#myModal" data-target="#completarTarea" class="btn btn-outline-primary">Completar tarea</a>
+        <a onclick="display()" data-toggle="modal" href="#myModal" data-target="#eliminar" class="btn btn-outline-danger">Eliminar tarea</a>
+        <a onclick="display2()" data-toggle="modal" href="#myModal" data-target="#completarTarea" class="btn btn-outline-primary">Completar tarea</a>
     </div>
 
     <table class="table table-hover">
@@ -42,7 +42,7 @@
                 <td>@tareas.EstimadoHoras</td>
                 <td>@tareas.FechaFin</td>
                 <td>@tareas.Prioridad</td>
-                <td><a class="btn btn-outline-info" href="~/Tareas/Detalle">Abrir Tarea</a></td>
+                <td><a class="btn btn-outline-info" href="/Tareas/Detalle/@tareas.IdTarea" value="@tareas.IdTarea" name="id">Abrir Tarea</a></td>
                 <td></td>
             </tr>
             }
@@ -92,18 +92,17 @@
                         <p> .</p>
                     </div>
 
-                    <input type="hidden" id="location_state_id" name="id" value="" />
-                    <input type="hidden" name="Completada" value="1" />
+                    <input type="hidden" id="location_state_id2" name="id" value="" />
                     <script>
-                        function display() {
+                        function display2() {
                             var checkedValue = $('.form-check-label:checked').val();
-                            $('#location_state_id').val(checkedValue);
+                            $('#location_state_id2').val(checkedValue);
                         }
                     </script>
 
                     <div class="modal-footer">
                         <div class="btn-group">
-                            <button class="btn btn-outline-success" type="submit" value=""> completar tarea</button>
+                            <button class="btn btn-outline-success" type="submit" value="modificar"> completar tarea</button>
                             <button type="button" class="btn btn-outline-secondary" data-dismiss="modal">Cancelar</button>
                         </div>
                     </div>

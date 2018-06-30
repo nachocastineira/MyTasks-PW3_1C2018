@@ -39,19 +39,19 @@ namespace AppPW3.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Crear(Carpeta carpeta)
         {
-            //if (ModelState.IsValid)
-            //{
+            if (ModelState.IsValid)
+            {
                 int id = Convert.ToInt32(Session["idUsuario"]);
                 carpetaServices.CrearCarpeta(carpeta, id);
 
                 return RedirectToAction("Index");
-            //}
-            //else
-            //{
-            //   return View(carpeta); //si el modelo no es valido retorno esa misma carpeta junto a los mensajes de error definidos en el CarpetaMetadata
-            //}
-
         }
+            else
+            {
+               return View(carpeta); //si el modelo no es valido retorno esa misma carpeta junto a los mensajes de error definidos en el CarpetaMetadata
+    }
+
+}
 
         [HttpPost]
         public ActionResult Eliminar(int? id)

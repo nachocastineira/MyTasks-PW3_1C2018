@@ -39,7 +39,7 @@ namespace AppPW3.Controllers
         }
 
         [HttpPost]
-        //[ValidateAntiForgeryToken]
+        [ValidateAntiForgeryToken]
         public ActionResult Crear(Tarea tarea)
         {
             int id = Convert.ToInt32(Session["idUsuario"]);
@@ -47,6 +47,7 @@ namespace AppPW3.Controllers
 
             //if (ModelState.IsValid)
             //{
+                
                 tareasServices.CrearTarea(tarea, id);
 
                 return RedirectToAction("Index", "Carpetas");
@@ -57,19 +58,35 @@ namespace AppPW3.Controllers
             //}
         }
 
-        public ActionResult Detalle(int? idTarea)
-        //public ActionResult Detalle(int idTarea) //La idea aca es cargar los datos se esa tarea seleccionada, no se por que da error
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult CrearComentario(ComentarioTarea comentario, int id)
+        {
+            int idUser = Convert.ToInt32(Session["idUsuario"]);
+            comentario.IdTarea = id;
+            tareasServices.CrearComentarioTarea(comentario, id);
+
+            return RedirectToAction("Index", "Carpetas");
+        }
+
+        public ActionResult CrearComentario(int? id)
+
+        {
+
+            return View();
+        }
+
+        public ActionResult Detalle(int? id)
+        
         {
             if (Session["usuarioLogueado"] == null)
             {
                 return RedirectToAction("IndexAlternativo", "Home");
             }
 
-            Tarea tareaSeleccionada = tareasServices.ObtenerTarea(idTarea);           //aca obtendria la tarea segun el id del parametro, y la retorno mas abajo
-            ViewBag.comentarios = tareasServices.ListarComentariosPorTarea(idTarea);  //con un viebag mando los comentarios desde el controller a la vista
+            ViewBag.ComentariosTarea = tareasServices.ListarComentariosPorTarea(id);
 
-            return View(tareaSeleccionada); //Traigo la tarea seleccionada, y cargo los valores que tenga
-            //return View(); //Traigo la tarea seleccionada, y cargo los valores que tenga
+            return View(tareasServices.ObtenerTarea(id));
         }
 
         //[HttpPost]
@@ -109,7 +126,10 @@ namespace AppPW3.Controllers
                 tareasServices.CompletarTarea(id);
             }
 
-            return RedirectToAction("Index", "Tareas");
+            return RedirectToAction("Index", "Carpetas");
         }
+
+        
+
     }
 }

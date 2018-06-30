@@ -1,0 +1,44 @@
+﻿@model AppPW3.Entidades.ComentarioTarea
+@using AppPW3.Entidades
+
+@{
+    ViewBag.Title = "Crear";
+}
+
+@section Body
+{
+    <div class="col-md-10 offset-1 ">
+
+        <ol class="breadcrumb shadow p-3 mb-5 bg-dark">
+            <li class="breadcrumb-item text-muted">Comentarios</li>
+            <li class="breadcrumb-item active text-white">Crear Comentario</li>
+        </ol>
+
+        <div class="card">
+            <div class="card-header bg-success mb-3 text-white">
+                Complete los siguientes campos para agregar un comentario:
+            </div>
+
+            @using (Html.BeginForm("CrearComentario", "Tareas", FormMethod.Post, new { enctype = "multipart/form-data" }))
+            {
+                @Html.AntiForgeryToken()
+
+                <div class="form-group col-md-6">
+                    @Html.LabelFor(model => model.Texto, htmlAttributes: new { @class = "col-sm-3 col-form-label" })
+                    <div class="col-sm-10">
+                        @Html.EditorFor(model => model.Texto, new { htmlAttributes = new { @class = "form-control", required = true, placeholder = "Este campo es obligatorio." } })
+                        @Html.ValidationMessageFor(model => model.Texto, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                
+                <input type="hidden" value="16" name="id" />
+                <div class="col-md-4 mt-4 mb-5">
+                    <button type="submit" class="btn btn-outline-success">Agregar Comentario</button>
+                </div>
+            }
+        </div>
+    </div>
+}
+            
+

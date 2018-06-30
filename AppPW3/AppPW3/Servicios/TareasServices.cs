@@ -55,9 +55,9 @@ namespace AppPW3.Servicios
             bdTareas.SaveChanges();
         }
 
-        public void CompletarTarea (int? idTareaCompletada)
+        public void CompletarTarea (int? id)
         {
-            Tarea tareaCompletada = ObtenerTarea(idTareaCompletada);
+            Tarea tareaCompletada = ObtenerTarea(id);
 
             tareaCompletada.Completada = 1;
 
