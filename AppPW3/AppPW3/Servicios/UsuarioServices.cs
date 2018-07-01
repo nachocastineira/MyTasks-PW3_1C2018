@@ -125,8 +125,6 @@ namespace AppPW3.Servicios
             usuarioBuscado.Email = usuario.Email;
             bdTareas.SaveChanges();
          }
-<<<<<<< HEAD
-=======
 
         public void CrearCookie()
         {
@@ -138,6 +136,5 @@ namespace AppPW3.Servicios
             HttpContext.Current.Response.Cookies.Add(cookie);
         }
 
->>>>>>> parent of e041ec2... cookie para recordar sesion a medio hacer
      }    
 }
