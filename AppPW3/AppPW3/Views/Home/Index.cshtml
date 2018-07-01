@@ -30,67 +30,30 @@
                     <th>Tiempo Estimado</th>
                     <th>Completada</th>
                     <th></th>
+
                 </tr>
             </thead>
             <tbody>
 
-                @*@foreach (var tareas in Model)
-                {*@
+                @foreach (var tareas in Model)
+                {
                 <tr>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    @*<td>@tareas.Nombre</td>
-        <td>@tareas.Descripcion</td>
-        <td>@tareas.EstimadoHoras</td>
-        <td>@tareas.FechaFin</td>
-        <td>@tareas.Prioridad</td>*@
-                    <td><a class="btn btn-outline-info" href="~/Tareas/Detalle">Ver</a></td>
-
+                    <td>@tareas.FechaFin</td>
+                    <td><a href="~/Tareas/Detalle/@tareas.IdTarea">@tareas.Nombre</a></td>
+                    <td>@tareas.Prioridad</td>
+                    <td>@tareas.IdCarpeta</td>
+                    <td>@tareas.EstimadoHoras</td>
+                    <td>@tareas.Completada</td>
+                    <td><a class="btn btn-outline-info" href="~/Tareas/Detalle/@tareas.IdTarea">Ver</a>
+                    
+                    <a class="btn btn-outline-info" href="~/Tareas/CompletarTareaHome/@tareas.IdTarea">Completar tarea</a>
+                    </td>
                 </tr>
-                @*  *@}
-    </tbody>
-    </table>
+                }
+            </tbody>
+        </table>
     </card>
 
-
-
-
-
-
-
-
-
-
-    <div class="jumbotron">
-        <h1 class="display-4">Home de usuario</h1>
-        <p class="lead">
-            La Home de la aplicación tendrá el menú con todas las opciones que se deben soportar de creación, modificación y eliminación. Junto a este menú se deberá mostrar el listado de tareas no completadas asignadas al usuario actual ordenadas por prioridad y luego por fecha de fin ascendente. En caso de que no tengan fecha de fin asignada, la prioridad será el factor por el cual serán ordenadas las tareas.
-        </p>
-        <p class="lead">
-
-            En el lado izquierdo se deberá mostrar el listado de las carpetas creadas por el usuario. Al hacer click en cada una debe redirigir a Tareas de Carpeta, donde se verán sólo las tareas vinculadas a esa carpeta, asignadas al usuario actual ordenadas por prioridad y luego por fecha de fin ascendente.
-        </p>
-        <p class="lead">
-
-            El listado de tareas tendrá las siguientes columnas:
-        </p>
-        <p class="lead">
-
-            Fecha Fin
-            Nombre
-            Prioridad
-            Carpeta
-            Estimado
-            Completada
-            Botón/link “Ver” redirige a pantalla de detalle de tarea (/tareas/detalle)
-            Botón/link/checkbox “Completar” (solo para las tareas no completadas), el mismo marca la tarea como Completada.
-        </p>
-        <hr class="my-4">
-
-    </div>
+    
 
 }
