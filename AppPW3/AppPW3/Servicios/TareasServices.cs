@@ -32,9 +32,10 @@ namespace AppPW3.Servicios
 
         public void CrearTarea (Tarea tarea, int id)
         {
+
             tarea.IdUsuario = id;                //La tarea creada se le asigna al usuario logueado
             tarea.FechaCreacion = DateTime.Now;  //Fecha y hora actual al momento de crearla
-            //tarea.EstimadoHoras = null;          //revisar los errores cuando completo ese campo en el form
+            tarea.EstimadoHoras = null;          //revisar los errores cuando completo ese campo en el form
             tarea.Completada = 0;
         
             bdTareas.Tarea.Add(tarea);

@@ -31,7 +31,7 @@ namespace AppPW3.Entidades
         [Display(Name = "Descripción")]
         public string Descripcion { get; set; }
 
-        [RegularExpression(@"^\d+(\,\d{1,2})?$", ErrorMessage = "¡{0} No Válido! Número hasta dos decimales.")]
+        [RegularExpression(@"[0-9]{0,}\.[0-9]{2}", ErrorMessage = "¡{0} No Válido! Número hasta dos decimales.")]
         [Display(Name = "Horas Estimadas")]
         public Nullable<decimal> EstimadoHoras { get; set; }
 
