@@ -37,20 +37,6 @@ namespace AppPW3.Controllers
             return View();
         }
 
-        /*[HttpPost]
-        public ActionResult Login(Usuario usuario)
-        {
-            bool loginCorrecto = usuarioServices.VerificarLogin(usuario);
-
-            if (loginCorrecto) //si el verificar login es true lo redirige a su index, sino lo lleva al login de nuevo
-            {
-                return RedirectToAction("Index", "Home");
-            }
-            else
-            {
-                return RedirectToAction("IndexAlternativo");
-            }
-        }*/
         [HttpPost]
         public ActionResult Login(Usuario usuario)
         {
@@ -102,7 +88,7 @@ namespace AppPW3.Controllers
                             {
                                 usuarioServices.ModificarUsuarioActivo(usuario);
                                 Login(usuario);
-                                return RedirectToAction("index");
+                                return RedirectToAction("index", "home");
                             }
                             else
                             {   //si el mail ya existe, vuelve a la vista y se muestra error
