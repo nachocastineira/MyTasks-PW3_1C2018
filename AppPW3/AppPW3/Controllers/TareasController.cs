@@ -60,11 +60,12 @@ namespace AppPW3.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult CrearComentario(ComentarioTarea comentario, int id)
+        public ActionResult CrearComentario(ComentarioTarea comentario, int? id)
         {
+            int idTarea = Convert.ToInt32(id);
             int idUser = Convert.ToInt32(Session["idUsuario"]);
-            comentario.IdTarea = id;
-            tareasServices.CrearComentarioTarea(comentario, id);
+            comentario.IdTarea = idTarea;
+            tareasServices.CrearComentarioTarea(comentario, idTarea);
 
             return RedirectToAction("Index", "Carpetas");
         }
@@ -72,6 +73,8 @@ namespace AppPW3.Controllers
         public ActionResult CrearComentario(int? id)
 
         {
+            int idTarea = Convert.ToInt32(id);
+            ViewBag.idTarea = idTarea;
 
             return View();
         }
@@ -136,7 +139,23 @@ namespace AppPW3.Controllers
             return RedirectToAction("Index", "Carpetas");
         }
 
-        
+        public ActionResult AdjuntarArchivo(int? id)
+
+        {
+            int idTarea = Convert.ToInt32(id);
+            ViewBag.idTarea = idTarea;
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult AdjuntarArchivo(ArchivoTarea archivo)
+
+        {
+
+            return View();
+        }
+
+
 
     }
 }
