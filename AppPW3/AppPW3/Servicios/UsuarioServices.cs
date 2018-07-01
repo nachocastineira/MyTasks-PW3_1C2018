@@ -125,5 +125,19 @@ namespace AppPW3.Servicios
             usuarioBuscado.Email = usuario.Email;
             bdTareas.SaveChanges();
          }
+<<<<<<< HEAD
+=======
+
+        public void CrearCookie()
+        {
+            Usuario usuario = new Usuario();
+            HttpCookie cookie = new HttpCookie("Usuario");
+
+            cookie["Id"] = usuario.IdUsuario.ToString();
+            cookie.Expires = DateTime.Now.AddDays(1);
+            HttpContext.Current.Response.Cookies.Add(cookie);
+        }
+
+>>>>>>> parent of e041ec2... cookie para recordar sesion a medio hacer
      }    
 }
