@@ -10,6 +10,7 @@ namespace AppPW3.Servicios
     public class UsuarioServices : System.Web.UI.Page
     {
         TareasEntities bdTareas = new TareasEntities();
+        CarpetasServices carpetasServices = new CarpetasServices();
 
         public List<Usuario> ListarUsuarios()
         {
@@ -20,20 +21,6 @@ namespace AppPW3.Servicios
         {
             return bdTareas.Usuario.FirstOrDefault(u => u.IdUsuario == id);
         }
-
-        /*public bool VerificarLogin(Usuario usuario)
-        {
-            foreach (Usuario usuariosRegistrados in ListarUsuarios())
-            {
-                if (usuario.Email.Equals(usuariosRegistrados.Email) && usuario.Contrasenia.Equals(usuariosRegistrados.Contrasenia))
-                {
-                    Session["usuarioLogueado"] = usuariosRegistrados; //guardo la variable de sesión del usuario logueado
-                    Session["idUsuario"] = usuariosRegistrados.IdUsuario;
-                    return true;
-                }
-            }
-            return false;
-        }*/
 
         //verifico que el usuario esté registrado en el sistema
         public bool VerificarUsuarioRegistrado(Usuario usuario) {
@@ -74,6 +61,9 @@ namespace AppPW3.Servicios
             usuario.Activo = 1; //por default un usuario se crea en estado activo
             usuario.FechaRegistracion = DateTime.Today;
             usuario.FechaActivacion = DateTime.Today;
+
+            usuario.Carpeta.Add(new Carpeta { Nombre = "General", Descripcion = "Bienvenido, esta será su carpeta por defecto.", FechaCreacion = DateTime.Now }); //Carpeta por defecto para un nuevo usuario
+
             bdTareas.Usuario.Add(usuario);
             bdTareas.SaveChanges();
         }
@@ -86,10 +76,6 @@ namespace AppPW3.Servicios
             return false;
         }
 
-        public void ActivarUsuario(Usuario usuario)
-        {
-            usuario.Activo = 1;
-        }
 
         //busca si ya existe el mail del usuario. Si existe da true, si no existe da false
         public Boolean VerificarMailExistente(Usuario usuario)
@@ -116,14 +102,27 @@ namespace AppPW3.Servicios
             return false;
         }
 
-        //busca un usuario inactivo con el mismo mail, lo activa y lo modifica.
+        //busca un usuario inactivo con el mismo mail, lo activa y lo modifica. Solo actualiza Nombre, Apellido y Contraseña, se agrega fecha de activacion y el Activo cambia a 1
         public void ModificarUsuarioActivo(Usuario usuario) {
             var usuarioBuscado = bdTareas.Usuario.Where(u => u.Email == usuario.Email && u.Activo == 0).FirstOrDefault();
             usuarioBuscado.Activo = 1; 
             usuarioBuscado.Nombre = usuario.Nombre;
             usuarioBuscado.Apellido = usuario.Apellido;
-            usuarioBuscado.Email = usuario.Email;
+            usuarioBuscado.Contrasenia = usuario.Contrasenia;
+            usuarioBuscado.ContraseniaConfirm = usuario.ContraseniaConfirm;
+            usuarioBuscado.FechaActivacion = DateTime.Now;
             bdTareas.SaveChanges();
          }
-     }    
+
+        public void CrearCookie()
+        {
+            Usuario usuario = new Usuario();
+            HttpCookie cookie = new HttpCookie("Usuario");
+
+            cookie["Id"] = usuario.IdUsuario.ToString();
+            cookie.Expires = DateTime.Now.AddDays(3);
+            HttpContext.Current.Response.Cookies.Add(cookie);
+        }
+
+    }    
 }
