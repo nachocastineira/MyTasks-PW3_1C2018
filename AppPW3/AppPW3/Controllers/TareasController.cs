@@ -67,7 +67,7 @@ namespace AppPW3.Controllers
             comentario.IdTarea = idTarea;
             tareasServices.CrearComentarioTarea(comentario, idTarea);
 
-            return RedirectToAction("Index", "Carpetas");
+            return RedirectToAction("Detalle", "Tareas", new { id = idTarea });
         }
 
         public ActionResult CrearComentario(int? id)
