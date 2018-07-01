@@ -1,0 +1,117 @@
+﻿@using AppPW3.Entidades
+@model List<Tarea>
+
+@{
+    ViewBag.Title = "Mis Tareas";
+}
+
+@section Body
+{
+    <ol class="breadcrumb shadow p-3 mb-5 bg-dark">
+        <li class="breadcrumb-item text-muted"></li>
+        <li class="breadcrumb-item active text-white">Mis Tareas</li>
+    </ol>
+
+    <div class="btn-group mb-4">
+        <a class="btn btn-outline-primary" href="@Url.Content("~/Carpetas/Index")">Mis Carpetas</a>
+        <a class="btn btn-outline-success" href="@Url.Content("~/Tareas/Crear")">Crear nueva tarea</a>
+        <a onclick="display()" data-toggle="modal" href="#myModal" data-target="#eliminar" class="btn btn-outline-danger">Eliminar tarea</a>
+        <a onclick="display2()" data-toggle="modal" href="#myModal" data-target="#completarTarea" class="btn btn-outline-primary">Completar tarea</a>
+    </div>
+
+    <table class="table table-hover">
+        <thead class="thead-inverse">
+            <tr>
+                <th>#</th>
+                <th>Nombre</th>
+                <th>Descripción</th>
+                <th>Horas estimadas</th>
+                <th>Fecha límite</th>
+                <th>Prioridad</th>
+                <th></th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var t in Model)
+            {
+                <tr>
+                    <td><input class="form-check-label" type="checkbox" value="@t.IdTarea" name="id" /></td>
+                    <td>@t.Nombre</td>
+                    <td>@t.Descripcion</td>
+                    <td>@t.EstimadoHoras</td>
+                    <td>@t.FechaFin</td>
+                    <td>@t.Prioridad</td>
+                    <td><a class="btn btn-outline-info" href="/Tareas/Detalle/@t.IdTarea" value="@t.IdTarea" name="id">Abrir Tarea</a></td>
+                    <td></td>
+                </tr>
+            }
+        </tbody>
+    </table>
+
+    <div id="eliminar" class="modal fade in" role="dialog">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <form action="/Tareas/Eliminar" method="post">
+                    <div class="card-header bg-danger text-white text-center">
+                        <h5 class="modal-title">Eliminar tarea:</h5>
+                    </div>
+                    <div class="modal-body text-center m-3">
+                        <h6>¿Seguro desea eliminar la tarea seleccionada?</h6>
+                        <p> Toda la información almacenada en ella se perderá.</p>
+                    </div>
+
+                    <input type="hidden" id="location_state_id" name="id" value="" />
+                    <script>
+                        function display() {
+                            var checkedValue = $('.form-check-label:checked').val();
+                            $('#location_state_id').val(checkedValue);
+                        }
+                    </script>
+
+                    <div class="modal-footer">
+                        <div class="btn-group">
+                            <button class="btn btn-outline-danger" type="submit" value="modificar"> Confirmar eliminación</button>
+                            <button type="button" class="btn btn-outline-secondary" data-dismiss="modal">Cancelar</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <div id="completarTarea" class="modal fade in" role="dialog">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <form action="/Tareas/CompletarTarea" method="post">
+                    <div class="card-header bg-danger text-white text-center">
+                        <h5 class="modal-title">Completar tarea:</h5>
+                    </div>
+                    <div class="modal-body text-center m-3">
+                        <h6>¿Seguro desea completar la tarea seleccionada?</h6>
+                        <p> .</p>
+                    </div>
+
+                    <input type="hidden" id="location_state_id2" name="id" value="" />
+                    <script>
+                        function display2() {
+                            var checkedValue = $('.form-check-label:checked').val();
+                            $('#location_state_id2').val(checkedValue);
+                        }
+                    </script>
+
+                    <div class="modal-footer">
+                        <div class="btn-group">
+                            <button class="btn btn-outline-success" type="submit" value="modificar"> completar tarea</button>
+                            <button type="button" class="btn btn-outline-secondary" data-dismiss="modal">Cancelar</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+}
+
+
+

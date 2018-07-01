@@ -225,6 +225,7 @@
     <Content Include="Views\Home\IndexAlternativo.cshtml" />
     <Content Include="Views\Shared\_LayoutAppAlternativo.cshtml" />
     <Content Include="Views\Tareas\CrearComentario.cshtml" />
+    <Content Include="Views\Carpetas\Tareas.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

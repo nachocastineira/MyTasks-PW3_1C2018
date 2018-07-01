@@ -33,13 +33,13 @@
 
             @foreach (var carpetas in Model)
             {
-                <tr>
-                    <td><input class="form-check-label" type="checkbox" id="checkId" value="@carpetas.IdCarpeta" name="id" /></td>
-                    <td>@carpetas.Nombre</td>
-                    <td>@carpetas.Descripcion</td>
-                    <td>@carpetas.FechaCreacion</td>
-                    <td><a class="btn btn-outline-primary" href="/Tareas/Index/@carpetas.IdCarpeta">Tareas en @carpetas.Nombre</a></td>
-                </tr>
+            <tr>
+                <td><input class="form-check-label" type="checkbox" id="checkId" value="@carpetas.IdCarpeta" name="id" /></td>
+                <td>@carpetas.Nombre</td>
+                <td>@carpetas.Descripcion</td>
+                <td>@carpetas.FechaCreacion</td>
+                <td><a class="btn btn-outline-primary" href="/Carpetas/Tareas/@carpetas.IdCarpeta" value="@carpetas.IdCarpeta" name="id">Tareas en @carpetas.Nombre</a></td>
+            </tr>
             }
         </tbody>
     </table>

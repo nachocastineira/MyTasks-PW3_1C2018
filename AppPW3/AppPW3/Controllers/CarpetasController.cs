@@ -45,13 +45,25 @@ namespace AppPW3.Controllers
                 carpetaServices.CrearCarpeta(carpeta, id);
 
                 return RedirectToAction("Index");
-        }
+            }
             else
             {
-               return View(carpeta); //si el modelo no es valido retorno esa misma carpeta junto a los mensajes de error definidos en el CarpetaMetadata
-    }
+                return View(carpeta); //si el modelo no es valido retorno esa misma carpeta junto a los mensajes de error definidos en el CarpetaMetadata
+            }
 
-}
+        }
+
+        public ActionResult Tareas(int? idCarpeta)
+        {
+            int idUsuario = Convert.ToInt32(Session["idUsuario"]);
+            if (Session["usuarioLogueado"] == null) //Si la variable de session que guarde en usuarioService es null lo mando al login
+            {
+                return RedirectToAction("IndexAlternativo", "Home");
+            }
+                List<Tarea> tareasDeUsuario = tareasServices.ListarTareasPorCarpetasDelUsuario(idCarpeta, idUsuario);
+            
+            return View(tareasDeUsuario);
+        }
 
         [HttpPost]
         public ActionResult Eliminar(int? id)

@@ -15,7 +15,7 @@ namespace AppPW3.Servicios
             return bdTareas.Carpeta.OrderBy(c => c.Nombre).ToList(); //muestra por orden ascendente
         }
 
-        public List<Carpeta> ListarCarpetasPorUsuario(int id)
+        public List<Carpeta> ListarCarpetasPorUsuario(int? id)
         {
             return bdTareas.Carpeta.Where(c => c.IdUsuario == id).OrderBy(c => c.Nombre).ToList(); //con el where filtro las carpetas por usuario
         }

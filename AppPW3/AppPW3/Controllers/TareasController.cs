@@ -15,14 +15,14 @@ namespace AppPW3.Controllers
         UsuarioServices usuarioServices = new UsuarioServices();
 
 
-        public ActionResult Index(int id) 
+        public ActionResult Index() 
         {
             int idUser = Convert.ToInt32(Session["idUsuario"]);
             if (Session["usuarioLogueado"] == null)
             {
                 return RedirectToAction("IndexAlternativo", "Home");
             }
-            return View(tareasServices.ListarTareasPorCarpetasDelUsuario(id, idUser));  //parametro 1 idCARPETA, par2 idUsuario
+            return View(tareasServices.ListarTareasPorUsuario(idUser));  //parametro 1 idCARPETA, par2 idUsuario
         }
 
         public ActionResult Crear()
@@ -45,17 +45,17 @@ namespace AppPW3.Controllers
             int id = Convert.ToInt32(Session["idUsuario"]);
             ViewBag.CarpetasDelUsuario = carpetaServices.ListarCarpetasPorUsuario(id);
 
-            //if (ModelState.IsValid)
-            //{
+            if (ModelState.IsValid)
+            {
                 
                 tareasServices.CrearTarea(tarea, id);
 
-                return RedirectToAction("Index", "Carpetas");
-            //}
-            //else
-            //{
-            //    return View(tarea);
-            //}
+                return RedirectToAction("Index", "Tareas");
+            }
+            else
+            {
+                return View(tarea);
+            }
         }
 
         [HttpPost]
@@ -114,7 +114,14 @@ namespace AppPW3.Controllers
             return RedirectToAction("Index", "Carpetas");
         }
 
-        [HttpPost]
+        //metodo que recibe datos desde el boton "completar" desde el home, completa la tarea y vuelve al home
+        public ActionResult CompletarTareaHome(int? id)
+        {
+            tareasServices.CompletarTarea(id);
+            return RedirectToAction("Index", "Home");
+        }
+
+    [HttpPost]
         public ActionResult CompletarTarea(int? id)
         {
             if (id == null)
