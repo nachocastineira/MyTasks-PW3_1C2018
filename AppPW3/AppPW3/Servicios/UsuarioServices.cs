@@ -120,9 +120,9 @@ namespace AppPW3.Servicios
             HttpCookie cookie = new HttpCookie("Usuario");
 
             cookie["Id"] = usuario.IdUsuario.ToString();
-            cookie.Expires = DateTime.Now.AddDays(1);
+            cookie.Expires = DateTime.Now.AddDays(3);
             HttpContext.Current.Response.Cookies.Add(cookie);
         }
 
-     }    
+    }    
 }
