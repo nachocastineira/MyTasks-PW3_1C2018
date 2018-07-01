@@ -21,10 +21,10 @@ namespace AppPW3.Controllers
                 return RedirectToAction("IndexAlternativo", "Home");
             }
 
-            //carpetaServices.ListarCarpetasPorUsuario(id);
-            //tareasServices.ListarTareasNoCompletadasDelUsuario(id);
+            carpetaServices.ListarCarpetasPorUsuario(id);
+            tareasServices.ListarTareasNoCompletadasDelUsuario(id);
 
-            return View(tareasServices.ListarTareasNoCompletadasDelUsuario(id));
+            return View();
         }
 
         public ActionResult IndexAlternativo()  //INDEX PARA USUARIOS NO LOGUEADOS
