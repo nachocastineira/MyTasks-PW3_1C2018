@@ -20,10 +20,10 @@ namespace AppPW3.Servicios
             return bdTareas.Tarea.Where(t => t.IdUsuario == id).OrderBy(t => t.Nombre).ToList();  //muestro tareas por orden ascendente
         }
 
-        public List<Tarea> ListarTareasPorCarpetasDelUsuario(int? idCarpeta, int idUsuario)
+        public List<Tarea> ListarTareasPorCarpetasDelUsuario(int idCarpeta, int idUsuario)
         {
-
-            return bdTareas.Tarea.Where(t => t.IdCarpeta == idCarpeta && t.IdUsuario == idUsuario).OrderBy(t => t.Nombre).ToList();
+            
+            return bdTareas.Tarea.Where(t => t.IdCarpeta == idCarpeta && t.IdUsuario == idUsuario).ToList();
         }
 
         public List<Tarea> ListarTareasNoCompletadasDelUsuario(int idUsuario)

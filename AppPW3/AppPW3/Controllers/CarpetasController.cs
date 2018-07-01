@@ -53,16 +53,18 @@ namespace AppPW3.Controllers
 
         }
 
-        public ActionResult Tareas(int? idCarpeta)
+        public ActionResult Tareas(int? id)
         {
             int idUsuario = Convert.ToInt32(Session["idUsuario"]);
+            int idCarpeta = Convert.ToInt32(id);
             if (Session["usuarioLogueado"] == null) //Si la variable de session que guarde en usuarioService es null lo mando al login
             {
                 return RedirectToAction("IndexAlternativo", "Home");
             }
-                List<Tarea> tareasDeUsuario = tareasServices.ListarTareasPorCarpetasDelUsuario(idCarpeta, idUsuario);
-            
-            return View(tareasDeUsuario);
+                ViewBag.tareasUsuarioCarpeta = tareasServices.ListarTareasPorCarpetasDelUsuario(idCarpeta, idUsuario);
+
+            return View();
+            //return View(tareasDeUsuario);
         }
 
         [HttpPost]

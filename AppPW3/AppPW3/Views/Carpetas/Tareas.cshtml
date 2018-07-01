@@ -1,5 +1,5 @@
 ﻿@using AppPW3.Entidades
-@model List<Tarea>
+
 
 @{
     ViewBag.Title = "Mis Tareas";
@@ -33,7 +33,7 @@
             </tr>
         </thead>
         <tbody>
-            @foreach (var t in Model)
+            @foreach (Tarea t in ViewBag.tareasUsuarioCarpeta)
             {
                 <tr>
                     <td><input class="form-check-label" type="checkbox" value="@t.IdTarea" name="id" /></td>
