@@ -79,6 +79,14 @@ namespace AppPW3.Servicios
             bdTareas.SaveChanges();
         }
 
+        public void CrearArchivoTarea(ArchivoTarea archivoTarea)
+        {
+            archivoTarea.FechaCreacion = DateTime.Now;
+    
+            bdTareas.ArchivoTarea.Add(archivoTarea);
+            bdTareas.SaveChanges();
+        }
+
         public List<ComentarioTarea> ListarComentariosPorTarea(int? idTarea)
         {
             return bdTareas.ComentarioTarea.Where(c => c.IdTarea == idTarea).OrderBy(c => c.FechaCreacion).ToList();

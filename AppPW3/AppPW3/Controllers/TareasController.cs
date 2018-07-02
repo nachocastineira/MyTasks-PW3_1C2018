@@ -5,6 +5,7 @@ using System.Web;
 using System.Web.Mvc;
 using AppPW3.Entidades;
 using AppPW3.Servicios;
+using AppPW3.Utilities;
 
 namespace AppPW3.Controllers
 {
@@ -15,7 +16,7 @@ namespace AppPW3.Controllers
         UsuarioServices usuarioServices = new UsuarioServices();
 
 
-        public ActionResult Index() 
+        public ActionResult Index()
         {
             int idUser = Convert.ToInt32(Session["idUsuario"]);
             if (Session["usuarioLogueado"] == null)
@@ -47,7 +48,7 @@ namespace AppPW3.Controllers
 
             if (ModelState.IsValid)
             {
-                
+
                 tareasServices.CrearTarea(tarea, id);
 
                 return RedirectToAction("Index", "Tareas");
@@ -80,7 +81,7 @@ namespace AppPW3.Controllers
         }
 
         public ActionResult Detalle(int? id)
-        
+
         {
             if (Session["usuarioLogueado"] == null)
             {
@@ -124,7 +125,7 @@ namespace AppPW3.Controllers
             return RedirectToAction("Index", "Home");
         }
 
-    [HttpPost]
+        [HttpPost]
         public ActionResult CompletarTarea(int? id)
         {
             if (id == null)
@@ -148,11 +149,26 @@ namespace AppPW3.Controllers
         }
 
         [HttpPost]
-        public ActionResult AdjuntarArchivo(ArchivoTarea archivo)
-
+        [ValidateAntiForgeryToken]
+        public ActionResult AdjuntarArchivo(ArchivoTarea archivo, int? id)
         {
+            int idTarea = Convert.ToInt32(id);
+            int idUser = Convert.ToInt32(Session["idUsuario"]);
+            Tarea miTarea = tareasServices.ObtenerTarea(idTarea);
+            String stringTarea = miTarea.Nombre;
+            archivo.IdTarea = idTarea;
+            if (Request.Files.Count > 0 && Request.Files[0].ContentLength > 0)
+            {
+                string nombreSignificativo = archivo.NombreSignificativoImagen;
+                
 
-            return View();
+                string pathRelativoImagen = ImagenesUtility.Guardar(Request.Files[0], nombreSignificativo, idTarea);
+                archivo.RutaArchivo = pathRelativoImagen;
+            }
+
+            tareasServices.CrearArchivoTarea(archivo);
+
+            return RedirectToAction("Detalle", "Tareas", new { id = idTarea });
         }
 
 

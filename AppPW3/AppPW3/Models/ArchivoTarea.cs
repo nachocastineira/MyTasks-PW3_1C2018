@@ -9,5 +9,14 @@ namespace AppPW3.Entidades
     [MetadataType(typeof(ArhivoTareaMetadata))]
     public partial class ArchivoTarea
     {
+        public string NombreSignificativoImagen
+        {
+            get
+            {
+                //en caso de ambos null, devuelve "ApellidoNombre"
+                return string.Format("{0}", this.RutaArchivo ?? "Apellido");
+            }
+        }
+
     }
 }
