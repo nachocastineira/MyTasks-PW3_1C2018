@@ -23,11 +23,12 @@
         <thead class="thead-inverse">
             <tr>
                 <th>#</th>
-                <th>Nombre</th>
-                <th>Descripción</th>
-                <th>Horas estimadas</th>
                 <th>Fecha límite</th>
+                <th>Nombre</th>
                 <th>Prioridad</th>
+                <th>Carpeta</th>
+                <th>Horas estimadas</th>
+                <th>Completada</th>
                 <th></th>
                 <th></th>
             </tr>
@@ -37,11 +38,26 @@
             {
             <tr>
                 <td><input class="form-check-label" type="checkbox" value="@tareas.IdTarea" name="id" /></td>
-                <td>@tareas.Nombre</td>
-                <td>@tareas.Descripcion</td>
-                <td>@tareas.EstimadoHoras</td>
                 <td>@tareas.FechaFin</td>
-                <td>@tareas.Prioridad</td>
+                <td>@tareas.Nombre</td>
+                 @switch (tareas.Prioridad)
+                    {
+                        case 1:
+                            <td>Urgente</td> break;
+                        case 2:
+                            <td>Alta</td>break;
+                        case 3:
+                            <td>Media</td>break;
+                        case 4:
+                            <td>Baja</td>break;
+                        default: <td></td>break;
+                                }
+
+                <td>@tareas.Carpeta.Nombre</td>
+                    <td>@tareas.EstimadoHoras</td>
+                    @if (@tareas.Completada == 0){<td>No</td>}else{<td>Si</td>}
+
+
                 <td><a class="btn btn-outline-info" href="/Tareas/Detalle/@tareas.IdTarea" value="@tareas.IdTarea" name="id">Abrir Tarea</a></td>
                 <td></td>
             </tr>

@@ -37,18 +37,30 @@
 
                 @foreach (var tareas in Model)
                 {
-                    <tr>
-                        <td>@tareas.FechaFin</td>
-                        <td><a href="~/Tareas/Detalle/@tareas.IdTarea">@tareas.Nombre</a></td>
-                        <td>@tareas.Prioridad</td>
-                        <td>@tareas.IdCarpeta</td>
-                        <td>@tareas.EstimadoHoras</td>
-                        <td>@tareas.Completada</td>
-                        <td>
-                            <a class="btn btn-outline-info" href="~/Tareas/Detalle/@tareas.IdTarea">Ver</a>
-                            <a class="btn btn-outline-info" href="~/Tareas/CompletarTareaHome/@tareas.IdTarea">Completar tarea</a>
-                        </td>
-                    </tr>
+                <tr>
+                    <td>@tareas.FechaFin</td>
+                    <td><a href="~/Tareas/Detalle/@tareas.IdTarea">@tareas.Nombre</a></td>
+                    @switch (tareas.Prioridad)
+                    {
+                        case 1:
+                            <td>Urgente</td> break;
+                        case 2:
+                            <td>Alta</td>break;
+                        case 3:
+                            <td>Media</td>break;
+                        case 4:
+                            <td>Baja</td>break;
+                        default: <td></td>break;
+                                }
+
+                    <td>@tareas.Carpeta.Nombre</td>
+                    <td>@tareas.EstimadoHoras</td>
+                    @if (@tareas.Completada == 0){<td>No</td>}else{<td>Si</td>}
+                    <td>
+                        <a class="btn btn-outline-info" href="~/Tareas/Detalle/@tareas.IdTarea">Ver</a>
+                        <a class="btn btn-outline-info" href="~/Tareas/CompletarTareaHome/@tareas.IdTarea">Completar tarea</a>
+                    </td>
+                </tr>
                 }
             </tbody>
         </table>

@@ -1,5 +1,5 @@
 ﻿@using AppPW3.Entidades
-@Model Tarea
+@model Tarea
 
 @{
     ViewBag.Title = "Detalle";
@@ -46,13 +46,28 @@
             <div class="form-group row">
                 <label for="prioridad" class="col-sm-2 col-form-label">Prioridad:</label>
                 <div class="col-sm-10">
-                    <input type="text" readonly class="form-control-plaintext" id="prioridad" value="@Model.Prioridad">
+                    @switch (Model.Completada)
+                    {
+                        case 1:<input type="text" readonly class="form-control-plaintext" id="prioridad" value="Urgente">
+                             break;
+                        case 2:<input type="text" readonly class="form-control-plaintext" id="prioridad" value="Alta">
+                             break;
+                        case 3:<input type="text" readonly class="form-control-plaintext" id="prioridad" value="Media">
+                            break;
+                        case 4:<input type="text" readonly class="form-control-plaintext" id="prioridad" value="Baja">
+                            break;
+                        default:<input type="text" readonly class="form-control-plaintext" id="prioridad" value="Baja">
+                            break;
+                    }
+                    
                 </div>
-            </div>
-            <div class="form-group row">
+    
+                </div>
+    
+                <div class="form-group row">
                 <label for="carpeta" class="col-sm-2 col-form-label">Carpeta:</label>
                 <div class="col-sm-10">
-                    <input type="text" readonly class="form-control-plaintext" id="carpeta" value="@Model.IdCarpeta">
+                    <input type="text" readonly class="form-control-plaintext" id="carpeta" value="@Model.Carpeta.Nombre">
                 </div>
             </div>
             @*<div class="input-group mb-3">

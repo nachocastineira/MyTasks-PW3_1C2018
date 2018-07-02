@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="TareasModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="TareasModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="ArchivoTarea">
           <Key>
             <PropertyRef Name="IdArchivoTarea" />
@@ -104,6 +104,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_Tarea_Carpeta">
+          <End Role="Carpeta" Type="Self.Carpeta" Multiplicity="1" />
+          <End Role="Tarea" Type="Self.Tarea" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Carpeta">
+              <PropertyRef Name="IdCarpeta" />
+            </Principal>
+            <Dependent Role="Tarea">
+              <PropertyRef Name="IdCarpeta" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_Tareas_Usuarios">
           <End Role="Usuario" Type="Self.Usuario" Multiplicity="1">
             <OnDelete Action="Cascade" />
@@ -136,13 +148,16 @@
             <End Role="Tarea" EntitySet="Tarea" />
             <End Role="ComentarioTarea" EntitySet="ComentarioTarea" />
           </AssociationSet>
+          <AssociationSet Name="FK_Tarea_Carpeta" Association="Self.FK_Tarea_Carpeta">
+            <End Role="Carpeta" EntitySet="Carpeta" />
+            <End Role="Tarea" EntitySet="Tarea" />
+          </AssociationSet>
           <AssociationSet Name="FK_Tareas_Usuarios" Association="Self.FK_Tareas_Usuarios">
             <End Role="Usuario" EntitySet="Usuario" />
             <End Role="Tarea" EntitySet="Tarea" />
           </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="TareasModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -166,6 +181,7 @@
           <Property Name="Descripcion" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
           <Property Name="FechaCreacion" Type="DateTime" Nullable="false" Precision="3" />
           <NavigationProperty Name="Usuario" Relationship="Self.FK_Carpeta_Usuario" FromRole="Carpeta" ToRole="Usuario" />
+          <NavigationProperty Name="Tarea" Relationship="TareasModel.FK_Tarea_Carpeta" FromRole="Carpeta" ToRole="Tarea" />
         </EntityType>
         <EntityType Name="ComentarioTarea">
           <Key>
@@ -194,6 +210,7 @@
           <NavigationProperty Name="ArchivoTarea" Relationship="Self.FK_ArchivoTarea_Tarea" FromRole="Tarea" ToRole="ArchivoTarea" />
           <NavigationProperty Name="ComentarioTarea" Relationship="Self.FK_Comentario_Tarea" FromRole="Tarea" ToRole="ComentarioTarea" />
           <NavigationProperty Name="Usuario" Relationship="Self.FK_Tareas_Usuarios" FromRole="Tarea" ToRole="Usuario" />
+          <NavigationProperty Name="Carpeta" Relationship="TareasModel.FK_Tarea_Carpeta" FromRole="Tarea" ToRole="Carpeta" />
         </EntityType>
         <EntityType Name="Usuario">
           <Key>
@@ -289,7 +306,23 @@
             <End Role="Usuario" EntitySet="Usuario" />
             <End Role="Tarea" EntitySet="Tarea" />
           </AssociationSet>
+          <AssociationSet Name="FK_Tarea_Carpeta" Association="TareasModel.FK_Tarea_Carpeta">
+            <End Role="Carpeta" EntitySet="Carpeta" />
+            <End Role="Tarea" EntitySet="Tarea" />
+          </AssociationSet>
         </EntityContainer>
+        <Association Name="FK_Tarea_Carpeta">
+          <End Type="TareasModel.Carpeta" Role="Carpeta" Multiplicity="1" />
+          <End Type="TareasModel.Tarea" Role="Tarea" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Carpeta">
+              <PropertyRef Name="IdCarpeta" />
+            </Principal>
+            <Dependent Role="Tarea">
+              <PropertyRef Name="IdCarpeta" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
