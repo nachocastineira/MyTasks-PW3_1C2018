@@ -58,5 +58,8 @@ namespace AppPW3.Entidades
         public virtual ICollection<Carpeta> Carpeta { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Tarea> Tarea { get; set; }
+
+        public bool Recordar { get; set; } = false;
+
     }
 }

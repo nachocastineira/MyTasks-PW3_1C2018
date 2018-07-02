@@ -10,5 +10,9 @@ namespace AppPW3.Entidades
     public partial class Usuario
     {   //atributo usado en el logueo, no persiste en la base de datos.
         public string ContraseniaConfirm { get; set; }
+
+        public bool Recordar { get; set; } = false;
+
+
     }
 }

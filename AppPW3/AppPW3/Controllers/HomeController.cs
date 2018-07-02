@@ -47,6 +47,12 @@ namespace AppPW3.Controllers
                 {
                     if (usuarioServices.VerificarContraseniaLogin(usuario))
                     {
+                        if (usuario.Recordar)
+                        {
+                            usuario = usuarioServices.TraerCookie();
+                            return RedirectToAction("Index", "Home");
+                        }
+
                         return RedirectToAction("Index", "Home");
                     }
                     ViewBag.ErrorLogin = "Verificar usuario y/o contraseña";

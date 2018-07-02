@@ -114,15 +114,39 @@ namespace AppPW3.Servicios
             bdTareas.SaveChanges();
          }
 
-        public void CrearCookie()
+        public void CrearCookie(Usuario usuario)
         {
-            Usuario usuario = new Usuario();
-            HttpCookie cookie = new HttpCookie("Usuario");
-
-            cookie["Id"] = usuario.IdUsuario.ToString();
-            cookie.Expires = DateTime.Now.AddDays(3);
-            HttpContext.Current.Response.Cookies.Add(cookie);
+            HttpCookie cookie = new HttpCookie("User");
+            cookie["ID"] = usuario.IdUsuario.ToString();
+            cookie.Expires = DateTime.Now.AddDays(1);
+            System.Web.HttpContext.Current.Response.Cookies.Add(cookie);
         }
 
-    }    
+        public Usuario TraerCookie()
+        {
+            try
+            {
+                HttpCookie Cookie = HttpContext.Current.Request.Cookies.Get("User");
+                String id = Cookie["ID"];
+
+                if (id != null)
+                {
+                    if (id != String.Empty)
+                    {
+                        int idUsuario = int.Parse(id);
+
+                        Usuario usuario = ObtenerUsuario(idUsuario);
+
+                        if (usuario != null) return usuario;
+                    }
+                }
+                return null;
+            }
+            catch
+            {
+                return null;
+            }
+
+        }
+    }
 }

@@ -72,8 +72,14 @@ namespace AppPW3.Controllers
         }
 
         public ActionResult CrearComentario(int? id)
-
         {
+            int idUser = Convert.ToInt32(Session["idUsuario"]);
+            if (Session["usuarioLogueado"] == null)
+            {
+                return RedirectToAction("IndexAlternativo", "Home");
+            }
+
+
             int idTarea = Convert.ToInt32(id);
             ViewBag.idTarea = idTarea;
 
@@ -93,15 +99,6 @@ namespace AppPW3.Controllers
 
             return View(tareasServices.ObtenerTarea(id));
         }
-
-        //[HttpPost]
-        //public ActionResult Detalle(ComentarioTarea comentario, int idTarea)
-        //{
-        //    tareasServices.CrearComentarioTarea(comentario, idTarea);
-
-        //    return RedirectToAction("Detalle", "Tareas");
-        //}
-
 
         [HttpPost]
         public ActionResult Eliminar(int? id)
@@ -142,8 +139,13 @@ namespace AppPW3.Controllers
         }
 
         public ActionResult AdjuntarArchivo(int? id)
-
         {
+            int idUser = Convert.ToInt32(Session["idUsuario"]);
+            if (Session["usuarioLogueado"] == null)
+            {
+                return RedirectToAction("IndexAlternativo", "Home");
+            }
+
             int idTarea = Convert.ToInt32(id);
             ViewBag.idTarea = idTarea;
             return View();
@@ -171,8 +173,6 @@ namespace AppPW3.Controllers
 
             return RedirectToAction("Detalle", "Tareas", new { id = idTarea });
         }
-
-
 
     }
 }
