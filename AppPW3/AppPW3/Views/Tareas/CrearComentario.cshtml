@@ -7,38 +7,41 @@
 
 @section Body
 {
-    <div class="col-md-10 offset-1 ">
+<div class="col-md-10 offset-1 ">
 
-        <ol class="breadcrumb shadow p-3 mb-5 bg-dark">
-            <li class="breadcrumb-item text-muted">Comentarios</li>
-            <li class="breadcrumb-item active text-white">Crear Comentario</li>
-        </ol>
+    <ol class="breadcrumb shadow p-3 mb-5 bg-dark">
+        <li class="breadcrumb-item text-muted"><a>Comentarios</a></li>
+        <li class="breadcrumb-item active text-white">Crear Comentario</li>
+    </ol>
+    <div class="btn-group mb-4">
+        <a class="btn btn-outline-primary" href="@Url.Content("~/Carpetas/Index")">Mis Carpetas</a>
+        <a class="btn btn-outline-info" href="@Url.Content("~/Carpetas/Tareas/")">Mis Tareas</a>
+    </div>
+    <div class="card">
+        <div class="card-header bg-success mb-3 text-white">
+            Complete los siguientes campos para agregar un comentario:
+        </div>
 
-        <div class="card">
-            <div class="card-header bg-success mb-3 text-white">
-                Complete los siguientes campos para agregar un comentario:
+        @using (Html.BeginForm("CrearComentario", "Tareas", FormMethod.Post, new { enctype = "multipart/form-data" }))
+        {
+            @Html.AntiForgeryToken()
+
+            <div class="form-group col-md-8">
+                @Html.LabelFor(model => model.Texto, htmlAttributes: new { @class = "col-sm-3 col-form-label" })
+                <div class="col-sm-10">
+                    @Html.EditorFor(model => model.Texto, new { htmlAttributes = new { @class = "form-control", required = true, placeholder = "Ingrese su comentario aqui." } })
+                    @Html.ValidationMessageFor(model => model.Texto, "", new { @class = "text-danger" })
+                </div>
             </div>
 
-            @using (Html.BeginForm("CrearComentario", "Tareas", FormMethod.Post, new { enctype = "multipart/form-data" }))
-            {
-                @Html.AntiForgeryToken()
 
-                <div class="form-group col-md-6">
-                    @Html.LabelFor(model => model.Texto, htmlAttributes: new { @class = "col-sm-3 col-form-label" })
-                    <div class="col-sm-10">
-                        @Html.EditorFor(model => model.Texto, new { htmlAttributes = new { @class = "form-control", required = true, placeholder = "Este campo es obligatorio." } })
-                        @Html.ValidationMessageFor(model => model.Texto, "", new { @class = "text-danger" })
-                    </div>
-                </div>
-
-                
-                <input type="hidden"  value="@ViewBag.idTarea" id="idTarea" name="idTarea" />
-                <div class="col-md-4 mt-4 mb-5">
-                    <button type="submit" class="btn btn-outline-success">Agregar Comentario</button>
-                </div>
-            }
-        </div>
+            <input type="hidden" value="@ViewBag.idTarea" id="idTarea" name="idTarea" />
+            <div class="col-md-4 mt-4 mb-5">
+                <button type="submit" class="btn btn-outline-success">Agregar Comentario</button>
+            </div>
+        }
     </div>
+</div>
 }
             
 

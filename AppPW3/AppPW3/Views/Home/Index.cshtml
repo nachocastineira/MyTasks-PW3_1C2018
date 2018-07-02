@@ -8,7 +8,7 @@
 @section Body
 {
     <ol class="breadcrumb shadow p-3 mb-5 bg-dark">
-        <li class="breadcrumb-item active text-white">Home</li>
+        <li class="breadcrumb-item active text-white">Inicio</li>
     </ol>
 
     <div class="btn-group mb-4">
@@ -18,9 +18,9 @@
 
     <card class="card">
         <div class="card-title">
-            <h6 class="text text-center">Tareas No Completadas</h6>
         </div>
         <table class="table table-hover">
+            <p class="text text-center font-weight-bold">Tareas No Completadas</p>
             <thead class="thead-inverse">
                 <tr>
                     <th>Fecha Límite</th>
@@ -37,30 +37,36 @@
 
                 @foreach (var tareas in Model)
                 {
-                <tr>
-                    <td>@tareas.FechaFin</td>
-                    <td><a href="~/Tareas/Detalle/@tareas.IdTarea">@tareas.Nombre</a></td>
-                    @switch (tareas.Prioridad)
-                    {
-                        case 1:
-                            <td>Urgente</td> break;
-                        case 2:
-                            <td>Alta</td>break;
-                        case 3:
-                            <td>Media</td>break;
-                        case 4:
-                            <td>Baja</td>break;
-                        default: <td></td>break;
-                                }
+                    <tr>
+                        <td>@tareas.FechaFin</td>
+                        <td><a href="~/Tareas/Detalle/@tareas.IdTarea">@tareas.Nombre</a></td>
+                        @switch (tareas.Prioridad)
+                        {
+                            case 1:
+                                <td>Urgente</td> break;
+                            case 2:
+                                <td>Alta</td>break;
+                            case 3:
+                                <td>Media</td>break;
+                            case 4:
+                                <td>Baja</td>break;
+                            default:
+                                <td></td>break;
+                        }
 
-                    <td>@tareas.Carpeta.Nombre</td>
-                    <td>@tareas.EstimadoHoras</td>
-                    @if (@tareas.Completada == 0){<td>No</td>}else{<td>Si</td>}
-                    <td>
-                        <a class="btn btn-outline-info" href="~/Tareas/Detalle/@tareas.IdTarea">Ver</a>
-                        <a class="btn btn-outline-info" href="~/Tareas/CompletarTareaHome/@tareas.IdTarea">Completar tarea</a>
-                    </td>
-                </tr>
+                        <td>@tareas.Carpeta.Nombre</td>
+                        <td>@tareas.EstimadoHoras</td>
+                        @if (@tareas.Completada == 0)
+                        {
+                            <td>No</td>}
+                        else
+                        {
+                            <td>Si</td>}
+                        <td>
+                            <a class="btn btn-outline-info" href="~/Tareas/Detalle/@tareas.IdTarea">Ver</a>
+                            <a class="btn btn-outline-danger" href="~/Tareas/CompletarTareaHome/@tareas.IdTarea">Completar tarea</a>
+                        </td>
+                    </tr>
                 }
             </tbody>
         </table>

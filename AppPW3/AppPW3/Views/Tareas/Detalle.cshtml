@@ -8,13 +8,13 @@
 @section Body
 {
     <ol class="breadcrumb shadow p-3 mb-5 bg-dark">
-        <li class="breadcrumb-item text-muted">Carpeta X</li>
+        <li class="breadcrumb-item text-muted">@Model.Carpeta.Nombre</li>
         <li class="breadcrumb-item text-muted">Mis Tareas</li>
-        <li class="breadcrumb-item active text-white">NombreTarea</li>
+        <li class="breadcrumb-item active text-white">@Model.Nombre</li>
     </ol>
     <div class="btn-group mb-4">
         <a class="btn btn-outline-primary" href="@Url.Content("~/Carpetas/Index")">Mis Carpetas</a>
-        <a class="btn btn-outline-info" href="@Url.Content("~/Tareas/Crear")">Mis Tareas</a>
+        <a class="btn btn-outline-info" href="@Url.Content("~/Carpetas/Tareas/")">Mis Tareas</a>
     </div>
     <div class="card">
         <p class="card-header bg-info text-white">Detalle</p>
@@ -70,24 +70,8 @@
                     <input type="text" readonly class="form-control-plaintext" id="carpeta" value="@Model.Carpeta.Nombre">
                 </div>
             </div>
-            @*<div class="input-group mb-3">
-                    <div class="input-group-prepend">
-                        <span class="input-group-text">Comentarios</span>
-                    </div>
-                    <textarea class="form-control" aria-label="Comentarios"></textarea>
-                </div>
-
-
-                <div class="custom-file">
-                    <input type="file" class="custom-file-input" id="customFileLang" lang="es" name="">
-                    <label class="custom-file-label" for="customFileLang">Seleccionar Archivo</label>
-                </div>*@
         </div>
-        @*<div class="card-footer">
-                <div class="col-md-3 mt-3 mb-3">
-                    <button type="submit" class="btn btn-info">Agregar</button>
-                </div>
-            </div>*@
+
     </div>
     <br />
 
