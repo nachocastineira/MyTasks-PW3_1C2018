@@ -64,7 +64,6 @@ namespace AppPW3.Controllers
                 ViewBag.tareasUsuarioCarpeta = tareasServices.ListarTareasPorCarpetasDelUsuario(idCarpeta, idUsuario);
 
             return View();
-            //return View(tareasDeUsuario);
         }
 
         [HttpPost]

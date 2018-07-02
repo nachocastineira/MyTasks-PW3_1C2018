@@ -21,9 +21,6 @@ namespace AppPW3.Controllers
                 return RedirectToAction("IndexAlternativo", "Home");
             }
 
-            //carpetaServices.ListarCarpetasPorUsuario(id);
-            //tareasServices.ListarTareasNoCompletadasDelUsuario(id);
-
             return View(tareasServices.ListarTareasNoCompletadasDelUsuario(id));
         }
 
@@ -34,7 +31,6 @@ namespace AppPW3.Controllers
 
         public ActionResult Login()
         {
-
             return View();
         }
 

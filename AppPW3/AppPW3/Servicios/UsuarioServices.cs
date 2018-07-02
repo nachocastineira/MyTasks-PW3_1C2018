@@ -57,7 +57,7 @@ namespace AppPW3.Servicios
 
         public void RegistrarUsuario(Usuario usuario)
         {
-            usuario.CodigoActivacion = "123123123123"; //hay que ver como generar el codigo de activacion
+            usuario.CodigoActivacion = "4AE52B1C-C8E2-4AB1-8EFD-119FCB87F5B3"; 
             usuario.Activo = 1; //por default un usuario se crea en estado activo
             usuario.FechaRegistracion = DateTime.Today;
             usuario.FechaActivacion = DateTime.Today;
