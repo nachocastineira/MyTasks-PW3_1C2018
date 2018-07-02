@@ -30,7 +30,7 @@ namespace AppPW3.Utilities
             carpetaImagenes = carpetaImagenes + idTarea.ToString() + "/";
 
             //Server.MapPath antepone a un string la ruta fisica donde actualmente esta corriendo la aplicacion (ej. c:\inetpub\misitio\)
-            string pathDestino = System.Web.Hosting.HostingEnvironment.MapPath("~") + carpetaImagenes + "/" + idTarea;
+            string pathDestino = System.Web.Hosting.HostingEnvironment.MapPath("~") + carpetaImagenes;
 
             //si no exise la carpeta, la creamos
             if (!System.IO.Directory.Exists(pathDestino))

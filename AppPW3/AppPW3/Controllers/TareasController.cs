@@ -88,6 +88,7 @@ namespace AppPW3.Controllers
                 return RedirectToAction("IndexAlternativo", "Home");
             }
 
+            ViewBag.ArchivosTarea = tareasServices.ListarArchivosPorTarea(id);
             ViewBag.ComentariosTarea = tareasServices.ListarComentariosPorTarea(id);
 
             return View(tareasServices.ObtenerTarea(id));

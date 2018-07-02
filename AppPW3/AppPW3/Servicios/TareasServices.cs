@@ -87,6 +87,11 @@ namespace AppPW3.Servicios
             bdTareas.SaveChanges();
         }
 
+        public List<ArchivoTarea> ListarArchivosPorTarea(int? idTarea)
+        {
+            return bdTareas.ArchivoTarea.Where(c => c.IdTarea == idTarea).OrderBy(c => c.FechaCreacion).ToList();
+        }
+
         public List<ComentarioTarea> ListarComentariosPorTarea(int? idTarea)
         {
             return bdTareas.ComentarioTarea.Where(c => c.IdTarea == idTarea).OrderBy(c => c.FechaCreacion).ToList();

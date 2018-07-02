@@ -4,69 +4,57 @@
 @{
     ViewBag.Title = "Detalle";
 }
-
 <!-- comienzo el renderSection que expecifique en el _LayoutSidebar -->
 @section Body
 {
-
     <ol class="breadcrumb shadow p-3 mb-5 bg-dark">
         <li class="breadcrumb-item text-muted">Carpeta X</li>
         <li class="breadcrumb-item text-muted">Mis Tareas</li>
         <li class="breadcrumb-item active text-white">NombreTarea</li>
     </ol>
-
     <div class="btn-group mb-4">
         <a class="btn btn-outline-primary" href="@Url.Content("~/Carpetas/Index")">Mis Carpetas</a>
         <a class="btn btn-outline-info" href="@Url.Content("~/Tareas/Crear")">Mis Tareas</a>
     </div>
-
     <div class="card">
         <p class="card-header bg-info text-white">Detalle</p>
-
         <div class="card-body">
-
             <div class="form-group row">
                 <label for="nombre" class="col-sm-2 col-form-label">Nombre:</label>
                 <div class="col-sm-10">
                     <input type="text" readonly class="form-control-plaintext" value="@Model.Nombre">
                 </div>
             </div>
-
             <div class="form-group row">
                 <label for="desc" class="col-sm-2 col-form-label">Descripción:</label>
                 <div class="col-sm-10">
                     <input type="text" readonly class="form-control-plaintext" id="desc" value="@Model.Descripcion">
                 </div>
             </div>
-
             <div class="form-group row">
                 <label for="hs" class="col-sm-2 col-form-label">Horas estimadas:</label>
                 <div class="col-sm-10">
                     <input type="text" readonly class="form-control-plaintext" id="hs" value="@Model.EstimadoHoras">
                 </div>
             </div>
-
             <div class="form-group row">
                 <label for="fecha" class="col-sm-2 col-form-label">Fecha Límite:</label>
                 <div class="col-sm-10">
                     <input type="text" readonly class="form-control-plaintext" id="fecha" value="@Model.FechaFin">
                 </div>
             </div>
-
             <div class="form-group row">
                 <label for="prioridad" class="col-sm-2 col-form-label">Prioridad:</label>
                 <div class="col-sm-10">
                     <input type="text" readonly class="form-control-plaintext" id="prioridad" value="@Model.Prioridad">
                 </div>
             </div>
-
             <div class="form-group row">
                 <label for="carpeta" class="col-sm-2 col-form-label">Carpeta:</label>
                 <div class="col-sm-10">
                     <input type="text" readonly class="form-control-plaintext" id="carpeta" value="@Model.IdCarpeta">
                 </div>
             </div>
-
             @*<div class="input-group mb-3">
                     <div class="input-group-prepend">
                         <span class="input-group-text">Comentarios</span>
@@ -79,9 +67,7 @@
                     <input type="file" class="custom-file-input" id="customFileLang" lang="es" name="">
                     <label class="custom-file-label" for="customFileLang">Seleccionar Archivo</label>
                 </div>*@
-
         </div>
-
         @*<div class="card-footer">
                 <div class="col-md-3 mt-3 mb-3">
                     <button type="submit" class="btn btn-info">Agregar</button>
@@ -90,32 +76,46 @@
     </div>
     <br />
 
-
     <div class="btn-group mb-4">
-
         <a href="/Tareas/CrearComentario/@Model.IdTarea" value="@Model.IdTarea" name="IdTarea" class="btn btn-secondary">Realizar un nuevo comentario</a>
         <a href="/Tareas/AdjuntarArchivo/@Model.IdTarea" value="@Model.IdTarea" name="IdTarea" class="btn btn-dark">Agregar archivo adjunto</a>
     </div>
-
     <div class="card">
         <table class="table table-hover">
             <thead>
                 <tr>
-                    <th>Descripción</th>
+                    <th>Comentario</th>
                     <th>Fecha de creación</th>
                 </tr>
             </thead>
             <tbody>
                 @foreach (var c in ViewBag.ComentariosTarea)
-            {
-                <tr>
-                    <td>@c.Texto</td>
-                    <td>@c.FechaCreacion</td>
-                </tr>
-            }
+                {
+                    <tr>
+                        <td>@c.Texto</td>
+                        <td>@c.FechaCreacion</td>
+                    </tr>
+                }
             </tbody>
         </table>
-
     </div>
-
+    <div class="card">
+        <table class="table table-hover">
+            <thead>
+                <tr>
+                    <th>Archivos</th>
+                    <th>Enlace</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var c in ViewBag.ArchivosTarea)
+                {
+                    <tr>
+                        <td><a href="@c.RutaArchivo" target="_blank">Enlace</a></td>
+                        <td>@c.FechaCreacion</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
 }
