@@ -8,7 +8,7 @@
 @section Body
 {
     <ol class="breadcrumb shadow p-3 mb-5 bg-dark">
-        <li class="breadcrumb-item text-muted">@Model.Carpeta.Nombre</li>
+        <li class="breadcrumb-item text-muted">@Model.IdCarpeta</li>
         <li class="breadcrumb-item text-muted">Mis Tareas</li>
         <li class="breadcrumb-item active text-white">@Model.Nombre</li>
     </ol>
@@ -67,7 +67,7 @@
                 <div class="form-group row">
                 <label for="carpeta" class="col-sm-2 col-form-label">Carpeta:</label>
                 <div class="col-sm-10">
-                    <input type="text" readonly class="form-control-plaintext" id="carpeta" value="@Model.Carpeta.Nombre">
+                    <input type="text" readonly class="form-control-plaintext" id="carpeta" value="@Model.IdCarpeta">
                 </div>
             </div>
         </div>

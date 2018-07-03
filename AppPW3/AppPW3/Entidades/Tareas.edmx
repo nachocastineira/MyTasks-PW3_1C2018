@@ -104,18 +104,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_Tarea_Carpeta">
-          <End Role="Carpeta" Type="Self.Carpeta" Multiplicity="1" />
-          <End Role="Tarea" Type="Self.Tarea" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Carpeta">
-              <PropertyRef Name="IdCarpeta" />
-            </Principal>
-            <Dependent Role="Tarea">
-              <PropertyRef Name="IdCarpeta" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_Tareas_Usuarios">
           <End Role="Usuario" Type="Self.Usuario" Multiplicity="1">
             <OnDelete Action="Cascade" />
@@ -147,10 +135,6 @@
           <AssociationSet Name="FK_Comentario_Tarea" Association="Self.FK_Comentario_Tarea">
             <End Role="Tarea" EntitySet="Tarea" />
             <End Role="ComentarioTarea" EntitySet="ComentarioTarea" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Tarea_Carpeta" Association="Self.FK_Tarea_Carpeta">
-            <End Role="Carpeta" EntitySet="Carpeta" />
-            <End Role="Tarea" EntitySet="Tarea" />
           </AssociationSet>
           <AssociationSet Name="FK_Tareas_Usuarios" Association="Self.FK_Tareas_Usuarios">
             <End Role="Usuario" EntitySet="Usuario" />
