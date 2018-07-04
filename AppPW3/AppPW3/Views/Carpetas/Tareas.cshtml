@@ -35,16 +35,29 @@
         <tbody>
             @foreach (Tarea t in ViewBag.tareasUsuarioCarpeta)
             {
-                <tr>
-                    <td><input class="form-check-label" type="checkbox" value="@t.IdTarea" name="id" /></td>
-                    <td>@t.Nombre</td>
-                    <td>@t.Descripcion</td>
-                    <td>@t.EstimadoHoras</td>
-                    <td>@t.FechaFin</td>
-                    <td>@t.Prioridad</td>
-                    <td><a class="btn btn-outline-info" href="/Tareas/Detalle/@t.IdTarea" value="@t.IdTarea" name="id">Abrir Tarea</a></td>
-                    <td></td>
-                </tr>
+            <tr>
+                <td><input class="form-check-label" type="checkbox" value="@t.IdTarea" name="id" /></td>
+                <td>@t.Nombre</td>
+                <td>@t.Descripcion</td>
+                <td>@t.EstimadoHoras</td>
+                <td>@t.FechaFin</td>
+
+                @switch (t.Prioridad)
+                {
+                    case 1:
+                        <td>Urgente</td> break;
+                    case 2:
+                        <td>Alta</td>break;
+                    case 3:
+                        <td>Media</td>break;
+                    case 4:
+                        <td>Baja</td>break;
+                    default:
+                        <td></td>break;
+                }
+                <td><a class="btn btn-outline-info" href="/Tareas/Detalle/@t.IdTarea" value="@t.IdTarea" name="id">Abrir Tarea</a></td>
+                <td></td>
+            </tr>
             }
         </tbody>
     </table>

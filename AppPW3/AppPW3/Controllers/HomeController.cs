@@ -3,6 +3,7 @@ using System.Web.Mvc;
 using AppPW3.Entidades;
 using AppPW3.Servicios;
 using CaptchaMvc.HtmlHelpers;
+using System.Web;
 
 namespace AppPW3.Controllers
 {
@@ -26,6 +27,8 @@ namespace AppPW3.Controllers
 
         public ActionResult IndexAlternativo()  //INDEX PARA USUARIOS NO LOGUEADOS
         {
+            Uri url = Request.Url;
+            ViewBag.Url = Request.Url;
             return View();
         }
 
@@ -37,6 +40,8 @@ namespace AppPW3.Controllers
         [HttpPost]
         public ActionResult Login(Usuario usuario)
         {
+
+
             if (usuarioServices.VerificarUsuarioRegistrado(usuario))
             {
                 if (usuarioServices.VerificarUsuarioActivo(usuario))

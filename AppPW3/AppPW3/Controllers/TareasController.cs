@@ -89,7 +89,15 @@ namespace AppPW3.Controllers
         public ActionResult Detalle(int? id)
 
         {
-            if (Session["usuarioLogueado"] == null)
+            int idUsuario = Convert.ToInt32(Session["idUsuario"]);
+            int idCarpeta = Convert.ToInt32(id);
+            int? UsuarioTarea = tareasServices.ObtenerTarea(id).IdUsuario;
+            if (Session["usuarioLogueado"] == null) //Si la variable de session que guarde en usuarioService es null lo mando al login
+            {
+
+                return RedirectToAction("IndexAlternativo", "Home");
+            }
+            if (idUsuario != UsuarioTarea)
             {
                 return RedirectToAction("IndexAlternativo", "Home");
             }
