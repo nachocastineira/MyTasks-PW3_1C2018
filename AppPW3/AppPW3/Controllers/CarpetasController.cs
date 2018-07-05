@@ -9,7 +9,7 @@ using AppPW3.Servicios;
 
 namespace AppPW3.Controllers
 {
-    public class CarpetasController : Controller
+    public class CarpetasController : CustomController
     {
         CarpetasServices carpetaServices = new CarpetasServices();
         TareasServices tareasServices = new TareasServices();
@@ -18,10 +18,10 @@ namespace AppPW3.Controllers
         public ActionResult Index()
         {
             int id = Convert.ToInt32(Session["idUsuario"]);
-            if (Session["usuarioLogueado"] == null) //Si la variable de session que guarde en usuarioService es null lo mando al login
-            {
-                return RedirectToAction("IndexAlternativo", "Home");
-            }
+            //if (Session["usuarioLogueado"] == null) //Si la variable de session que guarde en usuarioService es null lo mando al login
+            //{
+            //    return RedirectToAction("IndexAlternativo", "Home");
+            //}
 
             return View(carpetaServices.ListarCarpetasPorUsuario(id)); //Andando User Logueado con SESSION
         }

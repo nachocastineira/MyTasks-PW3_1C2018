@@ -9,7 +9,7 @@ using AppPW3.Utilities;
 
 namespace AppPW3.Controllers
 {
-    public class TareasController : Controller
+    public class TareasController : CustomController
     {
         CarpetasServices carpetaServices = new CarpetasServices();
         TareasServices tareasServices = new TareasServices();

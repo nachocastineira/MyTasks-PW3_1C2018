@@ -7,7 +7,7 @@ using System.Web;
 
 namespace AppPW3.Controllers
 {
-    public class HomeController : Controller
+    public class HomeController : CustomController
     {
         UsuarioServices usuarioServices = new UsuarioServices();
         CarpetasServices carpetaServices = new CarpetasServices();
@@ -48,13 +48,13 @@ namespace AppPW3.Controllers
                 {
                     if (usuarioServices.VerificarContraseniaLogin(usuario))
                     {
-                        if (usuario.Recordar)
+
+                           string destino = HttpUtility.ParseQueryString(Request.UrlReferrer.Query)["ReturnUrl"];
+                        if (destino == null)
                         {
-                            usuario = usuarioServices.TraerCookie();
                             return RedirectToAction("Index", "Home");
                         }
-
-                        return RedirectToAction("Index", "Home");
+                           return Redirect(destino);
                     }
                     ViewBag.ErrorLogin = "Verificar usuario y/o contraseña";
                     return View("IndexAlternativo");
